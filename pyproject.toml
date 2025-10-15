@@ -6,18 +6,17 @@ build-backend = "setuptools.build_meta"
 name = "TankControllerPico"
 version = "0.1.1"
 description = "Tank Controller Pico Application"
-requires-python = ">=3.12"
+requires-python = "==3.9.*"
 dependencies = [
+    "adafruit-ads1x15",
     "adafruit-circuitpython-ads1x15",
     "adafruit-circuitpython-lis3dh", 
     "adafruit-circuitpython-max31865",
-    "gpiozero",
-    "pandas",
     "click",
-    "adafruit-ads1x15",
     "exceptiongroup",
+    "gpiozero",
     "numpy",
-    "adafruit-blinka",
+    "pandas",
 ]
 
 [tool.setuptools.packages.find]
@@ -27,12 +26,12 @@ exclude = ["test*"]
 [project.optional-dependencies]
 dev = [
     "black",
+    "codespell",
     "flake8",
     "isort", 
     "pycodestyle",
-    "pytest",
     "pylint",
+    "pytest",
     "pytest-cov",
     "pytest-mock",
-    "codespell",
 ]
