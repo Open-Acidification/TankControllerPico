@@ -87,25 +87,12 @@ class Titrator:
         """
         self.temp_controller.update()
         self.update_state()
-        print(
-            "Titrator::handleUI() - ",
-            self.state.name(),
-            "::substate",
-            self.state.substate,
-            "::loop()",
-        )
         self.handle_ui()
 
     def set_next_state(self, new_state, update):
         """
         The function used to set the next state the state machine will enter
         """
-        print(
-            "Titrator::setNextState() from ",
-            self.next_state.name() if self.next_state else "nullptr",
-            " to ",
-            new_state.name(),
-        )
         self.next_state = new_state
         if update:
             self.update_state()
@@ -115,7 +102,12 @@ class Titrator:
         The function used to move to the next state
         """
         if self.next_state:
-            print("Titrator::updateState() to ", self.next_state.name())
+            print(
+                "Titrator::updateState() from",
+                self.state.name(),
+                "to",
+                self.next_state.name(),
+            )
             self.state = self.next_state
             self.next_state = None
             self.state.start()
@@ -124,9 +116,8 @@ class Titrator:
         """
         The function used to receive the keypad input and process the appropriate response
         """
-        print("Titrator::handleUI() - ", self.state.name())
         key = self.keypad.get_key()
-        print("Titrator::handleUI() - ", self.state.name(), "::handleKey(", key, ")")
         if key is not None:
+            print("Titrator::handle_ui() key pressed:", key)
             self.state.handle_key(key)
         self.state.loop()
