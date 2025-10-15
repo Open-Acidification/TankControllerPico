@@ -1,0 +1,93 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "kadensu",
+      "name": "Kaden Sukachevin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26241731?v=4",
+      "profile": "https://www.linkedin.com/in/kadensukachevin/",
+      "contributions": [
+        "code",
+        "doc",
+        "bug"
+      ]
+    },
+    {
+      "login": "prestoncarman",
+      "name": "Preston Carman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3517157?v=4",
+      "profile": "https://github.com/prestoncarman",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "KonradMcClure",
+      "name": "Konrad McClure",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66455502?v=4",
+      "profile": "https://github.com/KonradMcClure",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Noah-Griffith",
+      "name": "Noah-Griffith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/78978886?v=4",
+      "profile": "https://github.com/Noah-Griffith",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "d-cryptic",
+      "name": "Barun Debnath",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52271502?v=4",
+      "profile": "https://github.com/d-cryptic",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kieransukachevin",
+      "name": "Kieran Sukachevin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54186484?v=4",
+      "profile": "https://kieransukachevin.github.io/first%20portfolio/portfolio.html",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "jsoref",
+      "name": "Josh Soref",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2119212?v=4",
+      "profile": "https://github.com/jsoref",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "TaylorSmith28",
+      "name": "TaylorSmith28",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83837157?v=4",
+      "profile": "https://github.com/TaylorSmith28",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "AlkalinityTitrator",
+  "projectOwner": "Open-Acidification",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true,
+  "commitConvention": "angular"
+}

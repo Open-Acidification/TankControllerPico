@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "TankControllerPython"
+version = "0.1.0"
+description = "Tank Controller Python Application"
+requires-python = ">=3.12"
+dependencies = [
+    "adafruit-circuitpython-ads1x15",
+    "adafruit-circuitpython-lis3dh", 
+    "adafruit-circuitpython-max31865",
+    "gpiozero",
+    "pandas",
+    "click",
+    "adafruit-ads1x15",
+    "exceptiongroup",
+    "numpy",
+    "adafruit-blinka",
+]
+
+[tool.setuptools.packages.find]
+include = ["titration*"]
+exclude = ["test*"]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "isort", 
+    "pycodestyle",
+    "pytest",
+    "pylint",
+    "pytest-cov",
+    "pytest-mock",
+    "codespell",
+]
