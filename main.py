@@ -13,6 +13,8 @@ if __name__ == "__main__":
             mock_config.MOCK_ENABLED = True
         else:
             raise SystemExit(f"Usage: {sys.argv[0]} [-gui]")
+    else:
+        mock_config.MOCK_ENABLED = False
 
     from titration import titrator_driver
 
