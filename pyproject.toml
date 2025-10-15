@@ -3,9 +3,9 @@ requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "TankControllerPython"
-version = "0.1.0"
-description = "Tank Controller Python Application"
+name = "TankControllerPico"
+version = "0.1.1"
+description = "Tank Controller Pico Application"
 requires-python = ">=3.12"
 dependencies = [
     "adafruit-circuitpython-ads1x15",
