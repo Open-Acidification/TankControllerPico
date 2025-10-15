@@ -15,7 +15,7 @@ Update the `TankController` code from C++ to Python and run on a Raspberry Pico.
 To set up and run this project, the system must meet the following requirements:
 
 - **uv**: The python project package manager must be installed. Learn more at [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/).
-- **tkinter**: The Python GUI to test locally. Often installed seperately.
+- **tkinter**: The Python GUI to test locally. Often installed separately.
 
 ### Mac Requirements
 
