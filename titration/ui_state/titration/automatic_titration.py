@@ -1,6 +1,7 @@
 """
 The file for the AutomaticTitration class
 """
+
 from titration.ui_state import main_menu
 from titration.ui_state.ui_state import UIState
 

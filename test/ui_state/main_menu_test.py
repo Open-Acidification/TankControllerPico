@@ -1,6 +1,7 @@
 """
 The file to test the MainMenu class
 """
+
 from unittest import mock
 from unittest.mock import ANY
 
@@ -130,7 +131,10 @@ def test_loop(print_mock):
     main_menu.level2 = 2
     main_menu.loop()
     print_mock.assert_has_calls(
-        [mock.call(main_menu.view_menus[2], line=1), mock.call("<4   ^2  8v   6>", line=2)]
+        [
+            mock.call(main_menu.view_menus[2], line=1),
+            mock.call("<4   ^2  8v   6>", line=2),
+        ]
     )
 
     print_mock.reset_mock()
@@ -148,5 +152,8 @@ def test_loop(print_mock):
     main_menu.level2 = 3
     main_menu.loop()
     print_mock.assert_has_calls(
-        [mock.call(main_menu.set_menus[3], line=1), mock.call("<4   ^2  8v   6>", line=2)]
+        [
+            mock.call(main_menu.set_menus[3], line=1),
+            mock.call("<4   ^2  8v   6>", line=2),
+        ]
     )

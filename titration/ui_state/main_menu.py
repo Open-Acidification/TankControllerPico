@@ -1,13 +1,16 @@
 """
 The file for the MainMenu class
 """
+
 from titration.devices.library import Keypad
 from titration.ui_state.ui_state import UIState
 from titration.ui_state.controller.set_ph_target import SetPHTarget
 from titration.ui_state.controller.set_pid_on_off import EnablePID
 from titration.ui_state.controller.set_ph_calibration import PHCalibration
 from titration.ui_state.controller.set_ph_calibration_clear import ResetPHCalibration
-from titration.ui_state.controller.set_thermal_calibration_clear import ResetThermalCalibration
+from titration.ui_state.controller.set_thermal_calibration_clear import (
+    ResetThermalCalibration,
+)
 from titration.ui_state.controller.set_chill_or_heat import SetChillOrHeat
 from titration.ui_state.controller.set_google_mins import SetGoogleSheetInterval
 from titration.ui_state.controller.set_kd import SetKD
@@ -193,7 +196,9 @@ class MainMenu(UIState):
         """
         if 0 <= self.level2 < len(self.view_menu_actions):
             next_state_class = self.view_menu_actions[self.level2]
-            self._set_next_state(next_state_class(self.titrator, previous_state=self), True)
+            self._set_next_state(
+                next_state_class(self.titrator, previous_state=self), True
+            )
 
     def select_set(self):
         """
@@ -201,7 +206,9 @@ class MainMenu(UIState):
         """
         if 0 <= self.level2 < len(self.set_menu_actions):
             next_state_class = self.set_menu_actions[self.level2]
-            self._set_next_state(next_state_class(self.titrator, previous_state=self), True)
+            self._set_next_state(
+                next_state_class(self.titrator, previous_state=self), True
+            )
 
     def idle(self):
         """

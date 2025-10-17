@@ -1,6 +1,7 @@
 """
 The file to hold the EnablePID class
 """
+
 from titration.devices.library import Keypad
 from titration.ui_state.ui_state import UIState
 
@@ -10,6 +11,7 @@ class EnablePID(UIState):
     """
     This is a class for the EnablePID state of the Tank Controller
     """
+
     def __init__(self, titrator, previous_state=None):
         super().__init__(titrator)
         self.previous_state = previous_state
