@@ -1,7 +1,6 @@
 """
 The file to for the UpdateSetting class
 """
-
 from titration.ui_state.ui_state import UIState
 from titration.ui_state.user_value.pump_volume import PumpVolume
 

@@ -1,7 +1,6 @@
 """
 The file to test the MainMenu class
 """
-
 from unittest import mock
 from unittest.mock import ANY
 
@@ -17,31 +16,92 @@ def test_handle_key(set_next_state_mock):
     """
     main_menu = MainMenu(Titrator())
 
-    main_menu.handle_key("1")
+    main_menu.handle_key("A")
     set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "SetupTitration"
+    assert set_next_state_mock.call_args.args[0].name() == "SetPHTarget"
 
+    main_menu.handle_key("B")
+    set_next_state_mock.assert_called_with(ANY, True)
+    assert set_next_state_mock.call_args.args[0].name() == "SetThermalTarget"
+
+    main_menu.level1 = 2
+    main_menu.level2 = 5
+    main_menu.handle_key("D")
+    assert main_menu.level1 == 0
+    assert main_menu.level2 == -1
+
+    main_menu.level1 = 0
+    main_menu.level2 = -1
     main_menu.handle_key("2")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "SetupCalibration"
+    assert main_menu.level1 == 2
+    assert main_menu.level2 == -1
 
-    main_menu.handle_key("3")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "PrimePump"
-
-    main_menu.handle_key("4")
-    assert main_menu.substate == 2
-
-    main_menu.handle_key("1")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "UpdateSettings"
-
+    main_menu.level1 = 1
+    main_menu.level2 = 0
     main_menu.handle_key("2")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "DemoModeMenu"
+    assert main_menu.level2 == main_menu.view_command_count - 1
 
+    main_menu.level1 = 2
+    main_menu.level2 = 0
+    main_menu.handle_key("2")
+    assert main_menu.level2 == main_menu.set_command_count - 1
+
+    main_menu.level1 = 1
+    main_menu.level2 = -1
     main_menu.handle_key("4")
-    assert main_menu.substate == 1
+    assert main_menu.level1 == 0
+    assert main_menu.level2 == -1
+
+    main_menu.level1 = 1
+    main_menu.level2 = 0
+    main_menu.handle_key("4")
+    assert main_menu.level1 == 1
+    assert main_menu.level2 == -1
+
+    main_menu.level1 = 2
+    main_menu.level2 = 0
+    main_menu.handle_key("4")
+    assert main_menu.level1 == 2
+    assert main_menu.level2 == -1
+
+    main_menu.level1 = 0
+    main_menu.level2 = -1
+    main_menu.handle_key("6")
+    assert main_menu.level1 == 1
+    assert main_menu.level2 == -1
+
+    main_menu.level1 = 1
+    main_menu.level2 = -1
+    main_menu.handle_key("6")
+    assert main_menu.level2 == 0
+
+    main_menu.level1 = 1
+    main_menu.level2 = 0
+    main_menu.handle_key("6")
+    set_next_state_mock.assert_called_with(ANY, True)
+    assert main_menu.level1 == 1
+
+    main_menu.level1 = 2
+    main_menu.level2 = 0
+    main_menu.handle_key("6")
+    set_next_state_mock.assert_called_with(ANY, True)
+    assert main_menu.level1 == 2
+
+    main_menu.level1 = 0
+    main_menu.level2 = -1
+    main_menu.handle_key("8")
+    assert main_menu.level1 == 1
+    assert main_menu.level2 == -1
+
+    main_menu.level1 = 1
+    main_menu.level2 = 0
+    main_menu.handle_key("8")
+    assert main_menu.level2 == 1
+
+    main_menu.level1 = 2
+    main_menu.level2 = 0
+    main_menu.handle_key("8")
+    assert main_menu.level2 == 1
 
 
 @mock.patch.object(LiquidCrystal, "print")
@@ -52,77 +112,41 @@ def test_loop(print_mock):
     main_menu = MainMenu(Titrator())
 
     main_menu.loop()
-    print_mock.assert_has_calls(
-        [
-            mock.call("1: Run titration", line=1),
-            mock.call("2: Calibrate sensors", line=2),
-            mock.call("3: Prime pump", line=3),
-            mock.call("4: Page 2", line=4),
-        ]
-    )
+    print_mock.assert_any_call("Idle Line 1", line=1)
+    print_mock.assert_any_call("Idle Line 2", line=2)
 
-    main_menu.substate = 2
+    print_mock.reset_mock()
+
+    main_menu.level1 = 1
+    main_menu.level2 = -1
     main_menu.loop()
     print_mock.assert_has_calls(
-        [
-            mock.call("1: Update settings", line=1),
-            mock.call("2: Test mode", line=2),
-            mock.call("3: Exit", line=3),
-            mock.call("4: Page 1", line=4),
-        ]
+        [mock.call("View settings", line=1), mock.call("<4   ^2  8v   6>", line=2)]
     )
 
+    print_mock.reset_mock()
 
-@mock.patch.object(LiquidCrystal, "print")
-@mock.patch.object(MainMenu, "_set_next_state")
-def test_main_menu(set_next_state_mock, print_mock):
-    """
-    The function to test the entire use case of the MainMenu class
-    """
-    main_menu = MainMenu(Titrator())
-
+    main_menu.level1 = 1
+    main_menu.level2 = 2
     main_menu.loop()
     print_mock.assert_has_calls(
-        [
-            mock.call("1: Run titration", line=1),
-            mock.call("2: Calibrate sensors", line=2),
-            mock.call("3: Prime pump", line=3),
-            mock.call("4: Page 2", line=4),
-        ]
+        [mock.call(main_menu.view_menus[2], line=1), mock.call("<4   ^2  8v   6>", line=2)]
     )
 
-    main_menu.handle_key("1")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "SetupTitration"
+    print_mock.reset_mock()
 
-    main_menu.handle_key("2")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "SetupCalibration"
-
-    main_menu.handle_key("3")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "PrimePump"
-
-    main_menu.handle_key("4")
-    assert main_menu.substate == 2
-
+    main_menu.level1 = 2
+    main_menu.level2 = -1
     main_menu.loop()
     print_mock.assert_has_calls(
-        [
-            mock.call("1: Update settings", line=1),
-            mock.call("2: Test mode", line=2),
-            mock.call("3: Exit", line=3),
-            mock.call("4: Page 1", line=4),
-        ]
+        [mock.call("Change settings", line=1), mock.call("<4   ^2  8v   6>", line=2)]
     )
 
-    main_menu.handle_key("1")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "UpdateSettings"
+    print_mock.reset_mock()
 
-    main_menu.handle_key("2")
-    set_next_state_mock.assert_called_with(ANY, True)
-    assert set_next_state_mock.call_args.args[0].name() == "DemoModeMenu"
-
-    main_menu.handle_key("4")
-    assert main_menu.substate == 1
+    main_menu.level1 = 2
+    main_menu.level2 = 3
+    main_menu.loop()
+    print_mock.assert_has_calls(
+        [mock.call(main_menu.set_menus[3], line=1), mock.call("<4   ^2  8v   6>", line=2)]
+    )

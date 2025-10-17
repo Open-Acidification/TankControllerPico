@@ -1,7 +1,6 @@
 """
 The file for the SetupTitration class
 """
-
 from titration.devices.library import Keypad
 from titration.ui_state.titration.calibrate_ph import CalibratePh
 from titration.ui_state.titration.initial_titration import InitialTitration

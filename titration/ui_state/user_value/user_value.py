@@ -1,7 +1,6 @@
 """
 The file for the UserValue class
 """
-
 from titration.ui_state.ui_state import UIState
 
 

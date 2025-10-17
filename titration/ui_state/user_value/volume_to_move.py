@@ -1,7 +1,6 @@
 """
 The file for the Volume class
 """
-
 from titration.ui_state.user_value.user_value import UserValue
 
 

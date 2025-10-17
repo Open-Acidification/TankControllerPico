@@ -1,7 +1,6 @@
 """
 The file for the InitialTitration class
 """
-
 from titration.devices.library import Keypad
 from titration.ui_state.titration.automatic_titration import AutomaticTitration
 from titration.ui_state.titration.manual_titration import ManualTitration
