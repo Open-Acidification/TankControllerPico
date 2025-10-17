@@ -1,7 +1,6 @@
 """
 The file to hold the View Version class
 """
-
 from titration.ui_state.ui_state import UIState
 
 
