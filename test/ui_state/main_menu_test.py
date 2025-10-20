@@ -139,6 +139,26 @@ def test_loop(print_mock):
 
     print_mock.reset_mock()
 
+    main_menu.level1 = 2
+    main_menu.level2 = -1
+    main_menu.loop()
+    print_mock.assert_has_calls(
+        [mock.call("Change settings", line=1), mock.call("<4   ^2  8v   6>", line=2)]
+    )
+
+    print_mock.reset_mock()
+
+    main_menu.level1 = 2
+    main_menu.level2 = 3
+    main_menu.loop()
+    print_mock.assert_has_calls(
+        [
+            mock.call(main_menu.set_menus[3], line=1),
+            mock.call("<4   ^2  8v   6>", line=2),
+        ]
+    )
+
+
 @mock.patch.object(LiquidCrystal, "print")
 def test_sub_menu_access(print_mock):
     """
@@ -161,21 +181,3 @@ def test_sub_menu_access(print_mock):
         main_menu.level2 = index
         main_menu.loop()
         print_mock.assert_any_call(label, line=1)
-    main_menu.level1 = 2
-    main_menu.level2 = -1
-    main_menu.loop()
-    print_mock.assert_has_calls(
-        [mock.call("Change settings", line=1), mock.call("<4   ^2  8v   6>", line=2)]
-    )
-
-    print_mock.reset_mock()
-
-    main_menu.level1 = 2
-    main_menu.level2 = 3
-    main_menu.loop()
-    print_mock.assert_has_calls(
-        [
-            mock.call(main_menu.set_menus[3], line=1),
-            mock.call("<4   ^2  8v   6>", line=2),
-        ]
-    )
