@@ -157,3 +157,27 @@ def test_loop(print_mock):
             mock.call("<4   ^2  8v   6>", line=2),
         ]
     )
+
+
+@mock.patch.object(LiquidCrystal, "print")
+def test_sub_menu_access(print_mock):
+    """
+    The function to test access to MainMenu sub menu features
+    """
+    main_menu = MainMenu(Titrator())
+
+    # Verify all view menu entries
+    main_menu.level1 = 1
+    for index, label in enumerate(main_menu.view_menus):
+        print_mock.reset_mock()
+        main_menu.level2 = index
+        main_menu.loop()
+        print_mock.assert_any_call(label, line=1)
+
+    # Verify all set menu entries
+    main_menu.level1 = 2
+    for index, label in enumerate(main_menu.set_menus):
+        print_mock.reset_mock()
+        main_menu.level2 = index
+        main_menu.loop()
+        print_mock.assert_any_call(label, line=1)
