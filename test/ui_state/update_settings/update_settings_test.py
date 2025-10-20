@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.main_menu import MainMenu
 from tank_controller.ui_state.update_settings.update_settings import (
     UpdateSettings,
@@ -19,7 +19,7 @@ def test_handle_key_update(set_next_state_mock):
     The function to test UpdateSettings' handle_key function for each keypad input
     when a user wants to update settings
     """
-    update_settings = UpdateSettings(Titrator(), MainMenu(Titrator()))
+    update_settings = UpdateSettings(TankController(), MainMenu(TankController()))
 
     update_settings.handle_key("y")
     assert update_settings.substate == 2
@@ -46,7 +46,7 @@ def test_handle_key_no_update(set_next_state_mock):
     The function to test UpdateSettings' handle_key function for each keypad input
     when a user does not want to update settings
     """
-    update_settings = UpdateSettings(Titrator(), MainMenu(Titrator()))
+    update_settings = UpdateSettings(TankController(), MainMenu(TankController()))
 
     update_settings.handle_key("n")
     assert update_settings.substate == 3
@@ -61,7 +61,7 @@ def test_loop(print_mock):
     """
     The function to test UpdateSettings' loop function's lcd_interface calls
     """
-    update_settings = UpdateSettings(Titrator(), MainMenu(Titrator()))
+    update_settings = UpdateSettings(TankController(), MainMenu(TankController()))
 
     update_settings.loop()
     print_mock.assert_has_calls(
@@ -129,7 +129,7 @@ def test_prime_pump(print_mock, set_next_state_mock):
         User enters "1" to continue
         User enters "1" to return to the main menu
     """
-    update_settings = UpdateSettings(Titrator(), MainMenu(Titrator()))
+    update_settings = UpdateSettings(TankController(), MainMenu(TankController()))
 
     update_settings.loop()
     print_mock.assert_has_calls(

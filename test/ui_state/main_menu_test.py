@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.main_menu import MainMenu
 
 
@@ -15,7 +15,7 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test MainMenu's handle_key function for each keypad input
     """
-    main_menu = MainMenu(Titrator())
+    main_menu = MainMenu(TankController())
 
     main_menu.handle_key("A")
     set_next_state_mock.assert_called_with(ANY, True)
@@ -110,7 +110,7 @@ def test_loop(print_mock):
     """
     The function to test MainMenu's loop function's LiquidCrystal calls
     """
-    main_menu = MainMenu(Titrator())
+    main_menu = MainMenu(TankController())
 
     main_menu.loop()
     print_mock.assert_any_call("Idle Line 1", line=1)

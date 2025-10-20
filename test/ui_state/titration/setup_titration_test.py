@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.titration.setup_titration import SetupTitration
 
 
@@ -15,7 +15,7 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test SetupTitration's handle_key function for each keypad input
     """
-    setup_titration = SetupTitration(Titrator())
+    setup_titration = SetupTitration(TankController())
 
     setup_titration.handle_key("1")
     set_next_state_mock.assert_called_with(ANY, True)
@@ -41,7 +41,7 @@ def test_loop(print_mock):
     """
     The function to test SetupTitration's loop function's LiquidCrystal calls
     """
-    setup_titration = SetupTitration(Titrator())
+    setup_titration = SetupTitration(TankController())
 
     setup_titration.loop()
     print_mock.assert_has_calls(
@@ -88,7 +88,7 @@ def test_setup_titration(print_mock, set_next_state_mock):
         User enters "1" to continue to enter solution salinity
         User enters "1" to calibrate pH probe"
     """
-    setup_titration = SetupTitration(Titrator())
+    setup_titration = SetupTitration(TankController())
 
     setup_titration.loop()
     print_mock.assert_has_calls(

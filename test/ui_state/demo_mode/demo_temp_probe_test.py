@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
 from tank_controller.ui_state.demo_mode.demo_temperature_probe import (
     DemoTemperatureProbe,
@@ -18,7 +18,7 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test the DemoTemperatureProbe's handle_key function for each keypad input
     """
-    demo_temp_probe = DemoTemperatureProbe(Titrator(), DemoModeMenu(Titrator()))
+    demo_temp_probe = DemoTemperatureProbe(TankController(), DemoModeMenu(TankController()))
 
     demo_temp_probe.handle_key("1")
     assert demo_temp_probe.substate == 2
@@ -42,7 +42,7 @@ def test_loop(print_mock):
     """
     The function to test 's loop function's LiquidCrystal calls
     """
-    demo_temp_probe = DemoTemperatureProbe(Titrator(), DemoModeMenu(Titrator()))
+    demo_temp_probe = DemoTemperatureProbe(TankController(), DemoModeMenu(TankController()))
 
     demo_temp_probe.loop()
     print_mock.assert_has_calls(
@@ -60,12 +60,12 @@ def test_loop(print_mock):
         [
             mock.call("Probe one", line=1),
             mock.call(
-                f"{demo_temp_probe.titrator.temperature_probe_control.get_temperature():>4.3f} C",
+                f"{demo_temp_probe.tank_controller.temperature_probe_control.get_temperature():>4.3f} C",
                 line=2,
                 style="center",
             ),
             mock.call(
-                f"{demo_temp_probe.titrator.temperature_probe_control.get_resistance()} Ohms",
+                f"{demo_temp_probe.tank_controller.temperature_probe_control.get_resistance()} Ohms",
                 line=3,
                 style="center",
             ),
@@ -79,12 +79,12 @@ def test_loop(print_mock):
         [
             mock.call("Probe two", line=1),
             mock.call(
-                f"{demo_temp_probe.titrator.temperature_probe_logging.get_temperature():>4.3f} C",
+                f"{demo_temp_probe.tank_controller.temperature_probe_logging.get_temperature():>4.3f} C",
                 line=2,
                 style="center",
             ),
             mock.call(
-                f"{demo_temp_probe.titrator.temperature_probe_logging.get_resistance()} Ohms",
+                f"{demo_temp_probe.tank_controller.temperature_probe_logging.get_resistance()} Ohms",
                 line=3,
                 style="center",
             ),
@@ -99,7 +99,7 @@ def test_demo_mode(print_mock, set_next_state_mock):
     """
     The function to test sampling through the options in DemoTemperatureProbe
     """
-    demo_temp_probe = DemoTemperatureProbe(Titrator(), DemoModeMenu(Titrator()))
+    demo_temp_probe = DemoTemperatureProbe(TankController(), DemoModeMenu(TankController()))
 
     demo_temp_probe.loop()
     print_mock.assert_has_calls(
@@ -119,12 +119,12 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("Probe one", line=1),
             mock.call(
-                f"{demo_temp_probe.titrator.temperature_probe_control.get_temperature():>4.3f} C",
+                f"{demo_temp_probe.tank_controller.temperature_probe_control.get_temperature():>4.3f} C",
                 line=2,
                 style="center",
             ),
             mock.call(
-                f"{demo_temp_probe.titrator.temperature_probe_control.get_resistance()} Ohms",
+                f"{demo_temp_probe.tank_controller.temperature_probe_control.get_resistance()} Ohms",
                 line=3,
                 style="center",
             ),
@@ -153,12 +153,12 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("Probe two", line=1),
             mock.call(
-                f"{demo_temp_probe.titrator.temperature_probe_logging.get_temperature():>4.3f} C",
+                f"{demo_temp_probe.tank_controller.temperature_probe_logging.get_temperature():>4.3f} C",
                 line=2,
                 style="center",
             ),
             mock.call(
-                f"{demo_temp_probe.titrator.temperature_probe_logging.get_resistance()} Ohms",
+                f"{demo_temp_probe.tank_controller.temperature_probe_logging.get_resistance()} Ohms",
                 line=3,
                 style="center",
             ),

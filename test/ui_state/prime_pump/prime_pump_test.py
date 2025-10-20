@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.main_menu import MainMenu
 from tank_controller.ui_state.prime_pump.prime_pump import PrimePump
 
@@ -16,7 +16,7 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test PrimePump's handle_key function for each keypad input
     """
-    prime_pump = PrimePump(Titrator(), MainMenu(Titrator()))
+    prime_pump = PrimePump(TankController(), MainMenu(TankController()))
 
     prime_pump.handle_key("3")
     assert prime_pump.values["selection"] == "3"
@@ -36,7 +36,7 @@ def test_loop(print_mock):
     """
     The function to test PrimePump's loop function's LiquidCrystal calls
     """
-    prime_pump = PrimePump(Titrator(), MainMenu(Titrator()))
+    prime_pump = PrimePump(TankController(), MainMenu(TankController()))
 
     prime_pump.loop()
     print_mock.assert_has_calls(
@@ -69,7 +69,7 @@ def test_prime_pump(print_mock, set_next_state_mock):
         User enters "1" to select 1 more pump
         User enters "0" tot return to test mode
     """
-    prime_pump = PrimePump(Titrator(), MainMenu(Titrator()))
+    prime_pump = PrimePump(TankController(), MainMenu(TankController()))
 
     prime_pump.loop()
     print_mock.assert_has_calls(

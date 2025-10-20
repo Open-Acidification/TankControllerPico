@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal, TemperatureControl
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
 from tank_controller.ui_state.demo_mode.demo_temperature_controller import (
     DemoTemperatureControl,
@@ -21,7 +21,7 @@ def test_handle_key(set_next_state_mock, activate_mock, deactivate_mock):
     The function to test the DemoTemperatureControl's handle_key function for each keypad input
     """
     demo_temperature_controller = DemoTemperatureControl(
-        Titrator(), DemoModeMenu(Titrator())
+        TankController(), DemoModeMenu(TankController())
     )
 
     demo_temperature_controller.handle_key("1")
@@ -55,7 +55,7 @@ def test_loop(print_mock):
     The function to test 's loop function's LiquidCrystal calls
     """
     demo_temperature_controller = DemoTemperatureControl(
-        Titrator(), DemoModeMenu(Titrator())
+        TankController(), DemoModeMenu(TankController())
     )
 
     demo_temperature_controller.loop()
@@ -74,12 +74,12 @@ def test_loop(print_mock):
         [
             mock.call("Test heater", line=1),
             mock.call(
-                f"{demo_temperature_controller.titrator.temperature_probe_control.get_temperature():>4.3f} C",
+                f"{demo_temperature_controller.tank_controller.temperature_probe_control.get_temperature():>4.3f} C",
                 line=2,
                 style="center",
             ),
             mock.call(
-                "Heater on: " + str(demo_temperature_controller.titrator.heater.value),
+                "Heater on: " + str(demo_temperature_controller.tank_controller.heater.value),
                 line=3,
                 style="center",
             ),
@@ -93,12 +93,12 @@ def test_loop(print_mock):
         [
             mock.call("Test controller", line=1),
             mock.call(
-                f"{demo_temperature_controller.titrator.temperature_probe_control.get_temperature():>4.3f} C",
+                f"{demo_temperature_controller.tank_controller.temperature_probe_control.get_temperature():>4.3f} C",
                 line=2,
                 style="center",
             ),
             mock.call(
-                "Heater on: " + str(demo_temperature_controller.titrator.heater.value),
+                "Heater on: " + str(demo_temperature_controller.tank_controller.heater.value),
                 line=3,
                 style="center",
             ),
@@ -114,7 +114,7 @@ def test_demo_mode(print_mock, set_next_state_mock):
     The function to test sampling through the options in DemoTemperatureControl
     """
     demo_temperature_controller = DemoTemperatureControl(
-        Titrator(), DemoModeMenu(Titrator())
+        TankController(), DemoModeMenu(TankController())
     )
 
     demo_temperature_controller.loop()
@@ -135,12 +135,12 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("Test heater", line=1),
             mock.call(
-                f"{demo_temperature_controller.titrator.temperature_probe_control.get_temperature():>4.3f} C",
+                f"{demo_temperature_controller.tank_controller.temperature_probe_control.get_temperature():>4.3f} C",
                 line=2,
                 style="center",
             ),
             mock.call(
-                "Heater on: " + str(demo_temperature_controller.titrator.heater.value),
+                "Heater on: " + str(demo_temperature_controller.tank_controller.heater.value),
                 line=3,
                 style="center",
             ),
@@ -169,12 +169,12 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("Test controller", line=1),
             mock.call(
-                f"{demo_temperature_controller.titrator.temperature_probe_control.get_temperature():>4.3f} C",
+                f"{demo_temperature_controller.tank_controller.temperature_probe_control.get_temperature():>4.3f} C",
                 line=2,
                 style="center",
             ),
             mock.call(
-                "Heater on: " + str(demo_temperature_controller.titrator.heater.value),
+                "Heater on: " + str(demo_temperature_controller.tank_controller.heater.value),
                 line=3,
                 style="center",
             ),

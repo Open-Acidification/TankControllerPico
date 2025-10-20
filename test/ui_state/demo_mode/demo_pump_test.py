@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
 from tank_controller.ui_state.demo_mode.demo_pump import DemoPump
 
@@ -16,7 +16,7 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test the DemoPump's handle_key function for each keypad input
     """
-    demo_pump = DemoPump(Titrator(), DemoModeMenu(Titrator()))
+    demo_pump = DemoPump(TankController(), DemoModeMenu(TankController()))
 
     demo_pump.handle_key("1")
     assert demo_pump.substate == 3
@@ -57,7 +57,7 @@ def test_loop(print_mock):
     """
     The function to test 's loop function's LiquidCrystal calls
     """
-    demo_pump = DemoPump(Titrator(), DemoModeMenu(Titrator()))
+    demo_pump = DemoPump(TankController(), DemoModeMenu(TankController()))
 
     demo_pump.loop()
     print_mock.assert_has_calls(
@@ -86,7 +86,7 @@ def test_loop(print_mock):
         [
             mock.call("Pump volume:", line=1),
             mock.call(
-                f"{demo_pump.titrator.pump.get_volume_in_pump()} ml",
+                f"{demo_pump.tank_controller.pump.get_volume_in_pump()} ml",
                 line=2,
                 style="center",
             ),
@@ -110,7 +110,7 @@ def test_demo_mode(print_mock, set_next_state_mock):
         User enters "4" to go to 1st page of options
         User enters "D" to return to Demo Menu
     """
-    demo_pump = DemoPump(Titrator(), DemoModeMenu(Titrator()))
+    demo_pump = DemoPump(TankController(), DemoModeMenu(TankController()))
 
     demo_pump.loop()
     print_mock.assert_has_calls(
@@ -130,7 +130,7 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("Pump volume:", line=1),
             mock.call(
-                f"{demo_pump.titrator.pump.get_volume_in_pump()} ml",
+                f"{demo_pump.tank_controller.pump.get_volume_in_pump()} ml",
                 line=2,
                 style="center",
             ),
@@ -162,7 +162,7 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("Pump volume:", line=1),
             mock.call(
-                f"{demo_pump.titrator.pump.get_volume_in_pump()} ml",
+                f"{demo_pump.tank_controller.pump.get_volume_in_pump()} ml",
                 line=2,
                 style="center",
             ),
@@ -192,7 +192,7 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("Pump volume:", line=1),
             mock.call(
-                f"{demo_pump.titrator.pump.get_volume_in_pump()} ml",
+                f"{demo_pump.tank_controller.pump.get_volume_in_pump()} ml",
                 line=2,
                 style="center",
             ),
@@ -235,7 +235,7 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("Pump volume:", line=1),
             mock.call(
-                f"{demo_pump.titrator.pump.get_volume_in_pump()} ml",
+                f"{demo_pump.tank_controller.pump.get_volume_in_pump()} ml",
                 line=2,
                 style="center",
             ),

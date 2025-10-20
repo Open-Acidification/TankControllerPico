@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.main_menu import MainMenu
 from tank_controller.ui_state.update_settings.update_settings import (
     UpdateSettings,
@@ -20,7 +20,7 @@ def test_handle_key(set_next_state_mock):
     The function to test SolutionWeight's handle_key function for each keypad input
     """
     solution_weight = SolutionWeight(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     solution_weight.handle_key("A")
@@ -47,7 +47,7 @@ def test_loop(print_mock):
     The function to test SolutionWeight's loop function's LiquidCrystal calls
     """
     solution_weight = SolutionWeight(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     solution_weight.loop()
@@ -76,7 +76,7 @@ def test_solution_weight(print_mock, set_next_state_mock):
         User accepts
     """
     solution_weight = SolutionWeight(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     solution_weight.loop()
@@ -210,4 +210,4 @@ def test_solution_weight(print_mock, set_next_state_mock):
     solution_weight.handle_key("A")
     set_next_state_mock.assert_called_with(ANY, True)
     assert set_next_state_mock.call_args.args[0].name() == "UpdateSettings"
-    assert solution_weight.titrator.solution_weight == 1.0
+    assert solution_weight.tank_controller.solution_weight == 1.0

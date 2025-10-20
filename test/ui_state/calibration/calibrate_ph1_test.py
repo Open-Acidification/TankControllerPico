@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal, PHProbe
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.calibration.calibrate_ph import CalibratePh
 from tank_controller.ui_state.calibration.setup_calibration import (
     SetupCalibration,
@@ -21,7 +21,7 @@ def test_handle_key(_set_next_state, get_voltage):
     The function to test CalibratePh's handle_key function for each keypad input
     """
     calibrate_ph = CalibratePh(
-        Titrator(), SetupCalibration(MainMenu(Titrator()), Titrator())
+        TankController(), SetupCalibration(MainMenu(TankController()), TankController())
     )
 
     calibrate_ph.handle_key("1")
@@ -44,7 +44,7 @@ def test_loop(print_mock):
     The function to test CalibratePh's loop function's LiquidCrystal calls
     """
     calibrate_ph = CalibratePh(
-        Titrator(), SetupCalibration(MainMenu(Titrator()), Titrator())
+        TankController(), SetupCalibration(MainMenu(TankController()), TankController())
     )
 
     calibrate_ph.loop()
@@ -74,8 +74,8 @@ def test_loop(print_mock):
         [
             mock.call("Recorded pH and volts:", line=1),
             mock.call(
-                f"{calibrate_ph.titrator.buffer_nominal_ph:>2.5f} pH,"
-                + f" {calibrate_ph.titrator.buffer_measured_volts:>3.4f} V",
+                f"{calibrate_ph.tank_controller.buffer_nominal_ph:>2.5f} pH,"
+                + f" {calibrate_ph.tank_controller.buffer_measured_volts:>3.4f} V",
                 line=2,
             ),
             mock.call("", line=3),
@@ -95,7 +95,7 @@ def test_calibrate_ph(print_mock, _set_next_state, get_voltage):
         User enters "1" to continue setting up calibration
     """
     calibrate_ph = CalibratePh(
-        Titrator(), SetupCalibration(MainMenu(Titrator()), Titrator())
+        TankController(), SetupCalibration(MainMenu(TankController()), TankController())
     )
 
     calibrate_ph.loop()
@@ -132,8 +132,8 @@ def test_calibrate_ph(print_mock, _set_next_state, get_voltage):
         [
             mock.call("Recorded pH and volts:", line=1),
             mock.call(
-                f"{calibrate_ph.titrator.buffer_nominal_ph:>2.5f} pH,"
-                + f" {calibrate_ph.titrator.buffer_measured_volts:>3.4f} V",
+                f"{calibrate_ph.tank_controller.buffer_nominal_ph:>2.5f} pH,"
+                + f" {calibrate_ph.tank_controller.buffer_measured_volts:>3.4f} V",
                 line=2,
             ),
             mock.call("", line=3),

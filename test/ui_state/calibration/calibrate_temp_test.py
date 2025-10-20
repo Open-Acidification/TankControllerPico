@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal, TemperatureProbe
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.calibration.calibrate_temp import CalibrateTemp
 from tank_controller.ui_state.calibration.setup_calibration import (
     SetupCalibration,
@@ -21,7 +21,7 @@ def test_handle_key(_set_next_state, calibrate):
     The function to test CalibrateTemp's handle_key function for each keypad input
     """
     calibrate_temp = CalibrateTemp(
-        Titrator(), SetupCalibration(MainMenu(Titrator()), Titrator())
+        TankController(), SetupCalibration(MainMenu(TankController()), TankController())
     )
 
     calibrate_temp.handle_key("1")
@@ -56,7 +56,7 @@ def test_loop(print_mock):
     The function to test CalibrateTemp's loop function's LiquidCrystal calls
     """
     calibrate_temp = CalibrateTemp(
-        Titrator(), SetupCalibration(MainMenu(Titrator()), Titrator())
+        TankController(), SetupCalibration(MainMenu(TankController()), TankController())
     )
 
     calibrate_temp.loop()
@@ -86,11 +86,11 @@ def test_loop(print_mock):
         [
             mock.call("Probe one", line=1),
             mock.call(
-                f"{(calibrate_temp.titrator.temperature_probe_control.get_temperature()):4.3f}",
+                f"{(calibrate_temp.tank_controller.temperature_probe_control.get_temperature()):4.3f}",
                 line=2,
             ),
             mock.call(
-                f"{calibrate_temp.titrator.temperature_probe_control.get_resistance()}",
+                f"{calibrate_temp.tank_controller.temperature_probe_control.get_resistance()}",
                 line=3,
             ),
             mock.call("Any key to continue", line=4),
@@ -125,11 +125,11 @@ def test_loop(print_mock):
         [
             mock.call("Probe two", line=1),
             mock.call(
-                f"{(calibrate_temp.titrator.temperature_probe_logging.get_temperature()):>4.3f}",
+                f"{(calibrate_temp.tank_controller.temperature_probe_logging.get_temperature()):>4.3f}",
                 line=2,
             ),
             mock.call(
-                f"{calibrate_temp.titrator.temperature_probe_logging.get_resistance()}",
+                f"{calibrate_temp.tank_controller.temperature_probe_logging.get_resistance()}",
                 line=3,
             ),
             mock.call("Any key to continue", line=4),
@@ -148,7 +148,7 @@ def test_calibrate_temp(print_mock, _set_next_state, calibrate):
         User enters "1" to continue setting up calibration
     """
     calibrate_temp = CalibrateTemp(
-        Titrator(), SetupCalibration(MainMenu(Titrator()), Titrator())
+        TankController(), SetupCalibration(MainMenu(TankController()), TankController())
     )
 
     calibrate_temp.loop()
@@ -185,11 +185,11 @@ def test_calibrate_temp(print_mock, _set_next_state, calibrate):
         [
             mock.call("Probe one", line=1),
             mock.call(
-                f"{(calibrate_temp.titrator.temperature_probe_control.get_temperature()):4.3f}",
+                f"{(calibrate_temp.tank_controller.temperature_probe_control.get_temperature()):4.3f}",
                 line=2,
             ),
             mock.call(
-                f"{calibrate_temp.titrator.temperature_probe_control.get_resistance()}",
+                f"{calibrate_temp.tank_controller.temperature_probe_control.get_resistance()}",
                 line=3,
             ),
             mock.call("Any key to continue", line=4),
@@ -233,11 +233,11 @@ def test_calibrate_temp(print_mock, _set_next_state, calibrate):
         [
             mock.call("Probe two", line=1),
             mock.call(
-                f"{(calibrate_temp.titrator.temperature_probe_logging.get_temperature()):>4.3f}",
+                f"{(calibrate_temp.tank_controller.temperature_probe_logging.get_temperature()):>4.3f}",
                 line=2,
             ),
             mock.call(
-                f"{calibrate_temp.titrator.temperature_probe_logging.get_resistance()}",
+                f"{calibrate_temp.tank_controller.temperature_probe_logging.get_resistance()}",
                 line=3,
             ),
             mock.call("Any key to continue", line=4),

@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.main_menu import MainMenu
 from tank_controller.ui_state.update_settings.update_settings import (
     UpdateSettings,
@@ -20,7 +20,7 @@ def test_handle_key(set_next_state_mock):
     The function to test PumpVolume's handle_key function for each keypad input
     """
     pump_volume = PumpVolume(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     pump_volume.handle_key("A")
@@ -47,7 +47,7 @@ def test_loop(print_mock):
     The function to test PumpVolume's loop function's LiquidCrystal calls
     """
     pump_volume = PumpVolume(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     pump_volume.loop()
@@ -76,7 +76,7 @@ def test_pump_volume(print_mock, set_next_state_mock):
         User accepts
     """
     pump_volume = PumpVolume(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     pump_volume.loop()
@@ -210,4 +210,4 @@ def test_pump_volume(print_mock, set_next_state_mock):
     pump_volume.handle_key("A")
     set_next_state_mock.assert_called_with(ANY, True)
     assert set_next_state_mock.call_args.args[0].name() == "UpdateSettings"
-    assert pump_volume.titrator.pump_volume == 1.0
+    assert pump_volume.tank_controller.pump_volume == 1.0

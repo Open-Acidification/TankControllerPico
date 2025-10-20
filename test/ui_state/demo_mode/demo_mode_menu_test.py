@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
 from tank_controller.ui_state.main_menu import MainMenu
 
@@ -16,7 +16,7 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test the 's handle_key function for each keypad input
     """
-    demo_mode = DemoModeMenu(Titrator(), MainMenu(Titrator()))
+    demo_mode = DemoModeMenu(TankController(), MainMenu(TankController()))
 
     demo_mode.handle_key("1")
     set_next_state_mock.assert_called_with(ANY, True)
@@ -60,7 +60,7 @@ def test_loop(print_mock):
     """
     The function to test 's loop function's LiquidCrystal calls
     """
-    demo_mode = DemoModeMenu(Titrator(), MainMenu(Titrator()))
+    demo_mode = DemoModeMenu(TankController(), MainMenu(TankController()))
 
     demo_mode.loop()
     print_mock.assert_has_calls(
@@ -89,12 +89,12 @@ def test_loop(print_mock):
         [
             mock.call("pH probe", line=1),
             mock.call(
-                f"{demo_mode.titrator.ph_probe.get_voltage()} volts",
+                f"{demo_mode.tank_controller.ph_probe.get_voltage()} volts",
                 line=2,
                 style="center",
             ),
             mock.call(
-                f"{demo_mode.titrator.ph_probe.get_gain()} volts",
+                f"{demo_mode.tank_controller.ph_probe.get_gain()} volts",
                 line=3,
                 style="center",
             ),
@@ -118,7 +118,7 @@ def test_demo_mode(print_mock, set_next_state_mock):
         User enters "4" to get to page 1
         User enters "D" to return to the main menu
     """
-    demo_mode = DemoModeMenu(Titrator(), MainMenu(Titrator()))
+    demo_mode = DemoModeMenu(TankController(), MainMenu(TankController()))
 
     demo_mode.loop()
     print_mock.assert_has_calls(
@@ -152,12 +152,12 @@ def test_demo_mode(print_mock, set_next_state_mock):
         [
             mock.call("pH probe", line=1),
             mock.call(
-                f"{demo_mode.titrator.ph_probe.get_voltage()} volts",
+                f"{demo_mode.tank_controller.ph_probe.get_voltage()} volts",
                 line=2,
                 style="center",
             ),
             mock.call(
-                f"{demo_mode.titrator.ph_probe.get_gain()} volts",
+                f"{demo_mode.tank_controller.ph_probe.get_gain()} volts",
                 line=3,
                 style="center",
             ),

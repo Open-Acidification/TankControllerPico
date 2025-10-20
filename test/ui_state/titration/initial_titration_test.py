@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.titration.initial_titration import (
     InitialTitration,
 )
@@ -16,7 +16,7 @@ def test_handle_key():
     """
     The function to test InitialTitration's handle_key function for each user input
     """
-    initial_titration = InitialTitration(Titrator())
+    initial_titration = InitialTitration(TankController())
 
     initial_titration.handle_key("1")
     assert initial_titration.choice == "1"
@@ -29,7 +29,7 @@ def test_loop(print_mock, set_next_state_mock):
     """
     The function to test InitialTitration's loop function's LiquidCrystal calls
     """
-    initial_titration = InitialTitration(Titrator())
+    initial_titration = InitialTitration(TankController())
 
     initial_titration.loop()
     print_mock.assert_has_calls(
@@ -54,7 +54,7 @@ def test_loop(print_mock, set_next_state_mock):
     set_next_state_mock.assert_called_with(ANY, True)
     assert set_next_state_mock.call_args.args[0].name() == "AutomaticTitration"
 
-    initial_titration = InitialTitration(Titrator())
+    initial_titration = InitialTitration(TankController())
 
     initial_titration.substate += 1
     initial_titration.choice = "1"
@@ -78,7 +78,7 @@ def test_initial_titration_manual(print_mock, set_next_state_mock):
     The function to test a use case of the InitialTitration class:
         User enters "1" to perform a manual titration
     """
-    initial_titration = InitialTitration(Titrator())
+    initial_titration = InitialTitration(TankController())
 
     initial_titration.loop()
     print_mock.assert_has_calls(
@@ -114,7 +114,7 @@ def test_initial_titration_automatic(print_mock, set_next_state_mock):
     The function to test a use case of the InitialTitration class:
         User enters "2" to perform a manual titration
     """
-    initial_titration = InitialTitration(Titrator())
+    initial_titration = InitialTitration(TankController())
 
     initial_titration.loop()
     print_mock.assert_has_calls(

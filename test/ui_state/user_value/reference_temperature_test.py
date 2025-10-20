@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.main_menu import MainMenu
 from tank_controller.ui_state.update_settings.update_settings import (
     UpdateSettings,
@@ -22,7 +22,7 @@ def test_handle_key(set_next_state_mock):
     The function to test ReferenceTemperature's handle_key function for each keypad input
     """
     reference_temperature = ReferenceTemperature(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     reference_temperature.handle_key("A")
@@ -49,7 +49,7 @@ def test_loop(print_mock):
     The function to test ReferenceTemperature's loop function's LiquidCrystal calls
     """
     reference_temperature = ReferenceTemperature(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     reference_temperature.loop()
@@ -78,7 +78,7 @@ def test_reference_temperature(print_mock, set_next_state_mock):
         User accepts
     """
     reference_temperature = ReferenceTemperature(
-        Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator()))
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
     )
 
     reference_temperature.loop()
@@ -212,4 +212,4 @@ def test_reference_temperature(print_mock, set_next_state_mock):
     reference_temperature.handle_key("A")
     set_next_state_mock.assert_called_with(ANY, True)
     assert set_next_state_mock.call_args.args[0].name() == "UpdateSettings"
-    assert reference_temperature.titrator.reference_temperature == 1.0
+    assert reference_temperature.tank_controller.reference_temperature == 1.0

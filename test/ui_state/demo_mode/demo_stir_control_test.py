@@ -8,7 +8,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal, StirControl
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
 from tank_controller.ui_state.demo_mode.demo_stir_control import (
     DemoStirControl,
@@ -24,7 +24,7 @@ def test_handle_key(set_next_state, set_fast, set_slow, set_stop, degas):
     """
     The function to test the DemoStirControl's handle_key function for each keypad input
     """
-    demo_stir_control = DemoStirControl(Titrator(), DemoModeMenu(Titrator()))
+    demo_stir_control = DemoStirControl(TankController(), DemoModeMenu(TankController()))
 
     demo_stir_control.handle_key("1")
     set_fast.assert_called()
@@ -68,7 +68,7 @@ def test_loop(print_mock):
     """
     The function to test 's loop function's LiquidCrystal calls
     """
-    demo_stir_control = DemoStirControl(Titrator(), DemoModeMenu(Titrator()))
+    demo_stir_control = DemoStirControl(TankController(), DemoModeMenu(TankController()))
 
     demo_stir_control.loop()
     print_mock.assert_has_calls(
@@ -108,7 +108,7 @@ def test_loop(print_mock):
         [
             mock.call("Degassing solution", line=1),
             mock.call("Time remaining:", line=2),
-            mock.call(demo_stir_control.titrator.stir_controller.get_timer(), line=3),
+            mock.call(demo_stir_control.tank_controller.stir_controller.get_timer(), line=3),
             mock.call("Any key to continue", line=4),
         ]
     )
@@ -141,7 +141,7 @@ def test_demo_mode(print, set_next_state, set_fast, set_slow, set_stop, degas):
         User enters "3" to degas the solution
         User enters "D" to return to the main menu
     """
-    demo_stir_control = DemoStirControl(Titrator(), DemoModeMenu(Titrator()))
+    demo_stir_control = DemoStirControl(TankController(), DemoModeMenu(TankController()))
 
     demo_stir_control.loop()
     print.assert_has_calls(
@@ -231,7 +231,7 @@ def test_demo_mode(print, set_next_state, set_fast, set_slow, set_stop, degas):
         [
             mock.call("Degassing solution", line=1),
             mock.call("Time remaining:", line=2),
-            mock.call(demo_stir_control.titrator.stir_controller.get_timer(), line=3),
+            mock.call(demo_stir_control.tank_controller.stir_controller.get_timer(), line=3),
             mock.call("Any key to continue", line=4),
         ]
     )

@@ -6,7 +6,7 @@ from unittest import mock
 from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
-from tank_controller.titrator import Titrator
+from tank_controller.tank_controller import TankController
 from tank_controller.ui_state.main_menu import MainMenu
 from tank_controller.ui_state.update_settings.update_settings import (
     UpdateSettings,
@@ -19,7 +19,7 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test DegasTime's handle_key function for each keypad input
     """
-    degas_time = DegasTime(Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator())))
+    degas_time = DegasTime(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
 
     degas_time.handle_key("A")
     set_next_state_mock.assert_not_called()
@@ -44,7 +44,7 @@ def test_loop(print_mock):
     """
     The function to test DegasTime's loop function's LiquidCrystal calls
     """
-    degas_time = DegasTime(Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator())))
+    degas_time = DegasTime(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
 
     degas_time.loop()
     print_mock.assert_has_calls(
@@ -71,7 +71,7 @@ def test_degas_time(print_mock, set_next_state_mock):
         User clears
         User accepts
     """
-    degas_time = DegasTime(Titrator(), UpdateSettings(Titrator(), MainMenu(Titrator())))
+    degas_time = DegasTime(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
 
     degas_time.loop()
     print_mock.assert_has_calls(
@@ -204,4 +204,4 @@ def test_degas_time(print_mock, set_next_state_mock):
     degas_time.handle_key("A")
     set_next_state_mock.assert_called_with(ANY, True)
     assert set_next_state_mock.call_args.args[0].name() == "UpdateSettings"
-    assert degas_time.titrator.degas_time == 1.0
+    assert degas_time.tank_controller.degas_time == 1.0
