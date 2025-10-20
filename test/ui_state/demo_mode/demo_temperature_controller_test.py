@@ -79,7 +79,8 @@ def test_loop(print_mock):
                 style="center",
             ),
             mock.call(
-                "Heater on: " + str(demo_temperature_controller.tank_controller.heater.value),
+                "Heater on: "
+                + str(demo_temperature_controller.tank_controller.heater.value),
                 line=3,
                 style="center",
             ),
@@ -98,7 +99,8 @@ def test_loop(print_mock):
                 style="center",
             ),
             mock.call(
-                "Heater on: " + str(demo_temperature_controller.tank_controller.heater.value),
+                "Heater on: "
+                + str(demo_temperature_controller.tank_controller.heater.value),
                 line=3,
                 style="center",
             ),
@@ -140,7 +142,8 @@ def test_demo_mode(print_mock, set_next_state_mock):
                 style="center",
             ),
             mock.call(
-                "Heater on: " + str(demo_temperature_controller.tank_controller.heater.value),
+                "Heater on: "
+                + str(demo_temperature_controller.tank_controller.heater.value),
                 line=3,
                 style="center",
             ),
@@ -174,7 +177,8 @@ def test_demo_mode(print_mock, set_next_state_mock):
                 style="center",
             ),
             mock.call(
-                "Heater on: " + str(demo_temperature_controller.tank_controller.heater.value),
+                "Heater on: "
+                + str(demo_temperature_controller.tank_controller.heater.value),
                 line=3,
                 style="center",
             ),

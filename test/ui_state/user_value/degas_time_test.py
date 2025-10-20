@@ -19,7 +19,9 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test DegasTime's handle_key function for each keypad input
     """
-    degas_time = DegasTime(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    degas_time = DegasTime(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     degas_time.handle_key("A")
     set_next_state_mock.assert_not_called()
@@ -44,7 +46,9 @@ def test_loop(print_mock):
     """
     The function to test DegasTime's loop function's LiquidCrystal calls
     """
-    degas_time = DegasTime(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    degas_time = DegasTime(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     degas_time.loop()
     print_mock.assert_has_calls(
@@ -71,7 +75,9 @@ def test_degas_time(print_mock, set_next_state_mock):
         User clears
         User accepts
     """
-    degas_time = DegasTime(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    degas_time = DegasTime(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     degas_time.loop()
     print_mock.assert_has_calls(

@@ -18,7 +18,9 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test the DemoTemperatureProbe's handle_key function for each keypad input
     """
-    demo_temp_probe = DemoTemperatureProbe(TankController(), DemoModeMenu(TankController()))
+    demo_temp_probe = DemoTemperatureProbe(
+        TankController(), DemoModeMenu(TankController())
+    )
 
     demo_temp_probe.handle_key("1")
     assert demo_temp_probe.substate == 2
@@ -42,7 +44,9 @@ def test_loop(print_mock):
     """
     The function to test 's loop function's LiquidCrystal calls
     """
-    demo_temp_probe = DemoTemperatureProbe(TankController(), DemoModeMenu(TankController()))
+    demo_temp_probe = DemoTemperatureProbe(
+        TankController(), DemoModeMenu(TankController())
+    )
 
     demo_temp_probe.loop()
     print_mock.assert_has_calls(
@@ -99,7 +103,9 @@ def test_demo_mode(print_mock, set_next_state_mock):
     """
     The function to test sampling through the options in DemoTemperatureProbe
     """
-    demo_temp_probe = DemoTemperatureProbe(TankController(), DemoModeMenu(TankController()))
+    demo_temp_probe = DemoTemperatureProbe(
+        TankController(), DemoModeMenu(TankController())
+    )
 
     demo_temp_probe.loop()
     print_mock.assert_has_calls(

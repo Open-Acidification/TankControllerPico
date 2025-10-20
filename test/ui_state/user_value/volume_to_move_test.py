@@ -19,7 +19,9 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test Volume's handle_key function for each keypad input
     """
-    volume = VolumeToMove(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    volume = VolumeToMove(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     volume.handle_key("A")
     set_next_state_mock.assert_not_called()
@@ -44,7 +46,9 @@ def test_loop(print_mock):
     """
     The function to test Volume's loop function's LiquidCrystal calls
     """
-    volume = VolumeToMove(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    volume = VolumeToMove(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     volume.loop()
     print_mock.assert_has_calls(
@@ -71,7 +75,9 @@ def test_volume_to_move(print_mock, set_next_state_mock):
         User clears
         User accepts
     """
-    volume = VolumeToMove(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    volume = VolumeToMove(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     volume.loop()
     print_mock.assert_has_calls(

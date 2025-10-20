@@ -19,7 +19,9 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test BufferPH's handle_key function for each keypad input
     """
-    buffer_ph = BufferPH(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    buffer_ph = BufferPH(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     buffer_ph.handle_key("A")
     set_next_state_mock.assert_not_called()
@@ -44,7 +46,9 @@ def test_loop(print_mock):
     """
     The function to test BufferPH's loop function's LiquidCrystal calls
     """
-    buffer_ph = BufferPH(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    buffer_ph = BufferPH(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     buffer_ph.loop()
     print_mock.assert_has_calls(
@@ -71,7 +75,9 @@ def test_buffer_ph(print_mock, set_next_state_mock):
         User clears
         User accepts
     """
-    buffer_ph = BufferPH(TankController(), UpdateSettings(TankController(), MainMenu(TankController())))
+    buffer_ph = BufferPH(
+        TankController(), UpdateSettings(TankController(), MainMenu(TankController()))
+    )
 
     buffer_ph.loop()
     print_mock.assert_has_calls(

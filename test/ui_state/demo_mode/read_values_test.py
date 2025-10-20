@@ -17,7 +17,9 @@ def test_handle_key(set_next_state_mock):
     """
     The function to test ReadValues' handle_key function for each keypad input
     """
-    read_values = ReadValues(TankController(), DemoModeMenu(TankController(), MainMenu(TankController())))
+    read_values = ReadValues(
+        TankController(), DemoModeMenu(TankController(), MainMenu(TankController()))
+    )
 
     read_values.handle_key("1")
     assert read_values.substate == 2
@@ -36,7 +38,9 @@ def test_loop(print_mock):
     """
     The function to test ReadValues' loop function's LiquidCrystal calls and delay calls
     """
-    read_values = ReadValues(TankController(), DemoModeMenu(TankController(), MainMenu(TankController())))
+    read_values = ReadValues(
+        TankController(), DemoModeMenu(TankController(), MainMenu(TankController()))
+    )
 
     read_values.loop()
     print_mock.assert_has_calls(
@@ -49,7 +53,9 @@ def test_loop(print_mock):
                 f"pH V:   {(read_values.tank_controller.ph_probe.get_voltage() * 1000):>3.4f} mV",
                 line=2,
             ),
-            mock.call(f"Gain:   {read_values.tank_controller.ph_probe.get_gain()}", line=3),
+            mock.call(
+                f"Gain:   {read_values.tank_controller.ph_probe.get_gain()}", line=3
+            ),
             mock.call(
                 f"Volume: {read_values.tank_controller.pump.get_volume_in_pump()} ml",
                 line=4,
@@ -83,7 +89,9 @@ def test_read_values(print_mock, set_next_state_mock):
         User enters "1" for the next set of values
         User enters "1" to return to demo mode menu
     """
-    read_values = ReadValues(TankController(), DemoModeMenu(TankController(), MainMenu(TankController())))
+    read_values = ReadValues(
+        TankController(), DemoModeMenu(TankController(), MainMenu(TankController()))
+    )
 
     read_values.loop()
     print_mock.assert_has_calls(
@@ -96,7 +104,9 @@ def test_read_values(print_mock, set_next_state_mock):
                 f"pH V:   {(read_values.tank_controller.ph_probe.get_voltage() * 1000):>3.4f} mV",
                 line=2,
             ),
-            mock.call(f"Gain:   {read_values.tank_controller.ph_probe.get_gain()}", line=3),
+            mock.call(
+                f"Gain:   {read_values.tank_controller.ph_probe.get_gain()}", line=3
+            ),
             mock.call(
                 f"Volume: {read_values.tank_controller.pump.get_volume_in_pump()} ml",
                 line=4,
