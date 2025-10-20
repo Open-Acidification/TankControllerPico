@@ -1,2 +1,2 @@
 [codespell]
-skip = ./.git/*,Pipfile.lock
+skip = ./.git/*,uv.lock,.venv/*

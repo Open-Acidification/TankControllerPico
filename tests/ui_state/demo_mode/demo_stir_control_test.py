@@ -2,7 +2,7 @@
 The file to test the DemoStirControl Class
 """
 
-# pylint: disable = too-many-arguments, redefined-builtin
+# pylint: disable = too-many-arguments, redefined-builtin, too-many-positional-arguments
 
 from unittest import mock
 from unittest.mock import ANY

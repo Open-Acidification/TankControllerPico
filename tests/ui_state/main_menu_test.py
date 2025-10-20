@@ -2,6 +2,8 @@
 The file to test the MainMenu class
 """
 
+# pylint: disable=too-many-statements
+
 from unittest import mock
 from unittest.mock import ANY
 
