@@ -11,6 +11,7 @@ uv run codespell -f -w .
 uv run black .
 uv run isort .
 uv run flake8 .
+uv run pylint main.py tank_controller/ tests/
 
 # Clean up
 find . -name ".pytest_cache" -type d -exec /bin/rm -rf {} +
