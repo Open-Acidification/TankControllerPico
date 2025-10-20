@@ -2,7 +2,7 @@
 The file to test the mock liquid crystal display for the GUI
 """
 
-from titration.devices.liquid_crystal_mock import LiquidCrystal
+from tank_controller.devices.liquid_crystal_mock import LiquidCrystal
 
 
 def test_lcd_create():

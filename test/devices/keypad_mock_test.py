@@ -4,7 +4,7 @@ The file to test the mock keypad
 
 import digitalio
 
-from titration.devices.library import Keypad, board
+from tank_controller.devices.library import Keypad, board
 
 
 def test_keypad_create():

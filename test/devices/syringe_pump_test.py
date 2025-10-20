@@ -4,7 +4,7 @@ The file to test the syringe pump
 
 import pytest
 
-from titration.devices.library import SyringePump
+from tank_controller.devices.library import SyringePump
 
 
 def create_syringe_pump():

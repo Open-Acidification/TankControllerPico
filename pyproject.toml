@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["titration*"]
+include = ["tank_controller*"]
 exclude = ["test*"]
 
 [project.optional-dependencies]

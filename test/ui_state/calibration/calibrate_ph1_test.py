@@ -5,11 +5,11 @@ The file to test the calibration CalibratePh class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal, PHProbe
-from titration.titrator import Titrator
-from titration.ui_state.calibration.calibrate_ph import CalibratePh
-from titration.ui_state.calibration.setup_calibration import SetupCalibration
-from titration.ui_state.main_menu import MainMenu
+from tank_controller.devices.library import LiquidCrystal, PHProbe
+from tank_controller.titrator import Titrator
+from tank_controller.ui_state.calibration.calibrate_ph import CalibratePh
+from tank_controller.ui_state.calibration.setup_calibration import SetupCalibration
+from tank_controller.ui_state.main_menu import MainMenu
 
 
 @mock.patch.object(PHProbe, "get_voltage")

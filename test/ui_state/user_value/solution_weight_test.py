@@ -5,11 +5,11 @@ The file to test the SolutionWeight class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.main_menu import MainMenu
-from titration.ui_state.update_settings.update_settings import UpdateSettings
-from titration.ui_state.user_value.solution_weight import SolutionWeight
+from tank_controller.devices.library import LiquidCrystal
+from tank_controller.titrator import Titrator
+from tank_controller.ui_state.main_menu import MainMenu
+from tank_controller.ui_state.update_settings.update_settings import UpdateSettings
+from tank_controller.ui_state.user_value.solution_weight import SolutionWeight
 
 
 @mock.patch.object(SolutionWeight, "_set_next_state")

@@ -5,9 +5,9 @@ The file to test the InitialTitration class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.titration.initial_titration import InitialTitration
+from tank_controller.devices.library import LiquidCrystal
+from tank_controller.titrator import Titrator
+from tank_controller.ui_state.titration.initial_titration import InitialTitration
 
 
 def test_handle_key():

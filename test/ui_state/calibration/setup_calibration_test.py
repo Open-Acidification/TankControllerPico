@@ -5,10 +5,10 @@ The file to the SetupCalibration class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.calibration.setup_calibration import SetupCalibration
-from titration.ui_state.main_menu import MainMenu
+from tank_controller.devices.library import LiquidCrystal
+from tank_controller.titrator import Titrator
+from tank_controller.ui_state.calibration.setup_calibration import SetupCalibration
+from tank_controller.ui_state.main_menu import MainMenu
 
 
 @mock.patch.object(SetupCalibration, "_set_next_state")

@@ -5,11 +5,11 @@ The file to test the ReadValues class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
-from titration.ui_state.demo_mode.read_values import ReadValues
-from titration.ui_state.main_menu import MainMenu
+from tank_controller.devices.library import LiquidCrystal
+from tank_controller.titrator import Titrator
+from tank_controller.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
+from tank_controller.ui_state.demo_mode.read_values import ReadValues
+from tank_controller.ui_state.main_menu import MainMenu
 
 
 @mock.patch.object(ReadValues, "_set_next_state")

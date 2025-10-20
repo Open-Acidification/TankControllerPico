@@ -1,0 +1,47 @@
+"""
+The file for the SetupCalibration class
+"""
+
+from tank_controller.devices.library import Keypad
+from tank_controller.ui_state.calibration.calibrate_ph import CalibratePh
+from tank_controller.ui_state.calibration.calibrate_temp import CalibrateTemp
+from tank_controller.ui_state.ui_state import UIState
+
+
+class SetupCalibration(UIState):
+    """
+    This is a class for the SetupCalibration state of the titrator
+
+    Attributes:
+        titrator (Titrator object): the titrator is used to move through the state machine
+        previous_state (UIState object): the previous_state is used to return the last visited state
+        substate (int): the substate is used to keep track of substate of the UIState
+    """
+
+    def handle_key(self, key):
+        """
+        The function to handle keypad input:
+            1 -> Calibrate pH
+            2 -> Calibrate Temperature Probes
+            4 -> Previous State
+
+        Parameters:
+            key (char): the keypad input to determine which state to go to
+        """
+        if key == Keypad.KEY_1:
+            self._set_next_state(CalibratePh(self.tank_controller, self), True)
+
+        elif key == Keypad.KEY_2:
+            self._set_next_state(CalibrateTemp(self.tank_controller, self), True)
+
+        elif key == Keypad.KEY_4:
+            self._set_next_state(self.previous_state, True)
+
+    def loop(self):
+        """
+        The function to loop through and display to the LCD screen until a new keypad input
+        """
+        self.tank_controller.lcd.print("1: pH", line=1)
+        self.tank_controller.lcd.print("2: Temperature", line=2)
+        self.tank_controller.lcd.print("", line=3)
+        self.tank_controller.lcd.print("4: Return", line=4)

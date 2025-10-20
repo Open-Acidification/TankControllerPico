@@ -5,10 +5,10 @@ The file to test the DemoPump Class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
-from titration.ui_state.demo_mode.demo_pump import DemoPump
+from tank_controller.devices.library import LiquidCrystal
+from tank_controller.titrator import Titrator
+from tank_controller.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
+from tank_controller.ui_state.demo_mode.demo_pump import DemoPump
 
 
 @mock.patch.object(DemoPump, "_set_next_state")
