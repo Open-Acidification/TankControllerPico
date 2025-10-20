@@ -7,7 +7,9 @@ from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
 from tank_controller.titrator import Titrator
-from tank_controller.ui_state.titration.initial_titration import InitialTitration
+from tank_controller.ui_state.titration.initial_titration import (
+    InitialTitration,
+)
 
 
 def test_handle_key():

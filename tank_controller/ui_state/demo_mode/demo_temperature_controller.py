@@ -60,7 +60,9 @@ class DemoTemperatureControl(UIState):
                 style="center",
             )
             self.tank_controller.lcd.print(
-                "Heater on: " + str(self.tank_controller.heater.value), line=3, style="center"
+                "Heater on: " + str(self.tank_controller.heater.value),
+                line=3,
+                style="center",
             )
             self.tank_controller.lcd.print("Any key to turn off", line=4)
 
@@ -77,6 +79,8 @@ class DemoTemperatureControl(UIState):
                 style="center",
             )
             self.tank_controller.lcd.print(
-                "Heater on: " + str(self.tank_controller.heater.value), line=3, style="center"
+                "Heater on: " + str(self.tank_controller.heater.value),
+                line=3,
+                style="center",
             )
             self.tank_controller.lcd.print("Any key to turn off", line=4)

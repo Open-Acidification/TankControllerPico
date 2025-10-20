@@ -4,9 +4,13 @@ The file for the SetupTitration class
 
 from tank_controller.devices.library import Keypad
 from tank_controller.ui_state.titration.calibrate_ph import CalibratePh
-from tank_controller.ui_state.titration.initial_titration import InitialTitration
+from tank_controller.ui_state.titration.initial_titration import (
+    InitialTitration,
+)
 from tank_controller.ui_state.ui_state import UIState
-from tank_controller.ui_state.user_value.solution_salinity import SolutionSalinity
+from tank_controller.ui_state.user_value.solution_salinity import (
+    SolutionSalinity,
+)
 from tank_controller.ui_state.user_value.solution_weight import SolutionWeight
 
 PH_REF_VOLTAGE = -0.012

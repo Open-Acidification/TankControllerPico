@@ -8,8 +8,12 @@ from unittest.mock import ANY
 from tank_controller.devices.library import LiquidCrystal
 from tank_controller.titrator import Titrator
 from tank_controller.ui_state.main_menu import MainMenu
-from tank_controller.ui_state.update_settings.update_settings import UpdateSettings
-from tank_controller.ui_state.user_value.solution_salinity import SolutionSalinity
+from tank_controller.ui_state.update_settings.update_settings import (
+    UpdateSettings,
+)
+from tank_controller.ui_state.user_value.solution_salinity import (
+    SolutionSalinity,
+)
 
 
 @mock.patch.object(SolutionSalinity, "_set_next_state")

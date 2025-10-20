@@ -79,7 +79,9 @@ class DemoStirControl(UIState):
         elif self.substate == 4:
             self.tank_controller.lcd.print("Degassing solution", line=1)
             self.tank_controller.lcd.print("Time remaining:", line=2)
-            self.tank_controller.lcd.print(self.tank_controller.stir_controller.get_timer(), line=3)
+            self.tank_controller.lcd.print(
+                self.tank_controller.stir_controller.get_timer(), line=3
+            )
             self.tank_controller.lcd.print("Any key to continue", line=4)
 
         elif self.substate == 5:

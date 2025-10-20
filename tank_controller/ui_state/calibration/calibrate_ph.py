@@ -34,7 +34,9 @@ class CalibratePh(UIState):
             self.substate = 2
 
         elif self.substate == 2:
-            self.tank_controller.buffer_measured_volts = self.tank_controller.ph_probe.get_voltage()
+            self.tank_controller.buffer_measured_volts = (
+                self.tank_controller.ph_probe.get_voltage()
+            )
             self.substate = 3
 
         elif self.substate == 3:
@@ -57,10 +59,9 @@ class CalibratePh(UIState):
             self.tank_controller.lcd.print("record value", line=4)
 
         elif self.substate == 3:
+            ph = self.tank_controller.buffer_nominal_ph
+            volts = self.tank_controller.buffer_measured_volts
             self.tank_controller.lcd.print("Recorded pH and volts:", line=1)
-            self.tank_controller.lcd.print(
-                f"{self.tank_controller.buffer_nominal_ph:>2.5f} pH, {self.tank_controller.buffer_measured_volts:>3.4f} V",
-                line=2,
-            )
+            self.tank_controller.lcd.print(f"{ph:>2.5f} pH, {volts:>3.4f} V", line=2)
             self.tank_controller.lcd.print("", line=3)
             self.tank_controller.lcd.print("Any key to continue", line=4)

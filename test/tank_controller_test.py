@@ -28,21 +28,21 @@ def test_set_next_state_true(update_state_mock):
     """
     tank_controller = TankController()
 
-    temp = MainMenu(titrator)
+    temp = MainMenu(tank_controller)
     assert tank_controller.next_state is None
     tank_controller.set_next_state(temp, True)
     assert tank_controller.next_state == temp
     update_state_mock.assert_called()
 
 
-@mock.patch.object(Titrator, "update_state")
+@mock.patch.object(TankController, "update_state")
 def test_set_next_state_false(update_state_mock):
     """
     The function to test the set_next_state function with update parameter set to False
     """
     tank_controller = TankController()
 
-    temp = MainMenu(titrator)
+    temp = MainMenu(tank_controller)
     assert tank_controller.next_state is None
     tank_controller.set_next_state(temp, False)
     assert tank_controller.next_state == temp
@@ -68,7 +68,7 @@ def test_update_state_with_next_state(start_mock):
     """
     tank_controller = TankController()
 
-    temp = SetupTitration(titrator)
+    temp = SetupTitration(tank_controller)
     tank_controller.next_state = temp
     assert tank_controller.state != tank_controller.next_state
     tank_controller.update_state()

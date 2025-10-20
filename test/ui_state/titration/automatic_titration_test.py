@@ -7,7 +7,9 @@ from unittest.mock import ANY
 
 from tank_controller.devices.library import LiquidCrystal
 from tank_controller.titrator import Titrator
-from tank_controller.ui_state.titration.automatic_titration import AutomaticTitration
+from tank_controller.ui_state.titration.automatic_titration import (
+    AutomaticTitration,
+)
 
 
 @mock.patch.object(AutomaticTitration, "_set_next_state")

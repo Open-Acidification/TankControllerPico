@@ -3,7 +3,9 @@ The file for the InitialTitration class
 """
 
 from tank_controller.devices.library import Keypad
-from tank_controller.ui_state.titration.automatic_titration import AutomaticTitration
+from tank_controller.ui_state.titration.automatic_titration import (
+    AutomaticTitration,
+)
 from tank_controller.ui_state.titration.manual_titration import ManualTitration
 from tank_controller.ui_state.ui_state import UIState
 

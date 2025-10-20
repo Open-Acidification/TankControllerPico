@@ -4,7 +4,9 @@ The file for the  class
 
 from tank_controller.devices.library import Keypad
 from tank_controller.ui_state.demo_mode.demo_pump import DemoPump
-from tank_controller.ui_state.demo_mode.demo_stir_control import DemoStirControl
+from tank_controller.ui_state.demo_mode.demo_stir_control import (
+    DemoStirControl,
+)
 from tank_controller.ui_state.demo_mode.demo_temperature_controller import (
     DemoTemperatureControl,
 )
@@ -63,10 +65,14 @@ class DemoModeMenu(UIState):
                 self._set_next_state(DemoStirControl(self.tank_controller, self), True)
 
             elif key == Keypad.KEY_2:
-                self._set_next_state(DemoTemperatureProbe(self.tank_controller, self), True)
+                self._set_next_state(
+                    DemoTemperatureProbe(self.tank_controller, self), True
+                )
 
             elif key == Keypad.KEY_3:
-                self._set_next_state(DemoTemperatureControl(self.tank_controller, self), True)
+                self._set_next_state(
+                    DemoTemperatureControl(self.tank_controller, self), True
+                )
 
             if key == Keypad.KEY_4:
                 self.substate = 1
@@ -96,9 +102,13 @@ class DemoModeMenu(UIState):
         elif self.substate == 3:
             self.tank_controller.lcd.print("pH probe", line=1)
             self.tank_controller.lcd.print(
-                f"{self.tank_controller.ph_probe.get_voltage()} volts", line=2, style="center"
+                f"{self.tank_controller.ph_probe.get_voltage()} volts",
+                line=2,
+                style="center",
             )
             self.tank_controller.lcd.print(
-                f"{self.tank_controller.ph_probe.get_gain()} volts", line=3, style="center"
+                f"{self.tank_controller.ph_probe.get_gain()} volts",
+                line=3,
+                style="center",
             )
             self.tank_controller.lcd.print("Any key to continue", line=4)

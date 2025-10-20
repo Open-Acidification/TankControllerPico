@@ -44,7 +44,8 @@ class ReadValues(UIState):
         """
         if self.substate == 1:
             self.tank_controller.lcd.print(
-                f"pH:     {self.tank_controller.ph_probe.get_voltage():>4.5f} pH", line=1
+                f"pH:     {self.tank_controller.ph_probe.get_voltage():>4.5f} pH",
+                line=1,
             )
             self.tank_controller.lcd.print(
                 f"pH V:   {(self.tank_controller.ph_probe.get_voltage() * 1000):>3.4f} mV",

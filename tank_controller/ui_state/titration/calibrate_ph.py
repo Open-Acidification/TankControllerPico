@@ -2,7 +2,9 @@
 The file to hold the CalibratePh class
 """
 
-from tank_controller.ui_state.titration.initial_titration import InitialTitration
+from tank_controller.ui_state.titration.initial_titration import (
+    InitialTitration,
+)
 from tank_controller.ui_state.ui_state import UIState
 from tank_controller.ui_state.user_value.buffer_ph import BufferPH
 

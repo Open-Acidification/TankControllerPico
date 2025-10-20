@@ -10,7 +10,9 @@ from unittest.mock import ANY
 from tank_controller.devices.library import LiquidCrystal, StirControl
 from tank_controller.titrator import Titrator
 from tank_controller.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
-from tank_controller.ui_state.demo_mode.demo_stir_control import DemoStirControl
+from tank_controller.ui_state.demo_mode.demo_stir_control import (
+    DemoStirControl,
+)
 
 
 @mock.patch.object(StirControl, "degas")

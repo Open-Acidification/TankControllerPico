@@ -43,7 +43,9 @@ class DemoPump(UIState):
 
             elif key == Keypad.KEY_3:
                 self._set_next_state(VolumeToMove(self.tank_controller, self), True)
-                self.tank_controller.pump.pull_volume_in(self.tank_controller.volume_to_move)
+                self.tank_controller.pump.pull_volume_in(
+                    self.tank_controller.volume_to_move
+                )
                 self.tank_controller.volume_to_move = 0
                 self.substate = 3
 
@@ -53,7 +55,9 @@ class DemoPump(UIState):
         elif self.substate == 2:
             if key == Keypad.KEY_1:
                 self._set_next_state(VolumeToMove(self.tank_controller, self), True)
-                self.tank_controller.pump.push_volume_out(self.tank_controller.volume_to_move)
+                self.tank_controller.pump.push_volume_out(
+                    self.tank_controller.volume_to_move
+                )
                 self.tank_controller.volume_to_move = 0
                 self.substate = 3
 
@@ -85,7 +89,9 @@ class DemoPump(UIState):
         elif self.substate == 3:
             self.tank_controller.lcd.print("Pump volume:", line=1)
             self.tank_controller.lcd.print(
-                f"{self.tank_controller.pump.get_volume_in_pump()} ml", line=2, style="center"
+                f"{self.tank_controller.pump.get_volume_in_pump()} ml",
+                line=2,
+                style="center",
             )
             self.tank_controller.lcd.print("", line=3)
             self.tank_controller.lcd.print("Any key to continue", line=4)

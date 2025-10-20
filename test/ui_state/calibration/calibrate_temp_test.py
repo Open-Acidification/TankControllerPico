@@ -8,7 +8,9 @@ from unittest.mock import ANY
 from tank_controller.devices.library import LiquidCrystal, TemperatureProbe
 from tank_controller.titrator import Titrator
 from tank_controller.ui_state.calibration.calibrate_temp import CalibrateTemp
-from tank_controller.ui_state.calibration.setup_calibration import SetupCalibration
+from tank_controller.ui_state.calibration.setup_calibration import (
+    SetupCalibration,
+)
 from tank_controller.ui_state.main_menu import MainMenu
 
 

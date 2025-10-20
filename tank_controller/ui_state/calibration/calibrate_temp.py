@@ -86,7 +86,8 @@ class CalibrateTemp(UIState):
                 line=2,
             )
             self.tank_controller.lcd.print(
-                f"{self.tank_controller.temperature_probe_control.get_resistance()}", line=3
+                f"{self.tank_controller.temperature_probe_control.get_resistance()}",
+                line=3,
             )
             self.tank_controller.lcd.print("Any key to continue", line=4)
 
@@ -109,6 +110,7 @@ class CalibrateTemp(UIState):
                 line=2,
             )
             self.tank_controller.lcd.print(
-                f"{self.tank_controller.temperature_probe_logging.get_resistance()}", line=3
+                f"{self.tank_controller.temperature_probe_logging.get_resistance()}",
+                line=3,
             )
             self.tank_controller.lcd.print("Any key to continue", line=4)

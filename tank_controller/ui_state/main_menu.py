@@ -3,35 +3,57 @@ The file for the MainMenu class
 """
 
 from tank_controller.devices.library import Keypad
-from tank_controller.ui_state.ui_state import UIState
-from tank_controller.ui_state.controller.set_ph_target import SetPHTarget
-from tank_controller.ui_state.controller.set_pid_on_off import EnablePID
-from tank_controller.ui_state.controller.set_ph_calibration import PHCalibration
-from tank_controller.ui_state.controller.set_ph_calibration_clear import ResetPHCalibration
-from tank_controller.ui_state.controller.set_thermal_calibration_clear import (
-    ResetThermalCalibration,
+from tank_controller.ui_state.controller.set_chill_or_heat import (
+    SetChillOrHeat,
 )
-from tank_controller.ui_state.controller.set_chill_or_heat import SetChillOrHeat
-from tank_controller.ui_state.controller.set_google_mins import SetGoogleSheetInterval
+from tank_controller.ui_state.controller.set_google_mins import (
+    SetGoogleSheetInterval,
+)
 from tank_controller.ui_state.controller.set_kd import SetKD
 from tank_controller.ui_state.controller.set_ki import SetKI
 from tank_controller.ui_state.controller.set_kp import SetKP
+from tank_controller.ui_state.controller.set_ph_calibration import (
+    PHCalibration,
+)
+from tank_controller.ui_state.controller.set_ph_calibration_clear import (
+    ResetPHCalibration,
+)
 from tank_controller.ui_state.controller.set_ph_sine_wave import SetPHSineWave
-from tank_controller.ui_state.controller.set_thermal_sine_wave import SetThermalSineWave
+from tank_controller.ui_state.controller.set_ph_target import SetPHTarget
+from tank_controller.ui_state.controller.set_pid_on_off import EnablePID
 from tank_controller.ui_state.controller.set_tank_id import SetTankID
-from tank_controller.ui_state.controller.set_thermal_calibration import SetThermalCalibration
-from tank_controller.ui_state.controller.set_thermal_target import SetThermalTarget
+from tank_controller.ui_state.controller.set_thermal_calibration import (
+    SetThermalCalibration,
+)
+from tank_controller.ui_state.controller.set_thermal_calibration_clear import (
+    ResetThermalCalibration,
+)
+from tank_controller.ui_state.controller.set_thermal_sine_wave import (
+    SetThermalSineWave,
+)
+from tank_controller.ui_state.controller.set_thermal_target import (
+    SetThermalTarget,
+)
 from tank_controller.ui_state.controller.set_time import SetTime
-from tank_controller.ui_state.controller.view_device_address import ViewDeviceAddress
+from tank_controller.ui_state.controller.view_device_address import (
+    ViewDeviceAddress,
+)
 from tank_controller.ui_state.controller.view_free_memory import ViewFreeMemory
 from tank_controller.ui_state.controller.view_google_mins import ViewGoogleMins
 from tank_controller.ui_state.controller.view_log_file import ViewLogFile
-from tank_controller.ui_state.controller.view_ph_calibration import ViewPHCalibration
-from tank_controller.ui_state.controller.view_pid_constants import ViewPIDConstants
+from tank_controller.ui_state.controller.view_ph_calibration import (
+    ViewPHCalibration,
+)
+from tank_controller.ui_state.controller.view_pid_constants import (
+    ViewPIDConstants,
+)
 from tank_controller.ui_state.controller.view_tank_id import ViewTankID
-from tank_controller.ui_state.controller.view_thermal_correction import ViewThermalCorrection
+from tank_controller.ui_state.controller.view_thermal_correction import (
+    ViewThermalCorrection,
+)
 from tank_controller.ui_state.controller.view_time import ViewTime
 from tank_controller.ui_state.controller.view_version import ViewVersion
+from tank_controller.ui_state.ui_state import UIState
 
 
 class MainMenu(UIState):
