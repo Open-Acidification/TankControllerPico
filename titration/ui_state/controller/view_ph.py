@@ -12,7 +12,9 @@ class ViewPh(UIState):
     """
 
     def loop(self):
-        # Display the buffer nominal pH value on the LCD
+        """
+        Main loop for the ViewPh state
+        """
         value = getattr(self.titrator, "buffer_nominal_ph", None)
         if value is not None:
             self.titrator.lcd.print("Buffer Nominal pH:", line=1)
@@ -24,6 +26,8 @@ class ViewPh(UIState):
         self.titrator.lcd.print("Any key to return", line=4)
 
     def handle_key(self, key):
-        # Return to previous state on any key press
+        """
+        Handle key input for the ViewPh state
+        """
         if key == Keypad.KEY_4:  # Left key
             self._set_next_state(self.previous_state, True)
