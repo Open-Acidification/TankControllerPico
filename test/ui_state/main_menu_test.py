@@ -32,7 +32,6 @@ def test_handle_key_d():
     """
     main_menu = MainMenu(Titrator())
 
-    # Initalize values before key trigger
     main_menu.level1 = 2
     main_menu.level2 = 5
     main_menu.handle_key("D")
