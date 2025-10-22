@@ -44,10 +44,7 @@ fail-under=10
 ignore=.venv,
        build,
        dist,
-       .eggs,
-       *.egg,
-       .mypy_cache,
-       __pypackages__
+       .eggs
 
 # Add files or directories matching the regular expressions patterns to the
 # ignore-list. The regex matches against paths and can be in Posix or Windows
@@ -307,11 +304,8 @@ min-public-methods=0
 
 [EXCEPTIONS]
 
-; # Exceptions that will emit a warning when caught.
-; overgeneral-exceptions=builtins.BaseException,
-;                        builtins.Exception
+# Exceptions that will emit a warning when caught.
 overgeneral-exceptions=
-
 [FORMAT]
 
 # Expected format of line ending, e.g. empty (any line ending), LF or CRLF.
