@@ -14,8 +14,10 @@ Update the `TankController` code from C++ to Python and run on a Raspberry Pico.
 
 To set up and run this project, the system must meet the following requirements:
 
-- **uv**: The python project package manager must be installed. Learn more at [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/).
-- **tkinter**: The Python GUI to test locally. Often installed separately.
+- **uv**: The python project package manager must be installed. Learn more at [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/).  
+Format contributions with `uv run black .`
+- **tkinter**: The Python GUI to test locally. Often installed separately as `python3-tk`.  
+Verify with `python -m tkinter`. A small GUI window should appear if Tkinter is installed correctly.
 
 ### Mac Requirements
 
@@ -33,6 +35,26 @@ To run in a local environment with mocked devices (with the UI State Machine int
 ./run_gui.sh
 ```
 
+## Features
+
+| View Commands           | Set Commands        |
+| ----------------------- | ------------------- |
+| View IP and MAC         | pH calibration      |
+| View free memory        | Clear pH calibra    |
+| View Google mins        | Clear Temp calib    |
+| View log file           | Set chill/heat      |
+| View pH slope           | Set Google mins     |
+| View PID                | Set KD              |
+| View tank ID            | Set KI              |
+| View temp cal           | Set KP              |
+| View time               | Set pH target       |
+| View version            | Set pH w sine       |
+|                         | Set Temp w sine     |
+|                         | PID on/off          |
+|                         | Set Tank ID         |
+|                         | Temp calibration    |
+|                         | Set temperature     |
+|                         | Set date/time       |
 
 ## Testing
 
