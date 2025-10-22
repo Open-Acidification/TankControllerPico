@@ -81,13 +81,23 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "samuelnguyen999",
+      "name": "Samuel Nguyen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57112921?v=4",
+      "profile": "https://github.com/samuelnguyen999",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
-  "projectName": "AlkalinityTitrator",
+  "projectName": "TankControllerPico",
   "projectOwner": "Open-Acidification",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
