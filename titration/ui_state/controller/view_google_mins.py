@@ -19,6 +19,5 @@ class ViewGoogleMins(UIState):
         self.titrator.lcd.print(f"{self.google_interval_address} mins", line=2)
 
     def handle_key(self, key):
-        # Handle key input for this state
         if key == Keypad.KEY_4 or key == Keypad.KEY_D:
             self._set_next_state(self.previous_state, True)
