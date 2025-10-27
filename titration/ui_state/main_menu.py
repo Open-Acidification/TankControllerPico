@@ -31,7 +31,7 @@ from titration.ui_state.controller.set_thermal_target import SetThermalTarget
 from titration.ui_state.controller.set_time import SetTime
 from titration.ui_state.controller.view_device_address import ViewDeviceAddress
 from titration.ui_state.controller.view_free_memory import ViewFreeMemory
-from titration.ui_state.controller.view_google_mins import ViewGoogleMins
+from titration.ui_state.controller.view_google_sheet_interval import ViewGoogleSheetInterval
 from titration.ui_state.controller.view_log_file import ViewLogFile
 from titration.ui_state.controller.view_ph_calibration import ViewPHCalibration
 from titration.ui_state.controller.view_pid_constants import ViewPIDConstants
@@ -94,7 +94,7 @@ class MainMenu(UIState):
         self.view_menu_actions = [
             ViewDeviceAddress,  # View IP and MAC
             ViewFreeMemory,  # View Free Memory
-            ViewGoogleMins,  # View Google mins
+            ViewGoogleSheetInterval,  # View Google mins
             ViewLogFile,  # View Log File
             ViewPHCalibration,  # View pH slope
             ViewPIDConstants,  # View PID constants

@@ -15,6 +15,7 @@ from titration.devices.library import (
     TemperatureProbe,
 )
 from titration.ui_state.main_menu import MainMenu
+from titration.devices.eeprom import EEPROM
 
 
 class Titrator:
@@ -32,6 +33,9 @@ class Titrator:
         """
         The constructor for the Titrator class
         """
+        # Initialize EEPROM
+        self.eeprom = EEPROM()
+
         # Initialize LCD
         self.lcd = LiquidCrystal()
 
