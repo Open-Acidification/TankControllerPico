@@ -4,6 +4,7 @@ The file for the Titrator class
 
 # pylint: disable = too-many-instance-attributes
 
+from titration.devices.eeprom import EEPROM
 from titration.devices.library import (
     Heater,
     Keypad,
@@ -15,7 +16,6 @@ from titration.devices.library import (
     TemperatureProbe,
 )
 from titration.ui_state.main_menu import MainMenu
-from titration.devices.eeprom import EEPROM
 
 
 class Titrator:
