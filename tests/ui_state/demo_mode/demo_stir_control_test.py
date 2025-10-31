@@ -2,7 +2,11 @@
 The file to test the DemoStirControl Class
 """
 
+<<<<<<< HEAD:tests/ui_state/demo_mode/demo_stir_control_test.py
 # pylint: disable = too-many-arguments, redefined-builtin, too-many-positional-arguments
+=======
+# pylint: disable = too-many-arguments, redefined-builtin, too-many-positional-arguments, unknown-option-value
+>>>>>>> 962e85f (View google sheet interval class (#8)):test/ui_state/demo_mode/demo_stir_control_test.py
 
 from unittest import mock
 from unittest.mock import ANY
