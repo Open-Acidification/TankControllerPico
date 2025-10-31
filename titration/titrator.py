@@ -4,6 +4,7 @@ The file for the Titrator class
 
 # pylint: disable = too-many-instance-attributes
 
+from titration.devices.eeprom import EEPROM
 from titration.devices.library import (
     Heater,
     Keypad,
@@ -32,6 +33,9 @@ class Titrator:
         """
         The constructor for the Titrator class
         """
+        # Initialize EEPROM
+        self.eeprom = EEPROM()
+
         # Initialize LCD
         self.lcd = LiquidCrystal()
 
