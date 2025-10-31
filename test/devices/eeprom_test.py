@@ -9,14 +9,14 @@ def test_default_google_sheet_interval_value():
     """
     The function to test the default google_sheet_interval value
     """
-    e = EEPROM()
-    assert e.google_sheet_interval == 20
+    eeprom = EEPROM()
+    assert eeprom.google_sheet_interval == 20
 
 
 def test_set_google_sheet_interval_value():
     """
     The function to test setting the google_sheet_interval value
     """
-    e = EEPROM()
-    e.google_sheet_interval = 45
-    assert e.google_sheet_interval == 45
+    eeprom = EEPROM()
+    eeprom.google_sheet_interval = 45
+    assert eeprom.google_sheet_interval == 45
