@@ -12,6 +12,7 @@ def test_default_google_sheet_interval_value():
     e = EEPROM()
     assert e.google_sheet_interval == 20
 
+
 def test_set_google_sheet_interval_value():
     """
     The function to test setting the google_sheet_interval value
