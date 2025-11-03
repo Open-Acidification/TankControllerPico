@@ -171,8 +171,6 @@ def test_change_list(print_mock):
     """
     main_menu = MainMenu(Titrator())
 
-    main_menu.level1 = 2
-    main_menu.level2 = -1
     main_menu.loop()
     print_mock.assert_any_call("Idle Line 1", line=1)
     print_mock.assert_any_call("Idle Line 2", line=2)
