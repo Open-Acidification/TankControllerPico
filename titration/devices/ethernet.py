@@ -45,7 +45,7 @@ class Ethernet:
             mac_num = hex(uuid.getnode()).replace("0x", "").upper()
             mac_num = mac_num.zfill(12)
             self.mac = ":".join(mac_num[i : i + 4] for i in range(0, 12, 4))
-        finally:
+        except Exception:
             self.mac = self.default_mac
         return self.mac
 
