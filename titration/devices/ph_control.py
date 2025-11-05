@@ -12,4 +12,4 @@ class PHControl:
         """
         The constructor function for the PH Control class
         """
-        self.use_pid = True
+        self.use_pid = bool(True)
