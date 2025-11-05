@@ -2,7 +2,6 @@
 This module provides a Python implementation of the SD card helper used in
 the embedded firmware.
 """
-from typing import Optional
 from datetime import datetime
 
 
@@ -13,20 +12,6 @@ class SD:
     default (./sd_storage). This keeps test artifacts isolated and easy to
     inspect or remove.
     """
-
-    _instance: Optional["SD"] = None
-
-    @classmethod
-    def instance(cls) -> "SD":
-        """Return the singleton instance of the SD class."""
-        if cls._instance is None:
-            cls._instance = SD()
-        return cls._instance
-
-    @classmethod
-    def delete_instance(cls) -> None:
-        """Delete the singleton instance (for testing purposes)."""
-        cls._instance = None
 
     def __init__(self):
         """The constructor for the mock SD class."""
