@@ -32,7 +32,7 @@ def test_view_google_sheet_interval(print_mock):
     state.loop()
 
     print_mock.assert_any_call("Google Mins:", line=1)
-    print_mock.assert_any_call("20", line=2)
+    print_mock.assert_any_call("108", line=2)
 
 
 def test_handle_key_4():

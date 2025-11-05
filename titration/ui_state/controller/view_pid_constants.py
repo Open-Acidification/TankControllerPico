@@ -3,7 +3,7 @@ The file to hold the View PID Constants class
 """
 
 import time
-from titration.devices.keypad import Keypad
+from titration.devices.library import Keypad
 from titration.ui_state.ui_state import UIState
 
 
@@ -33,25 +33,23 @@ class ViewPIDConstants(UIState):
 
     def load_kp(self):
         """Load the proportional gain (Kp) and display it on the specified line."""
-        value = self.titrator.pid.get_kp()
-        # intpart = int(value)
-        # dec = int((value * 10 + 0.5)) % 10
+        value = self.titrator.pid.kp
         self.titrator.lcd.print(f"Kp: {value}", line=1)
 
     def load_ki(self):
         """Load the integral gain (Ki) and display it on the specified line."""
-        value = self.titrator.pid.get_ki()
+        value = self.titrator.pid.ki
         self.titrator.lcd.print(f"Ki: {value}", line=2)
 
     def load_kd(self):
         """Load the derivative gain (Kd) and display it on the specified line."""
-        value = self.titrator.pid.get_kd()
+        value = self.titrator.pid.kd
         self.titrator.lcd.print(f"Kd: {value}", line=1)
 
     def load_pid(self):
         """
         Load the PID enabled state and display it on the specified line."""
-        if self.titrator.pid.get_mode():
+        if self.titrator.ph_control.use_pid:
             self.titrator.lcd.print("PID: ON", line=2)
         else:
             self.titrator.lcd.print("PID: OFF", line=2)

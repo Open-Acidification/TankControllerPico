@@ -6,6 +6,7 @@ The file for the Titrator class
 
 from titration.devices.eeprom import EEPROM
 from titration.devices.pid import PID
+from titration.devices.ph_control import PHControl
 from titration.devices.library import (
     Heater,
     Keypad,
@@ -39,6 +40,9 @@ class Titrator:
 
         # Initialize PID Controller
         self.pid = PID()
+
+        # Initialize PH Control
+        self.ph_control = PHControl()
 
         # Initialize LCD
         self.lcd = LiquidCrystal()
