@@ -5,6 +5,7 @@ The file for the Titrator class
 # pylint: disable = too-many-instance-attributes
 
 from titration.devices.eeprom import EEPROM
+from titration.devices.thermal_probe import ThermalProbe
 from titration.devices.library import (
     Heater,
     Keypad,
@@ -35,6 +36,9 @@ class Titrator:
         """
         # Initialize EEPROM
         self.eeprom = EEPROM()
+
+        # Initialize Thermal Probe
+        self.thermal_probe = ThermalProbe()
 
         # Initialize LCD
         self.lcd = LiquidCrystal()
