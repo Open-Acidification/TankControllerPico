@@ -1,7 +1,9 @@
 """
 The file for the ThermalProbe class
 """
+
 import math
+
 from titration.devices.eeprom import EEPROM
 
 
@@ -22,8 +24,11 @@ class ThermalProbe:
         except Exception:
             self.correction = None
 
-        if self.correction is None or (isinstance(self.correction, float) and math.isnan(self.correction)):
+        if self.correction is None or (
+            isinstance(self.correction, float) and math.isnan(self.correction)
+        ):
             self.correction = 0.0
+
             # self.correction = self.eeprom.set_thermal_correction(value)
 
         # floattostrf(self.correction, 5, 2, buffer, sizeof(buffer));
