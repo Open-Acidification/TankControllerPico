@@ -15,6 +15,7 @@ class MockPreviousState(UIState):
     """
     A mock previous state for testing purposes
     """
+
     def __init__(self, titrator):
         super().__init__(titrator)
 
@@ -30,7 +31,10 @@ def test_view_pid_constants_show_kp_ki(print_mock):
     state.titrator.pid.ki = 2.2
 
     state._start_time = 0.0
-    with mock.patch("titration.ui_state.controller.view_pid_constants.time.monotonic", return_value=1.0):
+    with mock.patch(
+        "titration.ui_state.controller.view_pid_constants.time.monotonic",
+        return_value=1.0,
+    ):
         state.loop()
 
     print_mock.assert_any_call("Kp: 1.1", line=1)
@@ -48,7 +52,10 @@ def test_view_pid_constants_shows_kd_and_pid_state(print_mock):
     state.titrator.ph_control.use_pid = True
 
     state._start_time = 0.0
-    with mock.patch("titration.ui_state.controller.view_pid_constants.time.monotonic", return_value=4.0):
+    with mock.patch(
+        "titration.ui_state.controller.view_pid_constants.time.monotonic",
+        return_value=4.0,
+    ):
         state.loop()
 
     print_mock.assert_any_call("Kd: 3.3", line=1)

@@ -1,14 +1,19 @@
 """
 The file to test the View PID Constants class
 """
-from types import SimpleNamespace
+
 from unittest import mock
+
+from titration.devices.eeprom import EEPROM
 from titration.devices.pid import PID
 
 
 def test_pid_reads_values_from_eeprom():
     """PID should read kp/ki/kd from EEPROM on construction."""
-    mock_eeprom = SimpleNamespace(kp_address=1.1, ki_address=2.2, kd_address=3.3)
+    mock_eeprom = mock.Mock(spec=EEPROM)
+    mock_eeprom.get_kp.return_value = 1.1
+    mock_eeprom.get_ki.return_value = 2.2
+    mock_eeprom.get_kd.return_value = 3.3
 
     with mock.patch("titration.devices.pid.EEPROM", return_value=mock_eeprom):
         pid = PID()
@@ -19,7 +24,10 @@ def test_pid_reads_values_from_eeprom():
 
 def test_pid_uses_defaults_when_eeprom_has_nan():
     """If EEPROM returns NaN for tunings, PID should replace with defaults."""
-    mock_eeprom = SimpleNamespace(kp_address=float("nan"), ki_address=float("nan"), kd_address=float("nan"))
+    mock_eeprom = mock.Mock(spec=EEPROM)
+    mock_eeprom.get_kp.return_value = float("nan")
+    mock_eeprom.get_ki.return_value = float("nan")
+    mock_eeprom.get_kd.return_value = float("nan")
 
     with mock.patch("titration.devices.pid.EEPROM", return_value=mock_eeprom):
         pid = PID()
@@ -30,7 +38,10 @@ def test_pid_uses_defaults_when_eeprom_has_nan():
 
 def test_pid_uses_defaults_when_eeprom_is_none():
     """If EEPROM returns None for tunings, PID should replace with defaults."""
-    mock_eeprom = SimpleNamespace(kp_address=None, ki_address=None, kd_address=None)
+    mock_eeprom = mock.Mock(spec=EEPROM)
+    mock_eeprom.get_kp.return_value = None
+    mock_eeprom.get_ki.return_value = None
+    mock_eeprom.get_kd.return_value = None
 
     with mock.patch("titration.devices.pid.EEPROM", return_value=mock_eeprom):
         pid = PID()

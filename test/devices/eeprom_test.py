@@ -22,24 +22,24 @@ def test_set_google_sheet_interval_value():
     assert eeprom.google_sheet_interval == 45
 
 
-def test_pid_addresses():
+def test_pid_values():
     """
-    The function to test the PID address values
-    """
-    eeprom = EEPROM()
-    assert eeprom.kp_address == 20
-    assert eeprom.ki_address == 28
-    assert eeprom.kd_address == 36
-
-
-def test_set_pid_addresses():
-    """
-    The function to test setting the PID address values
+    The function to test the PID values
     """
     eeprom = EEPROM()
-    eeprom.kp_address = 25
-    eeprom.ki_address = 30
-    eeprom.kd_address = 40
-    assert eeprom.kp_address == 25
-    assert eeprom.ki_address == 30
-    assert eeprom.kd_address == 40
+    assert eeprom.get_kp() == 20.0
+    assert eeprom.get_ki() == 28.0
+    assert eeprom.get_kd() == 36.0
+
+
+def test_set_pid_values():
+    """
+    The function to test setting the PID values
+    """
+    eeprom = EEPROM()
+    eeprom.kp = 25.0
+    eeprom.ki = 30.0
+    eeprom.kd = 40.0
+    assert eeprom.get_kp() == 25.0
+    assert eeprom.get_ki() == 30.0
+    assert eeprom.get_kd() == 40.0
