@@ -24,6 +24,7 @@ class ViewPIDConstants(UIState):
         self._start_time = time.monotonic()
 
     def loop(self):
+        """Rotate display between Kp/Ki and Kd/PID every 3 seconds."""
         elapsed = int(((time.monotonic() - self._start_time) / 3.0)) % 2
         if elapsed == 0:
             self.load_kp()
@@ -56,5 +57,6 @@ class ViewPIDConstants(UIState):
             self.titrator.lcd.print("PID: OFF", line=2)
 
     def handle_key(self, key):
+        """Handle key presses to return to the previous state."""
         if key == Keypad.KEY_4 or key == Keypad.KEY_D:
             self._set_next_state(self.previous_state, True)

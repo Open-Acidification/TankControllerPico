@@ -13,24 +13,24 @@ class EEPROM:
         The constructor function for the EEPROM class
         """
         self.google_sheet_interval = 108
-        self.kp = 20.0
-        self.ki = 28.0
-        self.kd = 36.0
+        self.kp_value = 20.0
+        self.ki_value = 28.0
+        self.kd_value = 36.0
 
     def get_kp(self):
         """
         Get the Kp value from EEPROM
         """
-        return self.kp
+        return self.kp_value
 
     def get_ki(self):
         """
         Get the Ki value from EEPROM
         """
-        return self.ki
+        return self.ki_value
 
     def get_kd(self):
         """
         Get the Kd value from EEPROM
         """
-        return self.kd
+        return self.kd_value

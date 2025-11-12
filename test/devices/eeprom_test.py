@@ -37,9 +37,9 @@ def test_set_pid_values():
     The function to test setting the PID values
     """
     eeprom = EEPROM()
-    eeprom.kp = 25.0
-    eeprom.ki = 30.0
-    eeprom.kd = 40.0
+    eeprom.kp_value = 25.0
+    eeprom.ki_value = 30.0
+    eeprom.kd_value = 40.0
     assert eeprom.get_kp() == 25.0
     assert eeprom.get_ki() == 30.0
     assert eeprom.get_kd() == 40.0
