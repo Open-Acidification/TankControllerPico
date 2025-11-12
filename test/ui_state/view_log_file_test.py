@@ -30,7 +30,9 @@ def test_view_log_file(print_mock):
     state.loop()
 
     print_mock.assert_any_call("Current Log File", line=1)
-    print_mock.assert_any_call(f"{state.titrator.sd_device.todays_data_file_name()}", line=2)
+    print_mock.assert_any_call(
+        f"{state.titrator.sd_device.todays_data_file_name()}", line=2
+    )
 
 
 def test_handle_key_4():
