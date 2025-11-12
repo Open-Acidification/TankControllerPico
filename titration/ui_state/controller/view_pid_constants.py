@@ -58,5 +58,5 @@ class ViewPIDConstants(UIState):
 
     def handle_key(self, key):
         """Handle key presses to return to the previous state."""
-        if key == Keypad.KEY_4 or key == Keypad.KEY_D:
+        if key in [Keypad.KEY_4, Keypad.KEY_D]:
             self._set_next_state(self.previous_state, True)
