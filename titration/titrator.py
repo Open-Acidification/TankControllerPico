@@ -15,6 +15,8 @@ from titration.devices.library import (
     TemperatureControl,
     TemperatureProbe,
 )
+from titration.devices.ph_control import PHControl
+from titration.devices.pid import PID
 from titration.ui_state.main_menu import MainMenu
 
 
@@ -35,6 +37,12 @@ class Titrator:
         """
         # Initialize EEPROM
         self.eeprom = EEPROM()
+
+        # Initialize PID Controller
+        self.pid = PID()
+
+        # Initialize PH Control
+        self.ph_control = PHControl()
 
         # Initialize LCD
         self.lcd = LiquidCrystal()
