@@ -38,7 +38,7 @@ class Titrator:
         self.eeprom = EEPROM()
 
         # Initialize SD Card
-        self.sd = SD()
+        self.sd_device = SD()
 
         # Initialize LCD
         self.lcd = LiquidCrystal()

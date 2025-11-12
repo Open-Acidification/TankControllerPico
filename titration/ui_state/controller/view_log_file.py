@@ -20,7 +20,7 @@ class ViewLogFile(UIState):
         The loop function for the ViewLogFile state
         """
         self.titrator.lcd.print("Current Log File", line=1)
-        self.titrator.lcd.print(f"{self.titrator.sd.todays_data_file_name()}", line=2)
+        self.titrator.lcd.print(f"{self.titrator.sd_device.todays_data_file_name()}", line=2)
 
     def handle_key(self, key):
         """
