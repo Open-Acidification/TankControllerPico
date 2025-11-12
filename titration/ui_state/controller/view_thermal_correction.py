@@ -24,12 +24,6 @@ class ViewThermalCorrection(UIState):
         """
         self.titrator.lcd.print("Temp Cal Offset:", line=1)
         self.titrator.lcd.print(f"{self.titrator.thermal_probe.correction}", line=2)
-        # try:
-        #     val = float(getattr(self.titrator.thermal_probe, "correction", 0.0))
-        #     formatted = f"{val:7.5f}"
-        # except Exception:
-        #     formatted = " " * 7
-        # self.titrator.lcd.print(formatted, line=2)
 
     def handle_key(self, key):
         """

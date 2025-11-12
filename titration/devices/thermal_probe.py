@@ -30,6 +30,3 @@ class ThermalProbe:
             self.correction = 0.0
 
             # self.correction = self.eeprom.set_thermal_correction(value)
-
-        # floattostrf(self.correction, 5, 2, buffer, sizeof(buffer));
-        # serial(F("Temperature probe with correction of %s"), buffer);
