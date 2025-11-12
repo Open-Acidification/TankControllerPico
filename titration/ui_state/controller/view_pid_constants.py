@@ -35,17 +35,17 @@ class ViewPIDConstants(UIState):
 
     def load_kp(self):
         """Load the proportional gain (Kp) and display it on the specified line."""
-        value = self.titrator.pid.kp
+        value = self.titrator.pid.kp_value
         self.titrator.lcd.print(f"Kp: {value}", line=1)
 
     def load_ki(self):
         """Load the integral gain (Ki) and display it on the specified line."""
-        value = self.titrator.pid.ki
+        value = self.titrator.pid.ki_value
         self.titrator.lcd.print(f"Ki: {value}", line=2)
 
     def load_kd(self):
         """Load the derivative gain (Kd) and display it on the specified line."""
-        value = self.titrator.pid.kd
+        value = self.titrator.pid.kd_value
         self.titrator.lcd.print(f"Kd: {value}", line=1)
 
     def load_pid(self):

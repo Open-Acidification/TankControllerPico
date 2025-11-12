@@ -13,21 +13,26 @@ class PID:
         eeprom = EEPROM()
 
         try:
-            self.kp = float(eeprom.get_kp())
+            self.kp_value = float(eeprom.get_kp())
         except Exception:
-            self.kp = None
+            self.kp_value = None
         try:
-            self.ki = float(eeprom.get_ki())
+            self.ki_value = float(eeprom.get_ki())
         except Exception:
-            self.ki = None
+            self.ki_value = None
         try:
-            self.kd = float(eeprom.get_kd())
+            self.kd_value = float(eeprom.get_kd())
         except Exception:
-            self.kd = None
-
-        if self.kp is None or (isinstance(self.kp, float) and math.isnan(self.kp)):
-            self.kp = 100000.0
-        if self.ki is None or (isinstance(self.ki, float) and math.isnan(self.ki)):
-            self.ki = 0.0
-        if self.kd is None or (isinstance(self.kd, float) and math.isnan(self.kd)):
-            self.kd = 0.0
+            self.kd_value = None
+        if self.kp_value is None or (
+            isinstance(self.kp_value, float) and math.isnan(self.kp_value)
+        ):
+            self.kp_value = 100000.0
+        if self.ki_value is None or (
+            isinstance(self.ki_value, float) and math.isnan(self.ki_value)
+        ):
+            self.ki_value = 0.0
+        if self.kd_value is None or (
+            isinstance(self.kd_value, float) and math.isnan(self.kd_value)
+        ):
+            self.kd_value = 0.0

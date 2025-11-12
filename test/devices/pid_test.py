@@ -17,9 +17,9 @@ def test_pid_reads_values_from_eeprom():
 
     with mock.patch("titration.devices.pid.EEPROM", return_value=mock_eeprom):
         pid = PID()
-        assert pid.kp == 1.1
-        assert pid.ki == 2.2
-        assert pid.kd == 3.3
+        assert pid.kp_value == 1.1
+        assert pid.ki_value == 2.2
+        assert pid.kd_value == 3.3
 
 
 def test_pid_uses_defaults_when_eeprom_has_nan():
@@ -31,9 +31,9 @@ def test_pid_uses_defaults_when_eeprom_has_nan():
 
     with mock.patch("titration.devices.pid.EEPROM", return_value=mock_eeprom):
         pid = PID()
-        assert pid.kp == 100000.0
-        assert pid.ki == 0.0
-        assert pid.kd == 0.0
+        assert pid.kp_value == 100000.0
+        assert pid.ki_value == 0.0
+        assert pid.kd_value == 0.0
 
 
 def test_pid_uses_defaults_when_eeprom_is_none():
@@ -45,6 +45,6 @@ def test_pid_uses_defaults_when_eeprom_is_none():
 
     with mock.patch("titration.devices.pid.EEPROM", return_value=mock_eeprom):
         pid = PID()
-        assert pid.kp == 100000.0
-        assert pid.ki == 0.0
-        assert pid.kd == 0.0
+        assert pid.kp_value == 100000.0
+        assert pid.ki_value == 0.0
+        assert pid.kd_value == 0.0

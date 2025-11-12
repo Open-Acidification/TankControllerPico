@@ -27,8 +27,8 @@ def test_view_pid_constants_show_kp_ki(print_mock):
     """
     state = ViewPIDConstants(Titrator(), MainMenu(Titrator()))
 
-    state.titrator.pid.kp = 1.1
-    state.titrator.pid.ki = 2.2
+    state.titrator.pid.kp_value = 1.1
+    state.titrator.pid.ki_value = 2.2
 
     state._start_time = 0.0
     with mock.patch(
@@ -48,7 +48,7 @@ def test_view_pid_constants_shows_kd_and_pid_state(print_mock):
     """
     state = ViewPIDConstants(Titrator(), MainMenu(Titrator()))
 
-    state.titrator.pid.kd = 3.3
+    state.titrator.pid.kd_value = 3.3
     state.titrator.ph_control.use_pid = True
 
     state._start_time = 0.0
