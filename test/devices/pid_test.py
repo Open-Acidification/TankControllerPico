@@ -9,7 +9,9 @@ from titration.devices.pid import PID
 
 
 def test_pid_reads_values_from_eeprom():
-    """PID should read kp/ki/kd from EEPROM on construction."""
+    """
+    PID should read kp/ki/kd from EEPROM on construction.
+    """
     mock_eeprom = mock.Mock(spec=EEPROM)
     mock_eeprom.get_kp.return_value = 1.1
     mock_eeprom.get_ki.return_value = 2.2
@@ -23,7 +25,9 @@ def test_pid_reads_values_from_eeprom():
 
 
 def test_pid_uses_defaults_when_eeprom_has_nan():
-    """If EEPROM returns NaN for tunings, PID should replace with defaults."""
+    """
+    If EEPROM returns NaN for tunings, PID should replace with defaults.
+    """
     mock_eeprom = mock.Mock(spec=EEPROM)
     mock_eeprom.get_kp.return_value = float("nan")
     mock_eeprom.get_ki.return_value = float("nan")

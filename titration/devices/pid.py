@@ -6,10 +6,14 @@ from titration.devices.eeprom import EEPROM
 
 
 class PID:
-    """Host-side PID controller wrapper translated from the firmware header."""
+    """
+    Host-side PID controller wrapper translated from the firmware header.
+    """
 
     def __init__(self):
-        """The constructor for the mock PID class."""
+        """
+        The constructor for the mock PID class.
+        """
         eeprom = EEPROM()
 
         try:
