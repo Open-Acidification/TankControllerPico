@@ -16,10 +16,10 @@ class Ethernet:
 
     def __init__(self) -> None:
         self.default_mac = "90A2:DA00:0000"
-        self.mac = self.default_mac
+        self.mac_address = self.default_mac
 
         self.default_ip = "192.168.1.10"
-        self.ip = self.default_ip
+        self.ip_address = self.default_ip
 
         self.is_using_dhcp: bool = False
 
@@ -29,25 +29,25 @@ class Ethernet:
         """
         Get the current IP address as a string.
         """
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        socket_value = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         try:
-            s.connect(("8.8.8.8", 80))
-            self.ip = s.getsockname()[0]
+            socket_value.connect(("8.8.8.8", 80))
+            self.ip_address = socket_value.getsockname()[0]
         finally:
-            s.close()
-        return self.ip
+            socket_value.close()
+        return self.ip_address
 
     def get_mac(self):
         """
         Retrieves the MAC address of the local machine.
         """
         try:
-            mac_num = hex(uuid.getnode()).replace("0x", "").upper()
-            mac_num = mac_num.zfill(12)
-            self.mac = ":".join(mac_num[i : i + 4] for i in range(0, 12, 4))
+            mac_value = hex(uuid.getnode()).replace("0x", "").upper()
+            mac_value = mac_value.zfill(12)
+            self.mac_address = ":".join(mac_value[i : i + 4] for i in range(0, 12, 4))
         except Exception:
-            self.mac = self.default_mac
-        return self.mac
+            self.mac_address = self.default_mac
+        return self.mac_address
 
     def is_connected_to_network(self) -> bool:
         """

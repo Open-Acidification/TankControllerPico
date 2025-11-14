@@ -30,6 +30,9 @@ class ViewDeviceAddress(UIState):
         self.titrator.lcd.print(mac_str, line=2)
 
     def handle_key(self, key):
+        """
+        Handle key presses for the ViewDeviceAddress state.
+        """
         if key == Keypad.KEY_HASH:  # '#'
             # TODO: Do we need 'wdt_disable()'
             pass
@@ -42,5 +45,5 @@ class ViewDeviceAddress(UIState):
             # TODO: Do we need read_mac() in this context?
             pass
 
-        if key == Keypad.KEY_4 or key == Keypad.KEY_D:
+        if key in (Keypad.KEY_4, Keypad.KEY_D):
             self._set_next_state(self.previous_state, True)

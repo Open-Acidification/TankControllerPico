@@ -17,9 +17,9 @@ def test_get_ip_uses_socket_and_updates():
         "titration.devices.ethernet.socket.socket", return_value=mock_socket
     ):
         ethernet = Ethernet()
-        ip = ethernet.get_ip()
-        assert ip == "123.456.7.89"
-        assert ethernet.ip == "123.456.7.89"
+        ip_address = ethernet.get_ip()
+        assert ip_address == "123.456.7.89"
+        assert ethernet.ip_address == "123.456.7.89"
         mock_socket.connect.assert_called_once_with(("8.8.8.8", 80))
         mock_socket.close.assert_called_once()
 
@@ -31,9 +31,9 @@ def test_get_mac_retrieves_local_address_and_formats():
     node_int = 0xAB12CD345678
     with mock.patch("titration.devices.ethernet.uuid.getnode", return_value=node_int):
         ethernet = Ethernet()
-        mac = ethernet.get_mac()
-        assert mac == "AB12:CD34:5678"
-        assert ethernet.mac == "AB12:CD34:5678"
+        mac_address = ethernet.get_mac()
+        assert mac_address == "AB12:CD34:5678"
+        assert ethernet.mac_address == "AB12:CD34:5678"
 
 
 def test_is_connected_to_network_reflects_dhcp_flag():
