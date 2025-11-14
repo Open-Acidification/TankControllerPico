@@ -1,6 +1,7 @@
 """
 The file to test the Ethernet class
 """
+
 from unittest import mock
 
 from titration.devices.ethernet import Ethernet
@@ -12,7 +13,9 @@ def test_get_ip_uses_socket_and_updates():
     """
     mock_socket = mock.Mock()
     mock_socket.getsockname.return_value = ("123.456.7.89", 12345)
-    with mock.patch("titration.devices.ethernet.socket.socket", return_value=mock_socket):
+    with mock.patch(
+        "titration.devices.ethernet.socket.socket", return_value=mock_socket
+    ):
         ethernet = Ethernet()
         ip = ethernet.get_ip()
         assert ip == "123.456.7.89"

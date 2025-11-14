@@ -1,6 +1,7 @@
 """
 The file to test the MainMenu class
 """
+
 from unittest import mock
 from unittest.mock import ANY
 

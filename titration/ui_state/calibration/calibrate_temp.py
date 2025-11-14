@@ -1,6 +1,7 @@
 """
 The file for the CalibrateTemp class
 """
+
 from titration.ui_state.ui_state import UIState
 from titration.ui_state.user_value.reference_temperature import (
     ReferenceTemperature,

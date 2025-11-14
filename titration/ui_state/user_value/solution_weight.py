@@ -1,6 +1,7 @@
 """
 The file for the SolutionWeight class
 """
+
 from titration.ui_state.user_value.user_value import UserValue
 
 

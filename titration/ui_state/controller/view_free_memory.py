@@ -1,6 +1,7 @@
 """
 The file to hold the View Free Memory class
 """
+
 from titration.ui_state.ui_state import UIState
 
 
