@@ -33,17 +33,5 @@ class ViewDeviceAddress(UIState):
         """
         Handle key presses for the ViewDeviceAddress state.
         """
-        if key == Keypad.KEY_HASH:  # '#'
-            # TODO: Do we need 'wdt_disable()'
-            pass
-
-        if key == Keypad.KEY_B:
-            # TODO: Do we need to test Watchdog Timer. 'wdt_disable() -> wdt_enable(WDTO_15MS)'
-            pass
-
-        if key == Keypad.KEY_C:
-            # TODO: Do we need read_mac() in this context?
-            pass
-
         if key in (Keypad.KEY_4, Keypad.KEY_D):
             self._set_next_state(self.previous_state, True)
