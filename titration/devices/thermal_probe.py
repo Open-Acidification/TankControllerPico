@@ -30,3 +30,4 @@ class ThermalProbe:
             self.correction = 0.0
 
             # self.correction = self.eeprom.set_thermal_correction(value)
+            # consider adding get_float() as seen in pid.py
