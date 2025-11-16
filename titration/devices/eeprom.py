@@ -12,5 +12,5 @@ class EEPROM:
         """
         The constructor function for the EEPROM class
         """
-        self.google_interval_address = 108
+        self.google_interval_address = 20
         self.tank_id_address = 8

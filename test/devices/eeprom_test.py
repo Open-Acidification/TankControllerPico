@@ -10,7 +10,7 @@ def test_default_google_sheet_interval_value():
     The function to test the default google_sheet_interval value
     """
     eeprom = EEPROM()
-    assert eeprom.google_interval_address == 108
+    assert eeprom.google_interval_address == 20
 
 
 def test_set_google_sheet_interval_value():
