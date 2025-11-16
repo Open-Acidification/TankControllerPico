@@ -23,7 +23,7 @@ class ViewTankID(UIState):
         The loop function for the ViewTankID class
         """
         self.titrator.lcd.print("Tank ID:", line=1)
-        self.titrator.lcd.print(f"{self.titrator.eeprom.tank_id_address}", line=2)
+        self.titrator.lcd.print(f"{self.titrator.eeprom.tank_id}", line=2)
 
     def handle_key(self, key):
         """

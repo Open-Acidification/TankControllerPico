@@ -13,4 +13,4 @@ class EEPROM:
         The constructor function for the EEPROM class
         """
         self.google_sheet_interval = 20
-        self.tank_id_address = 8
+        self.tank_id = 8

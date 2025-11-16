@@ -27,7 +27,7 @@ def test_default_tank_id_value():
     The function to test the default tank_id value
     """
     eeprom = EEPROM()
-    assert eeprom.tank_id_address == 8
+    assert eeprom.tank_id == 8
 
 
 def test_set_tank_id_value():
@@ -35,5 +35,5 @@ def test_set_tank_id_value():
     The function to test setting the tank_id value
     """
     eeprom = EEPROM()
-    eeprom.tank_id_address = 15
-    assert eeprom.tank_id_address == 15
+    eeprom.tank_id = 15
+    assert eeprom.tank_id == 15
