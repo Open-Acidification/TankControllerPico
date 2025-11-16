@@ -21,7 +21,7 @@ class MockPreviousState(UIState):
 
 
 @mock.patch.object(LiquidCrystal, "print")
-def test_view_google_sheet_interval(print_mock):
+def test_view_tank_id(print_mock):
     """
     The function to test ViewTankID's loop function
     """
