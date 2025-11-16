@@ -2,6 +2,8 @@
 The file to test the SD class
 """
 
+from datetime import datetime
+
 from titration.devices.sd import SD
 
 
@@ -11,5 +13,7 @@ def test_sd_todays_data_file_name():
     """
     sd_device = SD()
     file_name = sd_device.todays_data_file_name()
-    assert file_name.startswith("2025")
-    assert file_name.endswith(".csv")
+
+    now = datetime.now()
+    expected = f"{now.year:04d}{now.month:02d}{now.day:02d}.csv"
+    assert file_name == expected
