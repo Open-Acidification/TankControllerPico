@@ -23,7 +23,7 @@ class MockPreviousState(UIState):
 
 
 @mock.patch.object(LiquidCrystal, "print")
-def test_view_google_sheet_interval(print_mock):
+def test_view_thermal_correction(print_mock):
     """
     The function to test ViewThermalCorrection's loop function
     """

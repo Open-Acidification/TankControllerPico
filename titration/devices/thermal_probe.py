@@ -20,7 +20,7 @@ class ThermalProbe:
         self.eeprom = EEPROM()
 
         try:
-            self.correction = float(self.eeprom.thermal_correction_address)
+            self.correction = float(self.eeprom.thermal_correction)
         except Exception:
             self.correction = None
 
