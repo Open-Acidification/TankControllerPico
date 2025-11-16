@@ -25,7 +25,6 @@ class ViewTime(UIState):
         """
         Loop to update the time display.
         """
-        # self.titrator.lcd.print("SeeDeviceUptime", line=1)
         now = datetime.now()
         line1 = (
             f"{now.year:04d}-{now.month:02d}-{now.day:02d} "
@@ -39,7 +38,6 @@ class ViewTime(UIState):
         minutes, seconds = divmod(rem, 60)
         uptime_str = f"Up d:{days:02d} {hours:02d}:{minutes:02d}:{seconds:02d}"
         self.titrator.lcd.print(uptime_str, line=2)
-        # TODO: consider updating uptime start time
 
     def handle_key(self, key):
         """
