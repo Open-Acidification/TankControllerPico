@@ -12,7 +12,7 @@ class EEPROM:
         """
         The constructor function for the EEPROM class
         """
-        self.google_sheet_interval = 108
+        self.google_sheet_interval = 20
         self.kp_value = 20.0
         self.ki_value = 28.0
         self.kd_value = 36.0
