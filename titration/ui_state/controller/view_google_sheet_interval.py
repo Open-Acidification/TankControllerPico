@@ -23,9 +23,7 @@ class ViewGoogleSheetInterval(UIState):
         The loop function for the ViewGoogleSheetInterval class
         """
         self.titrator.lcd.print("Google Mins:", line=1)
-        self.titrator.lcd.print(
-            f"{self.titrator.eeprom.google_sheet_interval}", line=2
-        )
+        self.titrator.lcd.print(f"{self.titrator.eeprom.google_sheet_interval}", line=2)
 
     def handle_key(self, key):
         """
