@@ -12,14 +12,14 @@ def test_get_ip_uses_socket_and_updates():
     Test that get_ip uses socket and updates the IP address correctly.
     """
     mock_socket = mock.Mock()
-    mock_socket.getsockname.return_value = ("123.456.7.89", 12345)
+    mock_socket.getsockname.return_value = ("123.123.1.12", 12345)
     with mock.patch(
-        "titration.devices.ethernet.socket.socket", return_value=mock_socket
+        "titration.devices.ethernet.socket.socket", return_value=mock_socket 
     ):
         ethernet = Ethernet()
         ip_address = ethernet.get_ip()
-        assert ip_address == "123.456.7.89"
-        assert ethernet.ip_address == "123.456.7.89"
+        assert ip_address == "123.123.1.12"
+        assert ethernet.ip_address == "123.123.1.12"
         mock_socket.connect.assert_called_once_with(("8.8.8.8", 80))
         mock_socket.close.assert_called_once()
 
