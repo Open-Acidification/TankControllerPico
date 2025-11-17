@@ -15,6 +15,7 @@ from titration.devices.library import (
     TemperatureControl,
     TemperatureProbe,
 )
+from titration.devices.sd import SD
 from titration.ui_state.main_menu import MainMenu
 
 
@@ -35,6 +36,9 @@ class Titrator:
         """
         # Initialize EEPROM
         self.eeprom = EEPROM()
+
+        # Initialize SD Card
+        self.sd_device = SD()
 
         # Initialize LCD
         self.lcd = LiquidCrystal()
