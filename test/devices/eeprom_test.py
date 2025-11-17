@@ -20,3 +20,20 @@ def test_set_google_sheet_interval_value():
     eeprom = EEPROM()
     eeprom.google_sheet_interval = 45
     assert eeprom.google_sheet_interval == 45
+
+
+def test_default_tank_id_value():
+    """
+    The function to test the default tank_id value
+    """
+    eeprom = EEPROM()
+    assert eeprom.tank_id == 0
+
+
+def test_set_tank_id_value():
+    """
+    The function to test setting the tank_id value
+    """
+    eeprom = EEPROM()
+    eeprom.tank_id = 15
+    assert eeprom.tank_id == 15
