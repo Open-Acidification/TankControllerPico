@@ -23,7 +23,7 @@ class ViewVersion(UIState):
         The loop function for the ViewVersion class
         """
         self.titrator.lcd.print("Software Version", line=1)
-        self.titrator.lcd.print(f"{self.titrator.version()}", line=2)
+        self.titrator.lcd.print(f"{self.titrator.get_version()}", line=2)
 
     def handle_key(self, key):
         """

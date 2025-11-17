@@ -129,7 +129,7 @@ class Titrator:
             self.state.handle_key(key)
         self.state.loop()
 
-    def version(self):
+    def get_version(self):
         """
         The function used to get the software version
         """
