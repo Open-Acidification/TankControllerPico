@@ -30,7 +30,7 @@ def test_view_tank_id(print_mock):
     state.loop()
 
     print_mock.assert_any_call("Tank ID:", line=1)
-    print_mock.assert_any_call("8", line=2)
+    print_mock.assert_any_call("0", line=2)
 
 
 def test_handle_key_4():

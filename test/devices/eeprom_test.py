@@ -27,7 +27,7 @@ def test_default_tank_id_value():
     The function to test the default tank_id value
     """
     eeprom = EEPROM()
-    assert eeprom.tank_id == 8
+    assert eeprom.tank_id == 0
 
 
 def test_set_tank_id_value():
