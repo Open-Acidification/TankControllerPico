@@ -15,8 +15,6 @@ class ViewDeviceAddress(UIState):
     def __init__(self, titrator, previous_state=None):
         super().__init__(titrator)
         self.previous_state = previous_state
-        self._suppress_until = 0.0
-        self._suppress_duration = 2
 
     def loop(self):
         """
