@@ -2,7 +2,7 @@
 The file to hold the View Version class
 """
 
-from titration.devices.keypad import Keypad
+from titration.devices.library import Keypad
 from titration.ui_state.ui_state import UIState
 
 
