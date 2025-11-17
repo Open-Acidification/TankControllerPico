@@ -1,5 +1,5 @@
 """
-The file to test the View Google Minutes class
+The file to test the View Version class
 """
 
 from unittest import mock
@@ -29,7 +29,6 @@ def test_view_version(print_mock):
     state = ViewVersion(Titrator(), MainMenu(Titrator()))
     state.loop()
 
-    # ensure Titrator.get_version returns the module VERSION
     assert state.titrator.get_version() == VERSION
     print_mock.assert_any_call("Software Version", line=1)
     print_mock.assert_any_call(VERSION, line=2)
