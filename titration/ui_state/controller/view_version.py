@@ -10,6 +10,7 @@ class ViewVersion(UIState):
     """
     This is a class for the ViewVersion state of the Tank Controller
     """
+
     def __init__(self, titrator, previous_state=None):
         """
         The constructor for the ViewVersion class
