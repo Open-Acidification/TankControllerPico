@@ -2,8 +2,6 @@
 The file for the ThermalProbe class
 """
 
-import math
-
 from titration.devices.eeprom import EEPROM
 
 
