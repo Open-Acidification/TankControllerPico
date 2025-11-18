@@ -17,6 +17,7 @@ from titration.devices.library import (
 )
 from titration.devices.sd import SD
 from titration.ui_state.main_menu import MainMenu
+from titration.version import VERSION
 
 
 class Titrator:
@@ -89,6 +90,8 @@ class Titrator:
         # Temperature Calibration Values
         self.reference_temperature = 0
 
+        self.tank_controller_version = VERSION
+
     def loop(self):
         """
         The function used to loop through in each state
@@ -129,3 +132,9 @@ class Titrator:
             print("Titrator::handle_ui() key pressed:", key)
             self.state.handle_key(key)
         self.state.loop()
+
+    def get_version(self):
+        """
+        The function used to get the software version
+        """
+        return self.tank_controller_version
