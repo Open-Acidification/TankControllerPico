@@ -1,7 +1,5 @@
 """Host-side PID controller wrapper translated from the firmware header."""
 
-import math
-
 from titration.devices.eeprom import EEPROM
 
 
