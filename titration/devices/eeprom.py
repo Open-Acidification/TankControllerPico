@@ -14,3 +14,4 @@ class EEPROM:
         """
         self.google_sheet_interval = 20
         self.thermal_correction = 12
+        self.tank_id = 0
