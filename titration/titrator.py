@@ -16,6 +16,7 @@ from titration.devices.library import (
     TemperatureProbe,
 )
 from titration.devices.sd import SD
+from titration.devices.thermal_probe import ThermalProbe
 from titration.ui_state.main_menu import MainMenu
 from titration.version import VERSION
 
@@ -37,6 +38,9 @@ class Titrator:
         """
         # Initialize EEPROM
         self.eeprom = EEPROM()
+
+        # Initialize Thermal Probe
+        self.thermal_probe = ThermalProbe()
 
         # Initialize SD Card
         self.sd_device = SD()
