@@ -16,28 +16,13 @@ class PID:
         """
         eeprom = EEPROM()
 
-        self.kp_value = self.get_float(eeprom.get_kp(), 100000.0)
-        self.ki_value = self.get_float(eeprom.get_ki(), 0.0)
-        self.kd_value = self.get_float(eeprom.get_kd(), 0.0)
+        self.kp_value = 100000.0
+        self.ki_value = 0.0
+        self.kd_value = 0.0
 
-    def get_float(self, getter_or_value, default_value):
-        """
-        Call getter_or_value (if callable) and return a finite float, otherwise default.
-        """
         try:
-            raw = getter_or_value() if callable(getter_or_value) else getter_or_value
+            self.kp_value = float(eeprom.get_kp())
+            self.ki_value = float(eeprom.get_ki())
+            self.kd_value = float(eeprom.get_kd())
         except Exception:
-            return float(default_value)
-
-        if isinstance(raw, bool):  # Reject bool which converts to 1.0/0.0 and is finite
-            return float(default_value)
-
-        try:
-            val = float(raw)
-        except (TypeError, ValueError):
-            return float(default_value)
-
-        if not math.isfinite(val):  # Only accept finite floats (reject NaN and +/-inf)
-            return float(default_value)
-
-        return val
+            pass
