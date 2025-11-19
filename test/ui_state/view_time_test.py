@@ -37,7 +37,7 @@ def test_view_time_loop_prints_datetime_and_uptime(print_mock, mock_dt):
     state.loop()
 
     print_mock.assert_any_call("2025-11-14 09:42", line=1)
-    print_mock.assert_any_call(f"Up d:{1:02d} {2:02d}:{3:02d}:{4:02d}", line=2)
+    print_mock.assert_any_call("Up d:01 02:03:04", line=2)
 
 
 def test_handle_key_4():
