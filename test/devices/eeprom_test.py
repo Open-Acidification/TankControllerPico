@@ -43,3 +43,37 @@ def test_set_pid_values():
     assert eeprom.get_kp() == 25.0
     assert eeprom.get_ki() == 30.0
     assert eeprom.get_kd() == 40.0
+
+
+def test_default_thermal_correction_value():
+    """
+    The function to test the default thermal_correction_address value
+    """
+    eeprom = EEPROM()
+    assert eeprom.thermal_correction == 12
+
+
+def test_set_thermal_correction_value():
+    """
+    The function to test setting the thermal_correction_address value
+    """
+    eeprom = EEPROM()
+    eeprom.thermal_correction = 2.5
+    assert eeprom.thermal_correction == 2.5
+
+
+def test_default_tank_id_value():
+    """
+    The function to test the default tank_id value
+    """
+    eeprom = EEPROM()
+    assert eeprom.tank_id == 0
+
+
+def test_set_tank_id_value():
+    """
+    The function to test setting the tank_id value
+    """
+    eeprom = EEPROM()
+    eeprom.tank_id = 15
+    assert eeprom.tank_id == 15

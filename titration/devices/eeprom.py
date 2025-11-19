@@ -16,6 +16,8 @@ class EEPROM:
         self.kp_value = 20.0
         self.ki_value = 28.0
         self.kd_value = 36.0
+        self.thermal_correction = 12
+        self.tank_id = 0
 
     def get_kp(self):
         """
