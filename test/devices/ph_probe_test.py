@@ -30,6 +30,38 @@ def test_ph_create():
     assert ph_test.channel.voltage == 0
 
 
+def test_ph_send_calibration_request_and_get_calibration():
+    """
+    The function to test sending a calibration request
+    """
+    ph_test = create_ph_probe()
+    ph_test.send_calibration_request()
+
+    full = ph_test.get_calibration(100)
+    assert full == "PH Calibration"
+
+    small = ph_test.get_calibration(7)
+    assert small == "PH Cal"
+
+    assert ph_test.get_calibration(0) == ""
+
+
+def test_ph_send_slope_request_and_get_slope():
+    """
+    The function to test sending a slope request
+    """
+    ph_test = create_ph_probe()
+    ph_test.send_slope_request()
+
+    full = ph_test.get_slope(100)
+    assert full == "Requesting..."
+
+    small = ph_test.get_slope(7)
+    assert small == "Reques"
+
+    assert ph_test.get_slope(0) == ""
+
+
 def test_ph_get_voltage():
     """
     The function to test setting the pH voltage
