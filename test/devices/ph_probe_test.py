@@ -56,8 +56,8 @@ def test_ph_send_slope_request_and_get_slope():
     full = ph_test.get_slope(100)
     assert full == "Requesting..."
 
-    small = ph_test.get_slope(7)
-    assert small == "Reques"
+    small = ph_test.get_slope(4)
+    assert small == "Req"
 
     assert ph_test.get_slope(0) == ""
 
