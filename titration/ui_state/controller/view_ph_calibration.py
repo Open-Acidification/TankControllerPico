@@ -1,8 +1,9 @@
 """
 The file to hold the View PH Calibration class
 """
-from titration.devices.ph_probe import PHProbe
+
 from titration.devices.library import Keypad
+from titration.devices.ph_probe import PHProbe
 from titration.ui_state.ui_state import UIState
 
 
@@ -10,6 +11,7 @@ class ViewPHCalibration(UIState):
     """
     This is a class for the ViewPHCalibration state of the Tank Controller
     """
+
     def __init__(self, titrator, previous_state=None):
         """
         The constructor for the ViewPHCalibration class

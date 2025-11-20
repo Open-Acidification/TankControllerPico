@@ -45,7 +45,7 @@ class PHProbe:
         self.ads.gain = gain
         self.gain_options = [2 / 3, 1, 2, 4, 8, 16]
 
-    def send_calibration_request(self):
+    def send_calibration_request(self) -> None:
         """
         The function to request calibration status from the pH probe.
         In the real device this prints "CAL,?\r" to Serial1 and the device
@@ -53,7 +53,6 @@ class PHProbe:
         response string in calibration_response.
         """
         self.calibration_response = "PH Calibration"
-        return None
 
     def get_calibration(self, size):
         """
@@ -62,13 +61,12 @@ class PHProbe:
         usable = min(CALIB_USABLE, max(0, int(size) - 1))
         return self.calibration_response[:usable]
 
-    def send_slope_request(self):
+    def send_slope_request(self) -> None:
         """
         Simulate sending a slope request to the probe.
         In firmware: Serial1.print(F("SLOPE,?\r"));
         """
         self.slope_response = "Requesting..."
-        return
 
     def get_slope(self, size):
         """

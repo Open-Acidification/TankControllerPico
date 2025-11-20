@@ -31,7 +31,10 @@ def test_view_ph_calibration(print_mock):
     mock_probe.get_calibration.return_value = "PH Calibration"
     mock_probe.get_slope.return_value = "99.7,100.3,-0.89"
 
-    with mock.patch("titration.ui_state.controller.view_ph_calibration.PHProbe", return_value=mock_probe):
+    with mock.patch(
+        "titration.ui_state.controller.view_ph_calibration.PHProbe",
+        return_value=mock_probe,
+    ):
         state = ViewPHCalibration(Titrator(), MainMenu(Titrator()))
         state.loop()
 
