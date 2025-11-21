@@ -5,7 +5,7 @@ The file to test the StirControl class
 from unittest import mock
 from unittest.mock import call
 
-from titration.devices.library import StirControl
+from src.devices.library import StirControl
 
 
 def test_create_stir_controller():

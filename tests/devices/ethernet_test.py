@@ -4,7 +4,7 @@ The file to test the Ethernet class
 
 from unittest import mock
 
-from titration.devices.ethernet import Ethernet
+from src.devices.ethernet import Ethernet
 
 
 def test_get_ip_uses_socket_and_updates():
@@ -14,7 +14,7 @@ def test_get_ip_uses_socket_and_updates():
     mock_socket = mock.Mock()
     mock_socket.getsockname.return_value = ("123.123.1.12", 12345)
     with mock.patch(
-        "titration.devices.ethernet.socket.socket", return_value=mock_socket
+        "src.devices.ethernet.socket.socket", return_value=mock_socket
     ):
         ethernet = Ethernet()
         ip_address = ethernet.get_ip()
@@ -29,7 +29,7 @@ def test_get_mac_retrieves_local_address_and_formats():
     Test that get_mac retrieves the MAC address of the local machine.
     """
     node_int = 0xAB12CD345678
-    with mock.patch("titration.devices.ethernet.uuid.getnode", return_value=node_int):
+    with mock.patch("src.devices.ethernet.uuid.getnode", return_value=node_int):
         ethernet = Ethernet()
         mac_address = ethernet.get_mac()
         assert mac_address == "AB12:CD34:5678"

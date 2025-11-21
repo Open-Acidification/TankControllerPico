@@ -4,10 +4,10 @@ The file to test the Titrator class
 
 from unittest import mock
 
-from titration.devices.library import Keypad
-from titration.titrator import Titrator
-from titration.ui_state.main_menu import MainMenu
-from titration.ui_state.titration.setup_titration import SetupTitration
+from src.devices.library import Keypad
+from src.titrator import Titrator
+from src.ui_state.main_menu import MainMenu
+from src.ui_state.titration.setup_titration import SetupTitration
 
 
 @mock.patch.object(Titrator, "handle_ui")

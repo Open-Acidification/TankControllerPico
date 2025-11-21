@@ -5,10 +5,10 @@ The file to test the DemoTemperatureControl Class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal, TemperatureControl
-from titration.titrator import Titrator
-from titration.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
-from titration.ui_state.demo_mode.demo_temperature_controller import (
+from src.devices.library import LiquidCrystal, TemperatureControl
+from src.titrator import Titrator
+from src.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
+from src.ui_state.demo_mode.demo_temperature_controller import (
     DemoTemperatureControl,
 )
 

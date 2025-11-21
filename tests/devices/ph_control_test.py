@@ -2,7 +2,7 @@
 The file to test the PH Control class
 """
 
-from titration.devices.ph_control import PHControl
+from src.devices.ph_control import PHControl
 
 
 def test_uses_pid_by_default():

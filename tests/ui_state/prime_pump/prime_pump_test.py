@@ -5,10 +5,10 @@ The file to test the PrimePump class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.main_menu import MainMenu
-from titration.ui_state.prime_pump.prime_pump import PrimePump
+from src.devices.library import LiquidCrystal
+from src.titrator import Titrator
+from src.ui_state.main_menu import MainMenu
+from src.ui_state.prime_pump.prime_pump import PrimePump
 
 
 @mock.patch.object(PrimePump, "_set_next_state")

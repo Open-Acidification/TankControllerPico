@@ -4,8 +4,8 @@ The file to test the View PID Constants class
 
 from unittest import mock
 
-from titration.devices.eeprom import EEPROM
-from titration.devices.pid import PID
+from src.devices.eeprom import EEPROM
+from src.devices.pid import PID
 
 
 def test_pid_reads_values_from_eeprom():
@@ -17,7 +17,7 @@ def test_pid_reads_values_from_eeprom():
     mock_eeprom.get_ki.return_value = 2.2
     mock_eeprom.get_kd.return_value = 3.3
 
-    with mock.patch("titration.devices.pid.EEPROM", return_value=mock_eeprom):
+    with mock.patch("src.devices.pid.EEPROM", return_value=mock_eeprom):
         pid = PID()
         assert pid.kp_value == 1.1
         assert pid.ki_value == 2.2
@@ -33,7 +33,7 @@ def test_pid_defaults_after_try():
     mock_eeprom.get_ki.return_value = None
     mock_eeprom.get_kd.return_value = float("inf")
 
-    with mock.patch("titration.devices.pid.EEPROM", return_value=mock_eeprom):
+    with mock.patch("src.devices.pid.EEPROM", return_value=mock_eeprom):
         pid = PID()
         assert pid.kp_value == 100000.0
         assert pid.ki_value == 0.0

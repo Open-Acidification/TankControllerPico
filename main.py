@@ -4,7 +4,7 @@ The file to run the program
 
 import sys
 
-from titration import mock_config
+from src import mock_config
 
 if __name__ == "__main__":
     opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
@@ -16,6 +16,6 @@ if __name__ == "__main__":
     else:
         mock_config.MOCK_ENABLED = False
 
-    from titration import titrator_driver
+    from src import titrator_driver
 
     titrator_driver.run()

@@ -2,7 +2,7 @@
 The file to test the mock temperature controller
 """
 
-from titration.devices.library import (
+from src.devices.library import (
     Heater,
     TemperatureControl,
     TemperatureProbe,

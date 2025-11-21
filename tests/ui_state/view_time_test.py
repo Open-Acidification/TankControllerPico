@@ -5,11 +5,11 @@ The file to test the View Time class
 from datetime import datetime, timedelta
 from unittest import mock
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.controller.view_time import ViewTime
-from titration.ui_state.main_menu import MainMenu
-from titration.ui_state.ui_state import UIState
+from src.devices.library import LiquidCrystal
+from src.titrator import Titrator
+from src.ui_state.controller.view_time import ViewTime
+from src.ui_state.main_menu import MainMenu
+from src.ui_state.ui_state import UIState
 
 
 class MockPreviousState(UIState):
@@ -21,7 +21,7 @@ class MockPreviousState(UIState):
         super().__init__(titrator)
 
 
-@mock.patch("titration.ui_state.controller.view_time.datetime")
+@mock.patch("src.ui_state.controller.view_time.datetime")
 @mock.patch.object(LiquidCrystal, "print")
 def test_view_time_loop_prints_datetime_and_uptime(print_mock, mock_dt):
     """

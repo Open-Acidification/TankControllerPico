@@ -4,7 +4,7 @@ The file to test the pH probe
 
 import pytest
 
-from titration.devices.library import ADS, PHProbe, board
+from src.devices.library import ADS, PHProbe, board
 
 
 def create_ph_probe():
