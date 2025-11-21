@@ -7,10 +7,10 @@ The file to test the DemoStirControl Class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal, StirControl
-from titration.titrator import Titrator
-from titration.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
-from titration.ui_state.demo_mode.demo_stir_control import DemoStirControl
+from src.devices.library import LiquidCrystal, StirControl
+from src.titrator import Titrator
+from src.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
+from src.ui_state.demo_mode.demo_stir_control import DemoStirControl
 
 
 @mock.patch.object(StirControl, "degas")

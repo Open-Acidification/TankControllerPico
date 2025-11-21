@@ -5,11 +5,11 @@ The file to test the CalibrateTemp class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal, TemperatureProbe
-from titration.titrator import Titrator
-from titration.ui_state.calibration.calibrate_temp import CalibrateTemp
-from titration.ui_state.calibration.setup_calibration import SetupCalibration
-from titration.ui_state.main_menu import MainMenu
+from src.devices.library import LiquidCrystal, TemperatureProbe
+from src.titrator import Titrator
+from src.ui_state.calibration.calibrate_temp import CalibrateTemp
+from src.ui_state.calibration.setup_calibration import SetupCalibration
+from src.ui_state.main_menu import MainMenu
 
 
 @mock.patch.object(TemperatureProbe, "calibrate")

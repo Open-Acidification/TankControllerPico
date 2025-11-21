@@ -2,7 +2,7 @@
 The file to test the EEPROM class
 """
 
-from titration.devices.eeprom import EEPROM
+from src.devices.eeprom import EEPROM
 
 
 def test_default_google_sheet_interval_value():

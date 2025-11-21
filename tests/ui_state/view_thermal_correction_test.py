@@ -4,13 +4,13 @@ The file to test the View Google Minutes class
 
 from unittest import mock
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.controller.view_thermal_correction import (
+from src.devices.library import LiquidCrystal
+from src.titrator import Titrator
+from src.ui_state.controller.view_thermal_correction import (
     ViewThermalCorrection,
 )
-from titration.ui_state.main_menu import MainMenu
-from titration.ui_state.ui_state import UIState
+from src.ui_state.main_menu import MainMenu
+from src.ui_state.ui_state import UIState
 
 
 class MockPreviousState(UIState):

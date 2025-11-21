@@ -4,7 +4,7 @@ The file to test the SD class
 
 from datetime import datetime
 
-from titration.devices.sd import SD
+from src.devices.sd import SD
 
 
 def test_sd_todays_data_file_name():

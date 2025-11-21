@@ -5,13 +5,11 @@ The file to test the ReferenceTemperature class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.main_menu import MainMenu
-from titration.ui_state.update_settings.update_settings import UpdateSettings
-from titration.ui_state.user_value.reference_temperature import (
-    ReferenceTemperature,
-)
+from src.devices.library import LiquidCrystal
+from src.titrator import Titrator
+from src.ui_state.main_menu import MainMenu
+from src.ui_state.update_settings.update_settings import UpdateSettings
+from src.ui_state.user_value.reference_temperature import ReferenceTemperature
 
 
 @mock.patch.object(ReferenceTemperature, "_set_next_state")

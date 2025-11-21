@@ -5,10 +5,10 @@ The file to test the DemoModeMenu class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
-from titration.ui_state.main_menu import MainMenu
+from src.devices.library import LiquidCrystal
+from src.titrator import Titrator
+from src.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
+from src.ui_state.main_menu import MainMenu
 
 
 @mock.patch.object(DemoModeMenu, "_set_next_state")

@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["titration*"]
+include = ["src*"]
 exclude = ["tests*"]
 
 [project.optional-dependencies]

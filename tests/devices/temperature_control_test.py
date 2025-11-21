@@ -2,11 +2,7 @@
 The file to test the mock temperature controller
 """
 
-from titration.devices.library import (
-    Heater,
-    TemperatureControl,
-    TemperatureProbe,
-)
+from src.devices.library import Heater, TemperatureControl, TemperatureProbe
 
 
 def create_temperature_controller():

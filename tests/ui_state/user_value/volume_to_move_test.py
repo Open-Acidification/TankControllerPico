@@ -5,11 +5,11 @@ The file to test the Volume class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.main_menu import MainMenu
-from titration.ui_state.update_settings.update_settings import UpdateSettings
-from titration.ui_state.user_value.volume_to_move import VolumeToMove
+from src.devices.library import LiquidCrystal
+from src.titrator import Titrator
+from src.ui_state.main_menu import MainMenu
+from src.ui_state.update_settings.update_settings import UpdateSettings
+from src.ui_state.user_value.volume_to_move import VolumeToMove
 
 
 @mock.patch.object(VolumeToMove, "_set_next_state")

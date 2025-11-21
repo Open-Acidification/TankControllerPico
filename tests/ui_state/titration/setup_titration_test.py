@@ -5,9 +5,9 @@ The file to test the SetupTitration class
 from unittest import mock
 from unittest.mock import ANY
 
-from titration.devices.library import LiquidCrystal
-from titration.titrator import Titrator
-from titration.ui_state.titration.setup_titration import SetupTitration
+from src.devices.library import LiquidCrystal
+from src.titrator import Titrator
+from src.ui_state.titration.setup_titration import SetupTitration
 
 
 @mock.patch.object(SetupTitration, "_set_next_state")
