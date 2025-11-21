@@ -8,9 +8,7 @@ from src.ui_state.demo_mode.demo_stir_control import DemoStirControl
 from src.ui_state.demo_mode.demo_temperature_controller import (
     DemoTemperatureControl,
 )
-from src.ui_state.demo_mode.demo_temperature_probe import (
-    DemoTemperatureProbe,
-)
+from src.ui_state.demo_mode.demo_temperature_probe import DemoTemperatureProbe
 from src.ui_state.demo_mode.read_values import ReadValues
 from src.ui_state.ui_state import UIState
 

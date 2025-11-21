@@ -8,9 +8,7 @@ from unittest.mock import ANY
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
 from src.ui_state.demo_mode.demo_mode_menu import DemoModeMenu
-from src.ui_state.demo_mode.demo_temperature_probe import (
-    DemoTemperatureProbe,
-)
+from src.ui_state.demo_mode.demo_temperature_probe import DemoTemperatureProbe
 
 
 @mock.patch.object(DemoTemperatureProbe, "_set_next_state")

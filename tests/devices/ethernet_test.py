@@ -13,9 +13,7 @@ def test_get_ip_uses_socket_and_updates():
     """
     mock_socket = mock.Mock()
     mock_socket.getsockname.return_value = ("123.123.1.12", 12345)
-    with mock.patch(
-        "src.devices.ethernet.socket.socket", return_value=mock_socket
-    ):
+    with mock.patch("src.devices.ethernet.socket.socket", return_value=mock_socket):
         ethernet = Ethernet()
         ip_address = ethernet.get_ip()
         assert ip_address == "123.123.1.12"

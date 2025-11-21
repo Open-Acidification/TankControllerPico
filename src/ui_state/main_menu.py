@@ -4,16 +4,12 @@ The file for the MainMenu class
 
 from src.devices.library import Keypad
 from src.ui_state.controller.set_chill_or_heat import SetChillOrHeat
-from src.ui_state.controller.set_google_mins import (
-    SetGoogleSheetInterval,
-)
+from src.ui_state.controller.set_google_mins import SetGoogleSheetInterval
 from src.ui_state.controller.set_kd import SetKD
 from src.ui_state.controller.set_ki import SetKI
 from src.ui_state.controller.set_kp import SetKP
 from src.ui_state.controller.set_ph_calibration import PHCalibration
-from src.ui_state.controller.set_ph_calibration_clear import (
-    ResetPHCalibration,
-)
+from src.ui_state.controller.set_ph_calibration_clear import ResetPHCalibration
 from src.ui_state.controller.set_ph_sine_wave import SetPHSineWave
 from src.ui_state.controller.set_ph_target import SetPHTarget
 from src.ui_state.controller.set_pid_on_off import EnablePID
@@ -24,9 +20,7 @@ from src.ui_state.controller.set_thermal_calibration import (
 from src.ui_state.controller.set_thermal_calibration_clear import (
     ResetThermalCalibration,
 )
-from src.ui_state.controller.set_thermal_sine_wave import (
-    SetThermalSineWave,
-)
+from src.ui_state.controller.set_thermal_sine_wave import SetThermalSineWave
 from src.ui_state.controller.set_thermal_target import SetThermalTarget
 from src.ui_state.controller.set_time import SetTime
 from src.ui_state.controller.view_device_address import ViewDeviceAddress

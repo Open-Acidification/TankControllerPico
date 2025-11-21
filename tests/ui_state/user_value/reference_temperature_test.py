@@ -9,9 +9,7 @@ from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
 from src.ui_state.main_menu import MainMenu
 from src.ui_state.update_settings.update_settings import UpdateSettings
-from src.ui_state.user_value.reference_temperature import (
-    ReferenceTemperature,
-)
+from src.ui_state.user_value.reference_temperature import ReferenceTemperature
 
 
 @mock.patch.object(ReferenceTemperature, "_set_next_state")

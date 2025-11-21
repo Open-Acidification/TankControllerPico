@@ -3,9 +3,7 @@ The file for the CalibrateTemp class
 """
 
 from src.ui_state.ui_state import UIState
-from src.ui_state.user_value.reference_temperature import (
-    ReferenceTemperature,
-)
+from src.ui_state.user_value.reference_temperature import ReferenceTemperature
 
 
 class CalibrateTemp(UIState):
