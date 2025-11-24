@@ -16,7 +16,7 @@ class EEPROM:
         self._kp_value = 20.0
         self._ki_value = 28.0
         self._kd_value = 36.0
-        self.thermal_correction = 12
+        self._thermal_correction = 12
         self.tank_id = 0
 
     def get_kp(self, default):
@@ -25,7 +25,7 @@ class EEPROM:
         """
         if self._kp_value is None:
             return default
-        return self._kp_value
+        return float(self._kp_value)
 
     def get_ki(self, default):
         """
@@ -33,7 +33,7 @@ class EEPROM:
         """
         if self._ki_value is None:
             return default
-        return self._ki_value
+        return float(self._ki_value)
 
     def get_kd(self, default):
         """
@@ -41,4 +41,12 @@ class EEPROM:
         """
         if self._kd_value is None:
             return default
-        return self._kd_value
+        return float(self._kd_value)
+
+    def get_thermal_correction(self, default):
+        """
+        Get the thermal correction value from EEPROM
+        """
+        if self._thermal_correction is None:
+            return default
+        return float(self._thermal_correction)

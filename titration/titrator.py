@@ -48,7 +48,7 @@ class Titrator:
         self.ph_control = PHControl()
 
         # Initialize Thermal Probe
-        self.thermal_probe = ThermalProbe()
+        self.thermal_probe = ThermalProbe(self.eeprom)
 
         # Initialize SD Card
         self.sd_device = SD()
