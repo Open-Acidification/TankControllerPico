@@ -42,13 +42,13 @@ class Titrator:
         self.eeprom = EEPROM()
 
         # Initialize PID Controller
-        self.pid = PID()
+        self.pid = PID(self.eeprom)
 
         # Initialize PH Control
         self.ph_control = PHControl()
 
         # Initialize Thermal Probe
-        self.thermal_probe = ThermalProbe()
+        self.thermal_probe = ThermalProbe(self.eeprom)
 
         # Initialize SD Card
         self.sd_device = SD()
