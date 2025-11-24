@@ -42,7 +42,7 @@ class Titrator:
         self.eeprom = EEPROM()
 
         # Initialize PID Controller
-        self.pid = PID()
+        self.pid = PID(self.eeprom)
 
         # Initialize PH Control
         self.ph_control = PHControl()
