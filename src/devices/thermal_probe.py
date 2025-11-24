@@ -2,22 +2,16 @@
 The file for the ThermalProbe class
 """
 
-from src.devices.eeprom import EEPROM
-
 
 class ThermalProbe:
     """
     The class for the ThermalProbe
     """
 
-    def __init__(self):
+    def __init__(self, eeprom):
         """
         The constructor function for the ThermalProbe class
         """
-        self.correction = 0.0
-        self.eeprom = EEPROM()
+        self.eeprom = eeprom
 
-        try:
-            self.correction = float(self.eeprom.thermal_correction)
-        finally:
-            pass
+        self.correction = self.eeprom.get_thermal_correction(0.0)

@@ -8,21 +8,24 @@ from src.devices.eeprom import EEPROM
 from src.devices.thermal_probe import ThermalProbe
 
 
-def test_create_thermal_probe():
+def test_thermal_probe_reads_values_from_eeprom():
     """
     The function to test the creation of a ThermalProbe
     """
-    thermal_probe = ThermalProbe()
+    eeprom = EEPROM()
+    eeprom._thermal_correction = 1.1
+    with mock.patch("src.devices.eeprom.EEPROM", return_value=eeprom):
+        thermal_probe = ThermalProbe(eeprom)
 
-    assert thermal_probe.correction == 12.0
+    assert thermal_probe.correction == 1.1
 
 
-def test_create_thermal_probe_reads_numeric_float():
+def test_thermal_probe_defaults_from_none():
     """ThermalProbe should read a numeric float from EEPROM."""
-    mock_eeprom = mock.Mock(spec=EEPROM)
-    mock_eeprom.thermal_correction = 1
+    eeprom = EEPROM()
+    eeprom._thermal_correction = None
 
-    with mock.patch("src.devices.thermal_probe.EEPROM", return_value=mock_eeprom):
-        thermal_probe = ThermalProbe()
+    with mock.patch("src.devices.eeprom.EEPROM", return_value=eeprom):
+        thermal_probe = ThermalProbe(eeprom)
 
-    assert thermal_probe.correction == 1.0
+    assert thermal_probe.correction == 0.0
