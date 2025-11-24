@@ -62,12 +62,12 @@ def test_set_thermal_correction_value():
     assert eeprom.get_thermal_correction(0.0) == 2.5
 
 
-def test_default_tank_id_value():
+def test_tank_id_value():
     """
     The function to test the default tank_id value
     """
     eeprom = EEPROM()
-    assert eeprom.tank_id == 0
+    assert eeprom.get_tank_id(0) == 1
 
 
 def test_set_tank_id_value():
@@ -75,5 +75,5 @@ def test_set_tank_id_value():
     The function to test setting the tank_id value
     """
     eeprom = EEPROM()
-    eeprom.tank_id = 15
-    assert eeprom.tank_id == 15
+    eeprom._tank_id = 5
+    assert eeprom.get_tank_id(0) == 5
