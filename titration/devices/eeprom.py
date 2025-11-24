@@ -12,12 +12,20 @@ class EEPROM:
         """
         The constructor function for the EEPROM class
         """
-        self.google_sheet_interval = 20
+        self._google_sheet_interval = 20
         self._kp_value = 20.0
         self._ki_value = 28.0
         self._kd_value = 36.0
         self._thermal_correction = 12
         self.tank_id = 0
+
+    def get_google_sheet_interval(self, default):
+        """
+        Get the google sheet interval from EEPROM
+        """
+        if self._google_sheet_interval is None:
+            return default
+        return self._google_sheet_interval
 
     def get_kp(self, default):
         """
