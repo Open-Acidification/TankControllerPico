@@ -16,9 +16,15 @@ class SetTankID(UserValue):
         self.value = str(self.titrator.eeprom.get_tank_id(1))
 
     def get_label(self):
+        """
+        Returns the label to prompt user value input.
+        """
         return "Set Tank ID#"
 
     def save_value(self):
+        """
+        Saves the entered Tank ID value to EEPROM.
+        """
         self.titrator.eeprom.set_tank_id(int(self.value))
         self.titrator.lcd.print(
             f"New Tank ID={self.titrator.eeprom.get_tank_id(1)}", line=2

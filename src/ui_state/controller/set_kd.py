@@ -16,9 +16,15 @@ class SetKD(UserValue):
         self.value = str(self.titrator.eeprom.get_kd(36.0))
 
     def get_label(self):
+        """
+        Returns the label to prompt user value input.
+        """
         return "Set KD"
 
     def save_value(self):
+        """
+        Saves the entered KD value to EEPROM.
+        """
         self.titrator.eeprom.set_kd(self.value)
         self.titrator.lcd.print(f"New KD={self.titrator.eeprom.get_kd(36.0)}", line=2)
         self.return_to_main_menu(ms_delay=3000)
