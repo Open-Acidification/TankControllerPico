@@ -7,7 +7,6 @@ from unittest import mock
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
 from src.ui_state.controller.view_tank_id import ViewTankID
-from src.ui_state.main_menu import MainMenu
 from src.ui_state.ui_state import UIState
 
 
@@ -25,7 +24,7 @@ def test_view_tank_id(print_mock):
     """
     The function to test ViewTankID's loop function
     """
-    state = ViewTankID(Titrator(), MainMenu(Titrator()))
+    state = ViewTankID(Titrator(), MockPreviousState(Titrator()))
 
     state.loop()
 

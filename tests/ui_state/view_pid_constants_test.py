@@ -7,7 +7,6 @@ from unittest import mock
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
 from src.ui_state.controller.view_pid_constants import ViewPIDConstants
-from src.ui_state.main_menu import MainMenu
 from src.ui_state.ui_state import UIState
 
 
@@ -29,7 +28,7 @@ def test_view_pid_constants_show_kp_ki(print_mock):
     titrator.eeprom.get_kp = mock.Mock(return_value=1.1)
     titrator.eeprom.get_ki = mock.Mock(return_value=2.2)
 
-    state = ViewPIDConstants(titrator, MainMenu(titrator))
+    state = ViewPIDConstants(titrator, MockPreviousState(titrator))
     state._start_time = 0.0
     with mock.patch(
         "src.ui_state.controller.view_pid_constants.time.monotonic",
@@ -50,7 +49,7 @@ def test_view_pid_constants_shows_kd_and_pid_state(print_mock):
     titrator.eeprom.get_kd = mock.Mock(return_value=3.3)
     titrator.ph_control.use_pid = True
 
-    state = ViewPIDConstants(titrator, MainMenu(titrator))
+    state = ViewPIDConstants(titrator, MockPreviousState(titrator))
     state._start_time = 0.0
     with mock.patch(
         "src.ui_state.controller.view_pid_constants.time.monotonic",
@@ -79,7 +78,7 @@ def test_handle_key_d():
     The function to test the reset handle keys
     """
     titrator = Titrator()
-    titrator.state = ViewPIDConstants(titrator, MainMenu(titrator))
+    titrator.state = ViewPIDConstants(titrator, MockPreviousState(titrator))
 
     titrator.state.handle_key("D")
-    assert isinstance(titrator.state, MainMenu)
+    assert isinstance(titrator.state, MockPreviousState)

@@ -71,8 +71,5 @@ class ViewPIDConstants(UIState):
         """
         Handle key presses to return to the previous state.
         """
-        if key == Keypad.KEY_4:
+        if key in [Keypad.KEY_4, Keypad.KEY_D]:
             self._set_next_state(self.previous_state, True)
-
-        if key == Keypad.KEY_D:
-            self.return_to_main_menu()

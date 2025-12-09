@@ -40,8 +40,12 @@ class EnablePID(UIState):
             self.titrator.lcd.print("PID disabled", line=2)
             self.return_to_main_menu(ms_delay=3000)
 
-        if key == Keypad.KEY_4:
-            self._set_next_state(self.previous_state, True)
+        if key == Keypad.KEY_A:
+            if self.titrator.ph_control.use_pid:
+                self.titrator.lcd.print("PID enabled", line=2)
+            else:
+                self.titrator.lcd.print("PID disabled", line=2)
+            self.return_to_main_menu(ms_delay=3000)
 
         if key == Keypad.KEY_D:
-            self.return_to_main_menu()
+            self._set_next_state(self.previous_state, True)

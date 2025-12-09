@@ -27,7 +27,7 @@ def test_enable_pid_input(print_mock):
     Test that entering '1' enables PID and shows confirmation.
     """
     titrator = Titrator()
-    state = EnablePID(titrator, MainMenu(titrator))
+    state = EnablePID(titrator, MockPreviousState(titrator))
 
     state.loop()
     print_mock.assert_any_call("PID 1:on; 9:off", line=1)
@@ -46,7 +46,7 @@ def test_disable_pid_input(print_mock):
     Test that entering '9' enables PID and shows confirmation.
     """
     titrator = Titrator()
-    state = EnablePID(titrator, MainMenu(titrator))
+    state = EnablePID(titrator, MockPreviousState(titrator))
 
     state.loop()
     print_mock.assert_any_call("PID 1:on; 9:off", line=1)
@@ -59,17 +59,24 @@ def test_disable_pid_input(print_mock):
     assert isinstance(titrator.state.next_state, MainMenu)
 
 
-def test_handle_key_4():
+@mock.patch.object(LiquidCrystal, "print")
+def test_handle_key_a(print_mock):
     """
     The function to test the reset handle keys
     """
     titrator = Titrator()
+    state = EnablePID(titrator, MockPreviousState(titrator))
 
-    titrator.state = EnablePID(titrator, MockPreviousState(titrator))
+    state.loop()
+    print_mock.assert_any_call("PID 1:on; 9:off", line=1)
+    print_mock.assert_any_call("Currently enabled", line=2)
 
-    titrator.state.handle_key("4")
-    assert isinstance(titrator.state, MockPreviousState)
+    state.handle_key("A")
+    assert titrator.ph_control.use_pid is True
+    print_mock.assert_any_call("PID enabled", line=2)
 
+    assert isinstance(titrator.state, Wait)
+    assert isinstance(titrator.state.next_state, MainMenu)
 
 def test_handle_key_d():
     """
@@ -79,4 +86,4 @@ def test_handle_key_d():
     titrator.state = EnablePID(titrator, MockPreviousState(titrator))
 
     titrator.state.handle_key("D")
-    assert isinstance(titrator.state, MainMenu)
+    assert isinstance(titrator.state, MockPreviousState)
