@@ -85,18 +85,3 @@ class UIState:
             self._set_next_state(Wait(self.titrator, ms_delay=ms_delay), True)
         else:
             self._set_next_state(MainMenu(self.titrator), True)
-
-    def invalid_entry(self, next_state=None, ms_delay=0):
-        """
-        Wait during invalid entry
-        """
-        # pylint: disable=import-outside-toplevel
-        from src.ui_state.wait import Wait
-
-        if ms_delay > 0:
-            # pass next_state to Wait so it transitions correctly after delay
-            self._set_next_state(
-                Wait(self.titrator, ms_delay=ms_delay, next_state=next_state), True
-            )
-        else:
-            self._set_next_state(next_state, True)

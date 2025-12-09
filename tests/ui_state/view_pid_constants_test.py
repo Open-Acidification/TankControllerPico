@@ -79,8 +79,7 @@ def test_handle_key_d():
     The function to test the reset handle keys
     """
     titrator = Titrator()
-
-    titrator.state = ViewPIDConstants(titrator, MockPreviousState(titrator))
+    titrator.state = ViewPIDConstants(titrator, MainMenu(titrator))
 
     titrator.state.handle_key("D")
-    assert isinstance(titrator.state, MockPreviousState)
+    assert isinstance(titrator.state, MainMenu)

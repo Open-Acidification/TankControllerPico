@@ -8,65 +8,75 @@ from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
 from src.ui_state.controller.set_pid_on_off import EnablePID
 from src.ui_state.main_menu import MainMenu
+from src.ui_state.ui_state import UIState
+from src.ui_state.wait import Wait
+
+
+class MockPreviousState(UIState):
+    """
+    A mock previous state for testing purposes
+    """
+
+    def __init__(self, titrator):
+        super().__init__(titrator)
 
 
 @mock.patch.object(LiquidCrystal, "print")
-def test_enable_pid_valid_input_enable(print_mock):
+def test_enable_pid_input(print_mock):
     """
     Test that entering '1' enables PID and shows confirmation.
     """
     titrator = Titrator()
     state = EnablePID(titrator, MainMenu(titrator))
-    state.value = 1.0
 
-    state.save_value()
+    state.loop()
+    print_mock.assert_any_call("PID 1:on; 9:off", line=1)
 
+    state.handle_key("1")
     assert titrator.ph_control.use_pid is True
-    print_mock.assert_any_call("PID enabled", line=1)
+    print_mock.assert_any_call("PID enabled", line=2)
 
-    assert titrator.state.next_state.__class__.__name__ == "MainMenu"
+    assert isinstance(titrator.state, Wait)
+    assert isinstance(titrator.state.next_state, MainMenu)
 
 
 @mock.patch.object(LiquidCrystal, "print")
-def test_enable_pid_valid_input_disable(print_mock):
+def test_disable_pid_input(print_mock):
     """
-    Test that entering '9' disables PID and shows confirmation.
+    Test that entering '9' enables PID and shows confirmation.
     """
     titrator = Titrator()
     state = EnablePID(titrator, MainMenu(titrator))
-    state.value = 9.0
 
-    state.save_value()
+    state.loop()
+    print_mock.assert_any_call("PID 1:on; 9:off", line=1)
 
+    state.handle_key("9")
     assert titrator.ph_control.use_pid is False
-    print_mock.assert_any_call("PID disabled", line=1)
+    print_mock.assert_any_call("PID disabled", line=2)
 
-    assert titrator.state.next_state.__class__.__name__ == "MainMenu"
+    assert isinstance(titrator.state, Wait)
+    assert isinstance(titrator.state.next_state, MainMenu)
 
 
-@mock.patch.object(LiquidCrystal, "print")
-def test_enable_pid_invalid_input(print_mock):
+def test_handle_key_4():
     """
-    Test that invalid input shows error and transitions to wait state.
-    """
-    titrator = Titrator()
-    main_menu = MainMenu(titrator)
-    state = EnablePID(titrator, main_menu)
-    state.value = 5.0
-
-    state.save_value()
-
-    print_mock.assert_any_call("Invalid entry", line=1)
-
-    assert titrator.state is not state
-    assert isinstance(titrator.state.next_state, EnablePID)
-
-
-def test_enable_pid_get_label():
-    """
-    Test the label returned by get_label.
+    The function to test the reset handle keys
     """
     titrator = Titrator()
-    state = EnablePID(titrator, MainMenu(titrator))
 
-    assert state.get_label() == "PID 1:on; 9:off"
+    titrator.state = EnablePID(titrator, MockPreviousState(titrator))
+
+    titrator.state.handle_key("4")
+    assert isinstance(titrator.state, MockPreviousState)
+
+
+def test_handle_key_d():
+    """
+    The function to test the reset handle keys
+    """
+    titrator = Titrator()
+    titrator.state = EnablePID(titrator, MockPreviousState(titrator))
+
+    titrator.state.handle_key("D")
+    assert isinstance(titrator.state, MainMenu)
