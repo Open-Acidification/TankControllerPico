@@ -38,3 +38,25 @@ def test_pid_defaults_from_none():
         assert pid.kp_value == 100000.0
         assert pid.ki_value == 0.0
         assert pid.kd_value == 0.0
+
+
+def test_pid_reflects_eeprom_changes():
+    """
+    PID properties should reflect current EEPROM values on each access.
+    """
+    mock_eeprom = mock.Mock(spec=EEPROM)
+    mock_eeprom.get_kp.return_value = 100000.0
+    mock_eeprom.get_ki.return_value = 0.0
+    mock_eeprom.get_kd.return_value = 0.0
+
+    pid = PID(mock_eeprom)
+    assert pid.kp_value == 100000.0
+    assert pid.ki_value == 0.0
+    assert pid.kd_value == 0.0
+
+    mock_eeprom.get_kp.return_value = 200000.0
+    mock_eeprom.get_ki.return_value = 50.0
+    mock_eeprom.get_kd.return_value = 25.0
+    assert pid.kp_value == 200000.0
+    assert pid.ki_value == 50.0
+    assert pid.kd_value == 25.0
