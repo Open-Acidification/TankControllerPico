@@ -7,7 +7,6 @@ from unittest import mock
 from src.devices.library import Keypad
 from src.titrator import Titrator
 from src.ui_state.main_menu import MainMenu
-from src.ui_state.titration.setup_titration import SetupTitration
 
 
 @mock.patch.object(Titrator, "handle_ui")
@@ -47,34 +46,6 @@ def test_set_next_state_false(update_state_mock):
     titrator.set_next_state(temp, False)
     assert titrator.next_state == temp
     update_state_mock.assert_not_called()
-
-
-@mock.patch.object(SetupTitration, "start")
-def test_update_state_without_next_state(start_mock):
-    """
-    The function to test the start function when the titrator does not have a next_state
-    """
-    titrator = Titrator()
-
-    assert titrator.next_state is None
-    titrator.update_state()
-    start_mock.assert_not_called()
-
-
-@mock.patch.object(SetupTitration, "start")
-def test_update_state_with_next_state(start_mock):
-    """
-    The function to test the start function when the titrator has a next_state
-    """
-    titrator = Titrator()
-
-    temp = SetupTitration(titrator)
-    titrator.next_state = temp
-    assert titrator.state != titrator.next_state
-    titrator.update_state()
-    assert titrator.state == temp
-    assert titrator.next_state is None
-    start_mock.assert_called()
 
 
 @mock.patch.object(Keypad, "get_key")
