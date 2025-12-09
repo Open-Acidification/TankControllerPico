@@ -13,13 +13,22 @@ def test_default_google_sheet_interval_value():
     assert eeprom.get_google_sheet_interval(65535) == 20
 
 
-def test_set_google_sheet_interval_value():
+def test_save_google_sheet_interval_value():
     """
     The function to test setting the google_sheet_interval value
     """
     eeprom = EEPROM()
     eeprom._google_sheet_interval = 45
     assert eeprom.get_google_sheet_interval(65535) == 45
+
+
+def test_set_google_sheet_interval():
+    """
+    The function to test setting the google_sheet_interval via setter
+    """
+    eeprom = EEPROM()
+    eeprom.set_google_sheet_interval(60)
+    assert eeprom.get_google_sheet_interval(65535) == 60
 
 
 def test_pid_values():
@@ -32,7 +41,7 @@ def test_pid_values():
     assert eeprom.get_kd(0.0) == 36.0
 
 
-def test_set_pid_values():
+def test_save_pid_values():
     """
     The function to test setting the PID values
     """
@@ -45,6 +54,19 @@ def test_set_pid_values():
     assert eeprom.get_kd(0.0) == 40.0
 
 
+def test_set_pid_values():
+    """
+    The function to test setting the PID values via setters
+    """
+    eeprom = EEPROM()
+    eeprom.set_kp(22.0)
+    eeprom.set_ki(29.0)
+    eeprom.set_kd(35.0)
+    assert eeprom.get_kp(100000.0) == 22.0
+    assert eeprom.get_ki(0.0) == 29.0
+    assert eeprom.get_kd(0.0) == 35.0
+
+
 def test_thermal_correction_value():
     """
     The function to test the default thermal_correction_address value
@@ -53,7 +75,7 @@ def test_thermal_correction_value():
     assert eeprom.get_thermal_correction(0.0) == 12
 
 
-def test_set_thermal_correction_value():
+def test_save_thermal_correction_value():
     """
     The function to test setting the thermal_correction_address value
     """
@@ -70,10 +92,19 @@ def test_tank_id_value():
     assert eeprom.get_tank_id(0) == 1
 
 
-def test_set_tank_id_value():
+def test_save_tank_id_value():
     """
     The function to test setting the tank_id value
     """
     eeprom = EEPROM()
     eeprom._tank_id = 5
     assert eeprom.get_tank_id(0) == 5
+
+
+def test_set_tank_id():
+    """
+    The function to test setting the tank_id via setter
+    """
+    eeprom = EEPROM()
+    eeprom.set_tank_id(10)
+    assert eeprom.get_tank_id(0) == 10
