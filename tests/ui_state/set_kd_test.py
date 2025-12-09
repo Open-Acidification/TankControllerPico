@@ -26,6 +26,8 @@ def test_set_kd_valid_input(print_mock):
     assert titrator.eeprom.get_kd(36.0) == 50.5
     print_mock.assert_any_call("New KD=50.5", line=2)
 
+    assert titrator.state.next_state.__class__.__name__ == "MainMenu"
+
 
 def test_set_kd_get_label():
     """

@@ -16,9 +16,15 @@ class SetKP(UserValue):
         self.value = str(self.titrator.eeprom.get_kp(20.0))
 
     def get_label(self):
+        """
+        Returns the label to prompt user value input.
+        """
         return "Set KP"
 
     def save_value(self):
+        """
+        Saves the entered KP value to EEPROM.
+        """
         self.titrator.eeprom.set_kp(self.value)
         self.titrator.lcd.print(f"New KP={self.titrator.eeprom.get_kp(20.0)}", line=2)
         self.return_to_main_menu(ms_delay=3000)

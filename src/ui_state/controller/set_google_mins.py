@@ -17,9 +17,15 @@ class SetGoogleSheetInterval(UserValue):
         self.value = str(self.titrator.eeprom.get_google_sheet_interval(20))
 
     def get_label(self):
+        """
+        Returns the label for the user value input.
+        """
         return "G Sheet Minutes"
 
     def save_value(self):
+        """
+        Saves the entered Google Sheets interval to EEPROM.
+        """
         self.titrator.eeprom.set_google_sheet_interval(int(self.value))
 
         self.titrator.lcd.print(
