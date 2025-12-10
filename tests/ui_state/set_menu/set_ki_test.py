@@ -6,8 +6,8 @@ from unittest import mock
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
-from src.ui_state.controller.set_ki import SetKI
 from src.ui_state.main_menu import MainMenu
+from src.ui_state.set_menu.set_ki import SetKI
 
 
 @mock.patch.object(LiquidCrystal, "print")

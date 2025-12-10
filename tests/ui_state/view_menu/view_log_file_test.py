@@ -6,11 +6,9 @@ from unittest import mock
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
-from src.ui_state.controller.view_google_sheet_interval import (
-    ViewGoogleSheetInterval,
-)
 from src.ui_state.main_menu import MainMenu
 from src.ui_state.ui_state import UIState
+from src.ui_state.view_menu.view_log_file import ViewLogFile
 
 
 class MockPreviousState(UIState):
@@ -23,17 +21,17 @@ class MockPreviousState(UIState):
 
 
 @mock.patch.object(LiquidCrystal, "print")
-def test_view_google_sheet_interval(print_mock):
+def test_view_log_file(print_mock):
     """
-    The function to test ViewGoogleSheetInterval's loop function
+    The function to test ViewLogFile's loop function
     """
-    state = ViewGoogleSheetInterval(Titrator(), MainMenu(Titrator()))
+    state = ViewLogFile(Titrator(), MainMenu(Titrator()))
 
     state.loop()
 
-    print_mock.assert_any_call("Google Mins:", line=1)
+    print_mock.assert_any_call("Current Log File", line=1)
     print_mock.assert_any_call(
-        f"{state.titrator.eeprom.get_google_sheet_interval(65535)}", line=2
+        f"{state.titrator.sd_device.todays_data_file_name()}", line=2
     )
 
 
@@ -43,7 +41,7 @@ def test_handle_key_4():
     """
     titrator = Titrator()
 
-    titrator.state = ViewGoogleSheetInterval(titrator, MockPreviousState(titrator))
+    titrator.state = ViewLogFile(titrator, MockPreviousState(titrator))
 
     titrator.state.handle_key("4")
     assert isinstance(titrator.state, MockPreviousState)
@@ -55,7 +53,7 @@ def test_handle_key_d():
     """
     titrator = Titrator()
 
-    titrator.state = ViewGoogleSheetInterval(titrator, MockPreviousState(titrator))
+    titrator.state = ViewLogFile(titrator, MockPreviousState(titrator))
 
     titrator.state.handle_key("D")
     assert isinstance(titrator.state, MockPreviousState)

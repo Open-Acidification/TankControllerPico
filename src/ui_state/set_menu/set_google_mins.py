@@ -2,7 +2,7 @@
 The file to hold the Set Google Sheet Interval class
 """
 
-from src.ui_state.user_value.user_value import UserValue
+from src.ui_state.user_value import UserValue
 
 
 class SetGoogleSheetInterval(UserValue):

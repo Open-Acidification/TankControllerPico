@@ -6,8 +6,8 @@ from unittest import mock
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
-from src.ui_state.controller.set_pid_on_off import EnablePID
 from src.ui_state.main_menu import MainMenu
+from src.ui_state.set_menu.set_pid_on_off import EnablePID
 from src.ui_state.ui_state import UIState
 from src.ui_state.wait import Wait
 

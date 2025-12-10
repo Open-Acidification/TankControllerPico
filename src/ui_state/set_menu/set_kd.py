@@ -2,7 +2,7 @@
 The file to hold the Set KD class
 """
 
-from src.ui_state.user_value.user_value import UserValue
+from src.ui_state.user_value import UserValue
 
 
 class SetKD(UserValue):

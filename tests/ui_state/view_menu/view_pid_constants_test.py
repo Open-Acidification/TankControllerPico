@@ -6,8 +6,8 @@ from unittest import mock
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
-from src.ui_state.controller.view_pid_constants import ViewPIDConstants
 from src.ui_state.ui_state import UIState
+from src.ui_state.view_menu.view_pid_constants import ViewPIDConstants
 
 
 class MockPreviousState(UIState):
@@ -31,7 +31,7 @@ def test_view_pid_constants_show_kp_ki(print_mock):
     state = ViewPIDConstants(titrator, MockPreviousState(titrator))
     state._start_time = 0.0
     with mock.patch(
-        "src.ui_state.controller.view_pid_constants.time.monotonic",
+        "src.ui_state.view_menu.view_pid_constants.time.monotonic",
         return_value=1.0,
     ):
         state.loop()
@@ -52,7 +52,7 @@ def test_view_pid_constants_shows_kd_and_pid_state(print_mock):
     state = ViewPIDConstants(titrator, MockPreviousState(titrator))
     state._start_time = 0.0
     with mock.patch(
-        "src.ui_state.controller.view_pid_constants.time.monotonic",
+        "src.ui_state.view_menu.view_pid_constants.time.monotonic",
         return_value=4.0,
     ):
         state.loop()
