@@ -54,7 +54,6 @@ class UserValue(UIState):
             key (char): the keypad input to determine which state to go to
         """
         if key == "A" and self.value not in ("", "."):
-            self._set_next_state(self.previous_state, True)
             self.value = float(self.value)
             self.save_value()
 
@@ -80,5 +79,3 @@ class UserValue(UIState):
         """
         self.titrator.lcd.print(self.get_label(), line=1)
         self.titrator.lcd.print(self.value, style="center", line=2)
-        self.titrator.lcd.print("*=. A)ccept B)ack", line=3, style="center")
-        self.titrator.lcd.print("D)ecline  C)lear", line=4, style="center")

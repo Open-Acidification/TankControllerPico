@@ -72,3 +72,16 @@ class UIState:
             update (bool): update is used to either immediately update or wait
         """
         self.titrator.set_next_state(state, update)
+
+    def return_to_main_menu(self, ms_delay=0):
+        """
+        The function to return to the main menu
+        """
+        # pylint: disable=import-outside-toplevel
+        from src.ui_state.main_menu import MainMenu
+        from src.ui_state.wait import Wait
+
+        if ms_delay > 0:
+            self._set_next_state(Wait(self.titrator, ms_delay=ms_delay), True)
+        else:
+            self._set_next_state(MainMenu(self.titrator), True)

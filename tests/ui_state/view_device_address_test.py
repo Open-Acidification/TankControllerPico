@@ -8,7 +8,6 @@ from src.devices.ethernet import Ethernet
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
 from src.ui_state.controller.view_device_address import ViewDeviceAddress
-from src.ui_state.main_menu import MainMenu
 from src.ui_state.ui_state import UIState
 
 
@@ -28,7 +27,7 @@ def test_view_device_address():
     with mock.patch.object(LiquidCrystal, "print") as print_mock:
         with mock.patch.object(Ethernet, "get_ip", return_value="192.168.1.10"):
             with mock.patch.object(Ethernet, "get_mac", return_value="90A2:DA00:0000"):
-                state = ViewDeviceAddress(Titrator(), MainMenu(Titrator()))
+                state = ViewDeviceAddress(Titrator(), MockPreviousState(Titrator()))
                 state.loop()
 
                 print_mock.assert_any_call("192.168.1.10", line=1)
