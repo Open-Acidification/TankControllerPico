@@ -1,15 +1,13 @@
 """
-The file to test the View Version class
+The file to test the View Tank ID class
 """
 
 from unittest import mock
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
-from src.ui_state.controller.view_version import ViewVersion
-from src.ui_state.main_menu import MainMenu
 from src.ui_state.ui_state import UIState
-from src.version import VERSION
+from src.ui_state.view_menu.view_tank_id import ViewTankID
 
 
 class MockPreviousState(UIState):
@@ -22,16 +20,16 @@ class MockPreviousState(UIState):
 
 
 @mock.patch.object(LiquidCrystal, "print")
-def test_view_version(print_mock):
+def test_view_tank_id(print_mock):
     """
-    The function to test ViewVersion's loop function
+    The function to test ViewTankID's loop function
     """
-    state = ViewVersion(Titrator(), MainMenu(Titrator()))
+    state = ViewTankID(Titrator(), MockPreviousState(Titrator()))
+
     state.loop()
 
-    assert state.titrator.get_version() == VERSION
-    print_mock.assert_any_call("Software Version", line=1)
-    print_mock.assert_any_call(VERSION, line=2)
+    print_mock.assert_any_call("Tank ID:", line=1)
+    print_mock.assert_any_call(f"{state.titrator.eeprom.get_tank_id(0)}", line=2)
 
 
 def test_handle_key_4():
@@ -40,7 +38,7 @@ def test_handle_key_4():
     """
     titrator = Titrator()
 
-    titrator.state = ViewVersion(titrator, MockPreviousState(titrator))
+    titrator.state = ViewTankID(titrator, MockPreviousState(titrator))
 
     titrator.state.handle_key("4")
     assert isinstance(titrator.state, MockPreviousState)
@@ -52,7 +50,7 @@ def test_handle_key_d():
     """
     titrator = Titrator()
 
-    titrator.state = ViewVersion(titrator, MockPreviousState(titrator))
+    titrator.state = ViewTankID(titrator, MockPreviousState(titrator))
 
     titrator.state.handle_key("D")
     assert isinstance(titrator.state, MockPreviousState)

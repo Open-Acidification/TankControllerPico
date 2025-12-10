@@ -6,8 +6,8 @@ from unittest import mock
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
-from src.ui_state.controller.view_tank_id import ViewTankID
 from src.ui_state.ui_state import UIState
+from src.ui_state.view_menu.view_tank_id import ViewTankID
 
 
 class MockPreviousState(UIState):

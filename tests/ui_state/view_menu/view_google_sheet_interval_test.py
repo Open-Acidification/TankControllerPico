@@ -6,11 +6,11 @@ from unittest import mock
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
-from src.ui_state.controller.view_thermal_correction import (
-    ViewThermalCorrection,
-)
 from src.ui_state.main_menu import MainMenu
 from src.ui_state.ui_state import UIState
+from src.ui_state.view_menu.view_google_sheet_interval import (
+    ViewGoogleSheetInterval,
+)
 
 
 class MockPreviousState(UIState):
@@ -23,16 +23,18 @@ class MockPreviousState(UIState):
 
 
 @mock.patch.object(LiquidCrystal, "print")
-def test_view_thermal_correction(print_mock):
+def test_view_google_sheet_interval(print_mock):
     """
-    The function to test ViewThermalCorrection's loop function
+    The function to test ViewGoogleSheetInterval's loop function
     """
-    state = ViewThermalCorrection(Titrator(), MainMenu(Titrator()))
+    state = ViewGoogleSheetInterval(Titrator(), MainMenu(Titrator()))
 
     state.loop()
 
-    print_mock.assert_any_call("Temp Cal Offset:", line=1)
-    print_mock.assert_any_call("12.0", line=2)
+    print_mock.assert_any_call("Google Mins:", line=1)
+    print_mock.assert_any_call(
+        f"{state.titrator.eeprom.get_google_sheet_interval(65535)}", line=2
+    )
 
 
 def test_handle_key_4():
@@ -41,7 +43,7 @@ def test_handle_key_4():
     """
     titrator = Titrator()
 
-    titrator.state = ViewThermalCorrection(titrator, MockPreviousState(titrator))
+    titrator.state = ViewGoogleSheetInterval(titrator, MockPreviousState(titrator))
 
     titrator.state.handle_key("4")
     assert isinstance(titrator.state, MockPreviousState)
@@ -53,7 +55,7 @@ def test_handle_key_d():
     """
     titrator = Titrator()
 
-    titrator.state = ViewThermalCorrection(titrator, MockPreviousState(titrator))
+    titrator.state = ViewGoogleSheetInterval(titrator, MockPreviousState(titrator))
 
     titrator.state.handle_key("D")
     assert isinstance(titrator.state, MockPreviousState)

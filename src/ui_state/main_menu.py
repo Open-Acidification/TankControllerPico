@@ -3,41 +3,39 @@ The file for the MainMenu class
 """
 
 from src.devices.library import Keypad
-from src.ui_state.controller.set_chill_or_heat import SetChillOrHeat
-from src.ui_state.controller.set_google_mins import SetGoogleSheetInterval
-from src.ui_state.controller.set_kd import SetKD
-from src.ui_state.controller.set_ki import SetKI
-from src.ui_state.controller.set_kp import SetKP
-from src.ui_state.controller.set_ph_calibration import PHCalibration
-from src.ui_state.controller.set_ph_calibration_clear import ResetPHCalibration
-from src.ui_state.controller.set_ph_sine_wave import SetPHSineWave
-from src.ui_state.controller.set_ph_target import SetPHTarget
-from src.ui_state.controller.set_pid_on_off import EnablePID
-from src.ui_state.controller.set_tank_id import SetTankID
-from src.ui_state.controller.set_thermal_calibration import (
-    SetThermalCalibration,
-)
-from src.ui_state.controller.set_thermal_calibration_clear import (
+from src.ui_state.set_menu.set_chill_or_heat import SetChillOrHeat
+from src.ui_state.set_menu.set_google_mins import SetGoogleSheetInterval
+from src.ui_state.set_menu.set_kd import SetKD
+from src.ui_state.set_menu.set_ki import SetKI
+from src.ui_state.set_menu.set_kp import SetKP
+from src.ui_state.set_menu.set_ph_calibration import PHCalibration
+from src.ui_state.set_menu.set_ph_calibration_clear import ResetPHCalibration
+from src.ui_state.set_menu.set_ph_sine_wave import SetPHSineWave
+from src.ui_state.set_menu.set_ph_target import SetPHTarget
+from src.ui_state.set_menu.set_pid_on_off import EnablePID
+from src.ui_state.set_menu.set_tank_id import SetTankID
+from src.ui_state.set_menu.set_thermal_calibration import SetThermalCalibration
+from src.ui_state.set_menu.set_thermal_calibration_clear import (
     ResetThermalCalibration,
 )
-from src.ui_state.controller.set_thermal_sine_wave import SetThermalSineWave
-from src.ui_state.controller.set_thermal_target import SetThermalTarget
-from src.ui_state.controller.set_time import SetTime
-from src.ui_state.controller.view_device_address import ViewDeviceAddress
-from src.ui_state.controller.view_free_memory import ViewFreeMemory
-from src.ui_state.controller.view_google_sheet_interval import (
+from src.ui_state.set_menu.set_thermal_sine_wave import SetThermalSineWave
+from src.ui_state.set_menu.set_thermal_target import SetThermalTarget
+from src.ui_state.set_menu.set_time import SetTime
+from src.ui_state.ui_state import UIState
+from src.ui_state.view_menu.view_device_address import ViewDeviceAddress
+from src.ui_state.view_menu.view_free_memory import ViewFreeMemory
+from src.ui_state.view_menu.view_google_sheet_interval import (
     ViewGoogleSheetInterval,
 )
-from src.ui_state.controller.view_log_file import ViewLogFile
-from src.ui_state.controller.view_ph_calibration import ViewPHCalibration
-from src.ui_state.controller.view_pid_constants import ViewPIDConstants
-from src.ui_state.controller.view_tank_id import ViewTankID
-from src.ui_state.controller.view_thermal_correction import (
+from src.ui_state.view_menu.view_log_file import ViewLogFile
+from src.ui_state.view_menu.view_ph_calibration import ViewPHCalibration
+from src.ui_state.view_menu.view_pid_constants import ViewPIDConstants
+from src.ui_state.view_menu.view_tank_id import ViewTankID
+from src.ui_state.view_menu.view_thermal_correction import (
     ViewThermalCorrection,
 )
-from src.ui_state.controller.view_time import ViewTime
-from src.ui_state.controller.view_version import ViewVersion
-from src.ui_state.ui_state import UIState
+from src.ui_state.view_menu.view_time import ViewTime
+from src.ui_state.view_menu.view_version import ViewVersion
 
 
 class MainMenu(UIState):
