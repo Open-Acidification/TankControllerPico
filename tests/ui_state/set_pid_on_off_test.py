@@ -78,6 +78,7 @@ def test_handle_key_a(print_mock):
     assert isinstance(titrator.state, Wait)
     assert isinstance(titrator.state.next_state, MainMenu)
 
+
 def test_handle_key_d():
     """
     The function to test the reset handle keys
