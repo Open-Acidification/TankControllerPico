@@ -40,7 +40,7 @@ class SetTime(UserValue):
 
         if self.sub_state == len(self.values):
             try:
-                dt = datetime(
+                new_time = datetime(
                     int(self.values[0]),
                     int(self.values[1]),
                     int(self.values[2]),
@@ -48,12 +48,12 @@ class SetTime(UserValue):
                     int(self.values[4]),
                 )
                 self.titrator.lcd.print("New Date/Time:", line=1)
-                self.titrator.lcd.print(dt.strftime("%Y-%m-%d %H:%M"), line=2)
+                self.titrator.lcd.print(new_time.strftime("%Y-%m-%d %H:%M"), line=2)
                 self.return_to_main_menu(ms_delay=3000)
 
-            except ValueError as e:
+            except ValueError as errormsg:
                 self.titrator.lcd.print("Invalid Date/Time", line=1)
-                self.titrator.lcd.print(str(e), line=2)
+                self.titrator.lcd.print(str(errormsg), line=2)
                 self.return_to_main_menu(ms_delay=3000)
 
     def handle_key(self, key):
