@@ -13,6 +13,7 @@ class EEPROM:
         The constructor function for the EEPROM class
         """
         self._google_sheet_interval = 20
+        self._heat = bool(True)
         self._kd_value = 36.0
         self._ki_value = 28.0
         self._kp_value = 20.0
@@ -26,6 +27,14 @@ class EEPROM:
         if self._google_sheet_interval is None:
             return default
         return self._google_sheet_interval
+
+    def get_heat(self, default):
+        """
+        Get the heat setting from EEPROM
+        """
+        if self._heat is None:
+            return default
+        return self._heat
 
     def get_kd(self, default):
         """
@@ -72,6 +81,12 @@ class EEPROM:
         Set the google sheet interval in EEPROM
         """
         self._google_sheet_interval = value
+
+    def set_heat(self, value):
+        """
+        Set the heat setting in EEPROM
+        """
+        self._heat = value
 
     def set_kd(self, value):
         """
