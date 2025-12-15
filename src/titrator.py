@@ -4,6 +4,7 @@ The file for the Titrator class
 
 # pylint: disable = too-many-instance-attributes
 
+from src.devices.date_time import DateTime
 from src.devices.eeprom import EEPROM
 from src.devices.library import (
     Heater,
@@ -40,6 +41,9 @@ class Titrator:
         """
         # Initialize EEPROM
         self.eeprom = EEPROM()
+
+        # Initialize DateTime
+        self.date_time = DateTime()
 
         # Initialize PID Controller
         self.pid = PID(self.eeprom)

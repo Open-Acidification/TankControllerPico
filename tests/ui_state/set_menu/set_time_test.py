@@ -3,6 +3,7 @@ Test suite for the SetTime class
 """
 
 from unittest import mock
+from datetime import datetime
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
@@ -56,7 +57,8 @@ def test_set_time_advances_substates():
 
 
 @mock.patch.object(LiquidCrystal, "print")
-def test_set_time_valid_input(mock_print):
+@mock.patch("src.devices.date_time.DateTime.offset")
+def test_set_time_valid_input(mock_offset, mock_print):
     """
     Test that valid date/time inputs are saved and displayed correctly.
     """
@@ -73,6 +75,8 @@ def test_set_time_valid_input(mock_print):
     state.save_value()
     state.value = "30"
     state.save_value()
+
+    mock_offset.assert_called_once_with(datetime(2025, 12, 10, 15, 30))
 
     mock_print.assert_any_call("New Date/Time:", line=1)
     mock_print.assert_any_call("2025-12-10 15:30", line=2)

@@ -2,8 +2,6 @@
 The file to hold the View Time class
 """
 
-from datetime import datetime
-
 from src.devices.library import Keypad
 from src.ui_state.ui_state import UIState
 
@@ -19,20 +17,19 @@ class ViewTime(UIState):
         """
         super().__init__(titrator)
         self.previous_state = previous_state
-        self._start_time = datetime.now()
 
     def loop(self):
         """
         Loop to update the time display.
         """
-        now = datetime.now()
+        now = self.titrator.date_time.current()
         line1 = (
             f"{now.year:04d}-{now.month:02d}-{now.day:02d} "
             f"{now.hour:02d}:{now.minute:02d}"
         )
         self.titrator.lcd.print(line1, line=1)
 
-        elapsed = datetime.now() - self._start_time
+        elapsed = self.titrator.date_time.uptime()
         days = elapsed.days
         hours, rem = divmod(elapsed.seconds, 3600)
         minutes, seconds = divmod(rem, 60)

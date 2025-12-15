@@ -47,6 +47,7 @@ class SetTime(UserValue):
                     int(self.values[3]),
                     int(self.values[4]),
                 )
+                self.titrator.date_time.offset(new_time)
                 self.titrator.lcd.print("New Date/Time:", line=1)
                 self.titrator.lcd.print(new_time.strftime("%Y-%m-%d %H:%M"), line=2)
                 self.return_to_main_menu(ms_delay=3000)
