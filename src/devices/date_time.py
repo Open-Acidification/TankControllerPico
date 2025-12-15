@@ -9,6 +9,7 @@ class DateTime:
     """
     Docstring for DateTime
     """
+
     def __init__(self):
         self._offset = timedelta(0)
         self._uptime_start = datetime.now()

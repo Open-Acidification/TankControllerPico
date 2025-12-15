@@ -24,7 +24,9 @@ class MockPreviousState(UIState):
 @mock.patch("src.devices.date_time.DateTime.uptime")
 @mock.patch("src.devices.date_time.DateTime.current")
 @mock.patch.object(LiquidCrystal, "print")
-def test_view_time_loop_prints_datetime_and_uptime(print_mock, mock_current, mock_uptime):
+def test_view_time_loop_prints_datetime_and_uptime(
+    print_mock, mock_current, mock_uptime
+):
     """
     The function to test ViewTime's loop function
     """

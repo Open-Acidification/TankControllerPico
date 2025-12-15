@@ -4,6 +4,7 @@ Test suite for the DateTime class
 
 from datetime import datetime, timedelta
 from unittest import mock
+
 from src.devices.date_time import DateTime
 
 

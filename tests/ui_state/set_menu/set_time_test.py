@@ -2,8 +2,8 @@
 Test suite for the SetTime class
 """
 
-from unittest import mock
 from datetime import datetime
+from unittest import mock
 
 from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
