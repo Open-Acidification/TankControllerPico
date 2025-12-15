@@ -21,19 +21,19 @@ class MockPreviousState(UIState):
         super().__init__(titrator)
 
 
-@mock.patch("src.ui_state.view_menu.view_time.datetime")
+@mock.patch("src.devices.date_time.DateTime.uptime")
+@mock.patch("src.devices.date_time.DateTime.current")
 @mock.patch.object(LiquidCrystal, "print")
-def test_view_time_loop_prints_datetime_and_uptime(print_mock, mock_dt):
+def test_view_time_loop_prints_datetime_and_uptime(
+    print_mock, mock_current, mock_uptime
+):
     """
     The function to test ViewTime's loop function
     """
     state = ViewTime(Titrator(), MainMenu(Titrator()))
 
-    fixed_now = datetime(2025, 11, 14, 9, 42)
-    fixed_start = fixed_now - timedelta(days=1, hours=2, minutes=3, seconds=4)
-    state._start_time = fixed_start
-
-    mock_dt.now.return_value = fixed_now
+    mock_current.return_value = datetime(2025, 11, 14, 9, 42)
+    mock_uptime.return_value = timedelta(days=1, hours=2, minutes=3, seconds=4)
     state.loop()
 
     print_mock.assert_any_call("2025-11-14 09:42", line=1)
