@@ -2,7 +2,10 @@
 The file for the MainMenu class
 """
 
+import time
+
 from src.devices.library import Keypad
+from src.devices.ph_calibration_warning import PHCalibrationWarning
 from src.ui_state.set_menu.set_chill_or_heat import SetChillOrHeat
 from src.ui_state.set_menu.set_google_mins import SetGoogleSheetInterval
 from src.ui_state.set_menu.set_kd import SetKD
@@ -218,9 +221,41 @@ class MainMenu(UIState):
         """
         Displays the idle screen.
         """
-        lcd = self.titrator.lcd
-        lcd.print("Idle Line 1", line=1)
-        lcd.print("Idle Line 2", line=2)
+        if self.titrator.ph_probe.should_warn_about_calibration():
+            self._set_next_state(PHCalibrationWarning(self.titrator, self), True)
+
+        output = [" "] * 20
+        ph_blink = self.titrator.ph_probe.slope_is_out_of_range and (
+            (time.monotonic() + 1) % 2 == 0
+        )
+        output[0] = " " if ph_blink else "p"
+        output[1] = " " if ph_blink else "H"
+        output[2] = "=" if int(time.monotonic()) % 2 == 0 else " "
+
+        ph_current = self.titrator.ph_probe.get_ph_value()
+        if ph_current < 10.0:
+            buffer = f"{ph_current:5.3f}"
+        else:
+            buffer = f"{ph_current:5.2f}"
+        output[3:8] = list(buffer[:5])
+
+        output[8] = " "
+        output[9] = "B" if self.titrator.ph_control.use_pid else " "
+        output[10] = " "
+
+        ph_target = self.titrator.ph_control.get_current_target_ph()
+        if ph_target > 15 or ph_target < 0:
+            print("pH is out of range!")
+
+        if ph_target < 10.0:
+            buffer = f"{ph_target:5.3f}"
+        else:
+            buffer = f"{ph_target:5.2f}"
+        output[11:16] = list(buffer[:5])
+
+        self.titrator.lcd.print("".join(output), line=1)
+
+        self.titrator.lcd.print("", line=2)
 
     def loop(self):
         """

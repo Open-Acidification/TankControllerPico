@@ -6,17 +6,17 @@ The file for the Titrator class
 
 from src.devices.date_time import DateTime
 from src.devices.eeprom import EEPROM
-from src.devices.library import (
+from src.devices.library import (  # PHProbe,
     Heater,
     Keypad,
     LiquidCrystal,
-    PHProbe,
     StirControl,
     SyringePump,
     TemperatureControl,
     TemperatureProbe,
 )
 from src.devices.ph_control import PHControl
+from src.devices.ph_probe_mock import PHProbe
 from src.devices.pid import PID
 from src.devices.sd import SD
 from src.devices.thermal_probe import ThermalProbe
@@ -49,7 +49,7 @@ class Titrator:
         self.pid = PID(self.eeprom)
 
         # Initialize PH Control
-        self.ph_control = PHControl()
+        self.ph_control = PHControl(self)
 
         # Initialize Thermal Probe
         self.thermal_probe = ThermalProbe(self.eeprom)
@@ -64,7 +64,7 @@ class Titrator:
         self.keypad = Keypad()
 
         # Initialize pH Probe
-        self.ph_probe = PHProbe()
+        self.ph_probe = PHProbe(self.eeprom)
 
         # Initialize Syringe Pump
         self.pump = SyringePump()

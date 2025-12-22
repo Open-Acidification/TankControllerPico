@@ -14,6 +14,7 @@ class EEPROM:
         """
         self._google_sheet_interval = 20
         self._heat = bool(True)
+        self._ignore_bad_ph_slope = False
         self._kd_value = 36.0
         self._ki_value = 28.0
         self._kp_value = 20.0
@@ -35,6 +36,20 @@ class EEPROM:
         if self._heat is None:
             return default
         return self._heat
+
+    def get_ignore_bad_ph_slope(self, default):
+        """
+        Get the ignore bad pH slope setting from EEPROM
+        """
+        if self._ignore_bad_ph_slope is None:
+            return default
+        return self._ignore_bad_ph_slope
+
+    def set_ignore_bad_ph_slope(self, value):
+        """
+        Set the ignore bad pH slope setting in EEPROM
+        """
+        self._ignore_bad_ph_slope = value
 
     def get_kd(self, default):
         """

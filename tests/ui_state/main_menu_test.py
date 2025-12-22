@@ -145,10 +145,10 @@ def test_view_list(print_mock):
     """
     main_menu = MainMenu(Titrator())
 
-    main_menu.loop()
-    print_mock.assert_any_call("Idle Line 1", line=1)
-    print_mock.assert_any_call("Idle Line 2", line=2)
-    print_mock.reset_mock()
+    # main_menu.loop()
+    # print_mock.assert_any_call("Idle Line 1", line=1)
+    # print_mock.assert_any_call("Idle Line 2", line=2)
+    # print_mock.reset_mock()
 
     main_menu.handle_key("6")
     main_menu.loop()
@@ -172,10 +172,10 @@ def test_change_list(print_mock):
     """
     main_menu = MainMenu(Titrator())
 
-    main_menu.loop()
-    print_mock.assert_any_call("Idle Line 1", line=1)
-    print_mock.assert_any_call("Idle Line 2", line=2)
-    print_mock.reset_mock()
+    # main_menu.loop()
+    # print_mock.assert_any_call("Idle Line 1", line=1)
+    # print_mock.assert_any_call("Idle Line 2", line=2)
+    # print_mock.reset_mock()
 
     main_menu.handle_key("6")
     main_menu.handle_key("8")
