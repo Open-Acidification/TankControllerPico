@@ -14,6 +14,7 @@ class EEPROM:
         """
         self._google_sheet_interval = 20
         self._heat = bool(True)
+        self._ignore_bad_ph_slope = False
         self._kd_value = 36.0
         self._ki_value = 28.0
         self._kp_value = 20.0
@@ -28,6 +29,12 @@ class EEPROM:
             return default
         return self._google_sheet_interval
 
+    def set_google_sheet_interval(self, value):
+        """
+        Set the google sheet interval in EEPROM
+        """
+        self._google_sheet_interval = value
+
     def get_heat(self, default):
         """
         Get the heat setting from EEPROM
@@ -35,6 +42,26 @@ class EEPROM:
         if self._heat is None:
             return default
         return self._heat
+
+    def set_heat(self, value):
+        """
+        Set the heat setting in EEPROM
+        """
+        self._heat = value
+
+    def get_ignore_bad_ph_slope(self, default):
+        """
+        Get the ignore bad pH slope setting from EEPROM
+        """
+        if self._ignore_bad_ph_slope is None:
+            return default
+        return self._ignore_bad_ph_slope
+
+    def set_ignore_bad_ph_slope(self, value):
+        """
+        Set the ignore bad pH slope setting in EEPROM
+        """
+        self._ignore_bad_ph_slope = value
 
     def get_kd(self, default):
         """
@@ -60,34 +87,6 @@ class EEPROM:
             return default
         return float(self._kp_value)
 
-    def get_tank_id(self, default):
-        """
-        Get the tank ID from EEPROM
-        """
-        if self._tank_id is None:
-            return default
-        return self._tank_id
-
-    def get_thermal_correction(self, default):
-        """
-        Get the thermal correction value from EEPROM
-        """
-        if self._thermal_correction is None:
-            return default
-        return float(self._thermal_correction)
-
-    def set_google_sheet_interval(self, value):
-        """
-        Set the google sheet interval in EEPROM
-        """
-        self._google_sheet_interval = value
-
-    def set_heat(self, value):
-        """
-        Set the heat setting in EEPROM
-        """
-        self._heat = value
-
     def set_kd(self, value):
         """
         Set the Kd value in EEPROM
@@ -106,8 +105,24 @@ class EEPROM:
         """
         self._kp_value = value
 
+    def get_tank_id(self, default):
+        """
+        Get the tank ID from EEPROM
+        """
+        if self._tank_id is None:
+            return default
+        return self._tank_id
+
     def set_tank_id(self, value):
         """
         Set the tank ID in EEPROM
         """
         self._tank_id = value
+
+    def get_thermal_correction(self, default):
+        """
+        Get the thermal correction value from EEPROM
+        """
+        if self._thermal_correction is None:
+            return default
+        return float(self._thermal_correction)
