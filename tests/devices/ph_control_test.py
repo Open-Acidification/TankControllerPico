@@ -71,8 +71,8 @@ def test_get_and_set_ph_function_type():
 
     try:
         ph_control.set_ph_function_type(99)
-    except ValueError as e:
-        assert str(e) == "Invalid pH function type"
+    except ValueError as err:
+        assert str(err) == "Invalid pH function type"
 
 
 def test_set_ramp_duration_hours():
@@ -107,5 +107,5 @@ def test_set_sine_amplitude_and_hours():
 
     try:
         ph_control.set_sine_amplitude_and_hours(-1, 4)
-    except ValueError as e:
-        assert str(e) == "Amp and period !> than 0."
+    except ValueError as err:
+        assert str(err) == "Amp and period !> than 0."
