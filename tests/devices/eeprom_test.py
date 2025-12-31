@@ -93,23 +93,6 @@ def test_set_pid_values():
     assert eeprom.get_kd(0.0) == 35.0
 
 
-def test_thermal_correction_value():
-    """
-    The function to test the default thermal_correction_address value
-    """
-    eeprom = EEPROM()
-    assert eeprom.get_thermal_correction(0.0) == 12
-
-
-def test_save_thermal_correction_value():
-    """
-    The function to test setting the thermal_correction_address value
-    """
-    eeprom = EEPROM()
-    eeprom._thermal_correction = 2.5
-    assert eeprom.get_thermal_correction(0.0) == 2.5
-
-
 def test_tank_id_value():
     """
     The function to test the default tank_id value

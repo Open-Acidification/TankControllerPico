@@ -14,4 +14,16 @@ class ThermalProbe:
         """
         self.eeprom = eeprom
 
-        self.correction = self.eeprom.get_thermal_correction(0.0)
+        self._correction = 12
+
+    def get_thermal_correction(self):
+        """
+        Get the thermal correction value from EEPROM
+        """
+        return float(self._correction)
+
+    def set_thermal_correction(self, value):
+        """
+        Set the thermal correction value in EEPROM
+        """
+        self._correction = value

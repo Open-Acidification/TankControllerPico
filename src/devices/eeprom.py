@@ -18,7 +18,6 @@ class EEPROM:
         self._ki_value = 28.0
         self._kp_value = 20.0
         self._tank_id = 1
-        self._thermal_correction = 12
 
     def get_google_sheet_interval(self, default):
         """
@@ -67,14 +66,6 @@ class EEPROM:
         if self._tank_id is None:
             return default
         return self._tank_id
-
-    def get_thermal_correction(self, default):
-        """
-        Get the thermal correction value from EEPROM
-        """
-        if self._thermal_correction is None:
-            return default
-        return float(self._thermal_correction)
 
     def set_google_sheet_interval(self, value):
         """

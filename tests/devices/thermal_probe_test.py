@@ -2,30 +2,19 @@
 The file to test the ThermalProbe class
 """
 
-from unittest import mock
+from unittest.mock import Mock
 
-from src.devices.eeprom import EEPROM
 from src.devices.thermal_probe import ThermalProbe
 
 
-def test_thermal_probe_reads_values_from_eeprom():
+def test_get_and_set_thermal_correction():
     """
     The function to test the creation of a ThermalProbe
     """
-    eeprom = EEPROM()
-    eeprom._thermal_correction = 1.1
-    with mock.patch("src.devices.eeprom.EEPROM", return_value=eeprom):
-        thermal_probe = ThermalProbe(eeprom)
+    mock_eeprom = Mock()
+    thermal_probe = ThermalProbe(mock_eeprom)
+    thermal_probe._correction = 1.1
+    assert thermal_probe.get_thermal_correction() == 1.1
 
-    assert thermal_probe.correction == 1.1
-
-
-def test_thermal_probe_defaults_from_none():
-    """ThermalProbe should read a numeric float from EEPROM."""
-    eeprom = EEPROM()
-    eeprom._thermal_correction = None
-
-    with mock.patch("src.devices.eeprom.EEPROM", return_value=eeprom):
-        thermal_probe = ThermalProbe(eeprom)
-
-    assert thermal_probe.correction == 0.0
+    thermal_probe.set_thermal_correction(2.2)
+    assert thermal_probe.get_thermal_correction() == 2.2
