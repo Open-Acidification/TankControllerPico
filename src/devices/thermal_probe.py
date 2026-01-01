@@ -22,6 +22,12 @@ class ThermalProbe:
         """
         return float(self._correction)
 
+    def clear_thermal_correction(self):
+        """
+        Clear the thermal correction value in EEPROM
+        """
+        self._correction = 0
+
     def set_thermal_correction(self, value):
         """
         Set the thermal correction value in EEPROM
