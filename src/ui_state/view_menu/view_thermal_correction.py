@@ -23,7 +23,9 @@ class ViewThermalCorrection(UIState):
         The loop function for the ViewThermalCorrection class
         """
         self.titrator.lcd.print("Temp Cal Offset:", line=1)
-        self.titrator.lcd.print(f"{self.titrator.thermal_probe.get_thermal_correction()}", line=2)
+        self.titrator.lcd.print(
+            f"{self.titrator.thermal_probe.get_thermal_correction()}", line=2
+        )
 
     def handle_key(self, key):
         """

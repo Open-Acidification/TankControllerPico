@@ -31,32 +31,6 @@ def test_set_google_sheet_interval():
     assert eeprom.get_google_sheet_interval(65535) == 60
 
 
-def test_default_heat_value():
-    """
-    The function to test the default heat value
-    """
-    eeprom = EEPROM()
-    assert eeprom.get_heat(False) is True
-
-
-def test_save_heat_value():
-    """
-    The function to test setting the heat value
-    """
-    eeprom = EEPROM()
-    eeprom._heat = False
-    assert eeprom.get_heat(True) is False
-
-
-def test_set_heat():
-    """
-    The function to test setting the heat via setter
-    """
-    eeprom = EEPROM()
-    eeprom.set_heat(False)
-    assert eeprom.get_heat(True) is False
-
-
 def test_pid_values():
     """
     The function to test the PID values

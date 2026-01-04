@@ -9,6 +9,7 @@ class SetThermalCalibration(UserValue):
     """
     This is a class for the SetThermalCalibration state of the Tank Controller
     """
+
     def __init__(self, titrator, previous_state=None):
         super().__init__(titrator, previous_state)
         self.previous_state = previous_state
@@ -25,5 +26,8 @@ class SetThermalCalibration(UserValue):
         Saves the thermal calibration value to the thermal probe.
         """
         self.titrator.thermal_probe.set_thermal_correction(self.value)
-        self.titrator.lcd.print(f"New correction={self.titrator.thermal_probe.get_thermal_correction()}", line=2)
+        self.titrator.lcd.print(
+            f"New correction={self.titrator.thermal_probe.get_thermal_correction()}",
+            line=2,
+        )
         self.return_to_main_menu(ms_delay=3000)
