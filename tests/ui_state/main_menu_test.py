@@ -203,6 +203,6 @@ def test_idle_thermal_display(
     mock_get_current_thermal_target.return_value = 25.50
 
     main_menu.loop()
-    mock_lcd_print.assert_any_call(
-        "T=22.75 h 25.50     " or "T 22.75 h 25.50     ", line=2
-    )
+    expected_outputs = ["T=22.75 h 25.50     ", "T 22.75 h 25.50     "]
+    line_2_calls = [call.args[0] for call in mock_lcd_print.call_args_list if call.kwargs.get("line") == 2]
+    assert any(output in expected_outputs for output in line_2_calls)
