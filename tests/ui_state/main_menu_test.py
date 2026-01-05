@@ -145,11 +145,6 @@ def test_view_list(print_mock):
     """
     main_menu = MainMenu(Titrator())
 
-    main_menu.loop()
-    print_mock.assert_any_call("Idle Line 1", line=1)
-    print_mock.assert_any_call("Idle Line 2", line=2)
-    print_mock.reset_mock()
-
     main_menu.handle_key("6")
     main_menu.loop()
     print_mock.assert_any_call("View settings", line=1)
@@ -172,11 +167,6 @@ def test_change_list(print_mock):
     """
     main_menu = MainMenu(Titrator())
 
-    main_menu.loop()
-    print_mock.assert_any_call("Idle Line 1", line=1)
-    print_mock.assert_any_call("Idle Line 2", line=2)
-    print_mock.reset_mock()
-
     main_menu.handle_key("6")
     main_menu.handle_key("8")
     main_menu.loop()
@@ -191,3 +181,28 @@ def test_change_list(print_mock):
             main_menu.handle_key("8")
         main_menu.loop()
         print_mock.assert_any_call(label, line=1)
+
+
+@mock.patch("src.devices.library.LiquidCrystal.print")
+@mock.patch("src.titrator.ThermalControl.get_current_thermal_target")
+@mock.patch("src.titrator.ThermalControl.get_heat")
+@mock.patch("src.titrator.ThermalProbe.get_running_average")
+def test_idle_thermal_display(
+    mock_get_running_average,
+    mock_get_heat,
+    mock_get_current_thermal_target,
+    mock_lcd_print,
+):
+    """
+    Test that the thermal portion of the idle method displays the correct information.
+    """
+    main_menu = MainMenu(Titrator())
+
+    mock_get_running_average.return_value = 22.75
+    mock_get_heat.return_value = True
+    mock_get_current_thermal_target.return_value = 25.50
+
+    main_menu.loop()
+    mock_lcd_print.assert_any_call(
+        "T=22.75 h 25.50     " or "T 22.75 h 25.50     ", line=2
+    )
