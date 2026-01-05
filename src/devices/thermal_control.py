@@ -26,6 +26,8 @@ class ThermalControl:
         self._ramp_time_start_seconds = 0
         self._ramp_time_end_seconds = 0
         self._ramp_initial_value = 0.0
+        self._amplitude = 0.0
+        self._period_in_seconds = 0
 
     def get_heat(self, default):
         """
@@ -130,3 +132,32 @@ class ThermalControl:
             self._ramp_time_end_seconds = 0
             self._thermal_function_type = ThermalControl.FLAT_TYPE
             print("Set ramp time to 0")
+
+    def get_amplitude(self):
+        """
+        Get the amplitude for the pH function.
+        """
+        return self._amplitude
+
+    def set_amplitude(self, amplitude):
+        """
+        Set the amplitude for the pH function.
+        """
+        self._amplitude = amplitude
+
+    def get_period_in_seconds(self):
+        """
+        Get the period in seconds for the pH function.
+        """
+        return self._period_in_seconds
+
+    def set_sine_amplitude_and_hours(self, amplitude, period_in_hours):
+        """
+        Set the amplitude and period (in hours) for the sine wave pH function.
+        """
+        if amplitude > 0 and period_in_hours > 0:
+            self._amplitude = amplitude
+            self._period_in_seconds = int(period_in_hours * 3600)
+            self._thermal_function_type = ThermalControl.SINE_TYPE
+        else:
+            raise ValueError("Amp and period !> than 0.")

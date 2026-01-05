@@ -68,6 +68,9 @@ def test_get_and_set_thermal_function_type():
     thermal_control.set_thermal_function_type(ThermalControl.RAMP_TYPE)
     assert thermal_control.get_thermal_function_type() == ThermalControl.RAMP_TYPE
 
+    thermal_control.set_thermal_function_type(ThermalControl.SINE_TYPE)
+    assert thermal_control.get_thermal_function_type() == ThermalControl.SINE_TYPE
+
     try:
         thermal_control.set_thermal_function_type(99)
     except ValueError as err:
@@ -90,3 +93,21 @@ def test_set_ramp_duration_hours():
     thermal_control.set_ramp_duration_hours(0)
     assert thermal_control.get_ramp_time_end() == 0
     assert thermal_control.get_thermal_function_type() == ThermalControl.FLAT_TYPE
+
+
+def test_set_sine_amplitude_and_hours():
+    """
+    Test setting the sine amplitude and period in hours.
+    """
+    mock_titrator = Mock()
+    thermal_control = ThermalControl(mock_titrator)
+
+    thermal_control.set_sine_amplitude_and_hours(1.5, 4)
+    assert thermal_control.get_amplitude() == 1.5
+    assert thermal_control.get_period_in_seconds() == 14400
+    assert thermal_control.get_thermal_function_type() == ThermalControl.SINE_TYPE
+
+    try:
+        thermal_control.set_sine_amplitude_and_hours(-1, 4)
+    except ValueError as err:
+        assert str(err) == "Amp and period !> than 0."
