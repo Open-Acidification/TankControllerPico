@@ -25,29 +25,42 @@ class ThermalProbe:
         self.first_time = True
         self.last_time = 0
 
-    def get_thermal_correction(self):
-        """
-        Get the thermal correction value from EEPROM
-        """
-        return float(self._correction)
-
     def clear_thermal_correction(self):
         """
         Clear the thermal correction value in EEPROM
         """
         self._correction = 0
 
-    def set_thermal_correction(self, value):
+    def get_raw_temperature(self):
         """
-        Set the thermal correction value in EEPROM
+        Simulate reading the raw temperature from a sensor.
+        In a real implementation, this method would interface with hardware.
         """
-        self._correction = value
+        # Placeholder for actual sensor reading logic
+        return 25.0  # return thermo.temperature(RTDnominal, refResistor);
+
+    def get_running_average(self):
+        """
+        Return the corrected running average within the range of 00.00-99.99
+        """
+        temperature = self.get_uncorrected_running_average() + self._correction
+        if temperature < 0.0:
+            temperature = 0.0
+        elif temperature > 99.99:
+            temperature = 99.99
+        return temperature
+
+    def get_thermal_correction(self):
+        """
+        Get the thermal correction value from EEPROM
+        """
+        return float(self._correction)
 
     def get_uncorrected_running_average(self):
         """
         Calculate the uncorrected running average of temperature readings.
         """
-        current_time = time.time()  # Get current time in seconds
+        current_time = time.time()
         if (
             self.first_time or self.last_time + 1 <= current_time
         ):  # Check if 1 second has passed
@@ -66,21 +79,8 @@ class ThermalProbe:
         valid_readings = self.history[: self.history_index + 1]
         return sum(valid_readings) / len(valid_readings)
 
-    def get_running_average(self):
+    def set_thermal_correction(self, value):
         """
-        Return the corrected running average within the range of 00.00-99.99
+        Set the thermal correction value in EEPROM
         """
-        temperature = self.get_uncorrected_running_average() + self._correction
-        if temperature < 0.0:
-            temperature = 0.0
-        elif temperature > 99.99:
-            temperature = 99.99
-        return temperature
-
-    def get_raw_temperature(self):
-        """
-        Simulate reading the raw temperature from a sensor.
-        In a real implementation, this method would interface with hardware.
-        """
-        # Placeholder for actual sensor reading logic
-        return 25.0  # return thermo.temperature(RTDnominal, refResistor);
+        self._correction = value

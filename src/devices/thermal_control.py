@@ -29,6 +29,24 @@ class ThermalControl:
         self._amplitude = 0.0
         self._period_in_seconds = 0
 
+    def get_amplitude(self):
+        """
+        Get the amplitude for the pH function.
+        """
+        return self._amplitude
+
+    def get_base_thermal_target(self):
+        """
+        Get the base thermal target
+        """
+        return self._base_thermal_target
+
+    def get_current_thermal_target(self):
+        """
+        Get the current thermal target
+        """
+        return self._current_thermal_target
+
     def get_heat(self, default):
         """
         Get the heat setting from EEPROM
@@ -37,54 +55,21 @@ class ThermalControl:
             return default
         return self._heat
 
-    def set_heat(self, value):
+    def get_period_in_seconds(self):
         """
-        Set the heat setting in EEPROM
+        Get the period in seconds for the pH function.
         """
-        self._heat = value
+        return self._period_in_seconds
 
-    def get_base_thermal_target(self):
+    def get_ramp_time_end(self):
         """
-        Get the base thermal target
+        Get the ramp time end in seconds.
         """
-        return self._base_thermal_target
-
-    def set_base_thermal_target(self, value):
-        """
-        Set the base thermal target
-        """
-        self._base_thermal_target = value
-
-    def get_current_thermal_target(self):
-        """
-        Get the current thermal target
-        """
-        return self._current_thermal_target
-
-    def set_current_thermal_target(self, value):
-        """
-        Set the current thermal target
-        """
-        self._current_thermal_target = value
-
-    def get_thermal_function_type(self):
-        """
-        Get the current thermal function type.
-        """
-        return self._thermal_function_type
-
-    def set_thermal_function_type(self, function_type):
-        """
-        Set the current thermal function type.
-        """
-        if function_type in (
-            ThermalControl.FLAT_TYPE,
-            ThermalControl.RAMP_TYPE,
-            ThermalControl.SINE_TYPE,
-        ):
-            self._thermal_function_type = function_type
-        else:
-            raise ValueError("Invalid thermal function type")
+        return (
+            self._ramp_time_end_seconds
+            if self._thermal_function_type != ThermalControl.FLAT_TYPE
+            else 0
+        )
 
     def get_ramp_time_start(self):
         """
@@ -96,15 +81,35 @@ class ThermalControl:
             else 0
         )
 
-    def get_ramp_time_end(self):
+    def get_thermal_function_type(self):
         """
-        Get the ramp time end in seconds.
+        Get the current thermal function type.
         """
-        return (
-            self._ramp_time_end_seconds
-            if self._thermal_function_type != ThermalControl.FLAT_TYPE
-            else 0
-        )
+        return self._thermal_function_type
+
+    def set_amplitude(self, amplitude):
+        """
+        Set the amplitude for the pH function.
+        """
+        self._amplitude = amplitude
+
+    def set_base_thermal_target(self, value):
+        """
+        Set the base thermal target
+        """
+        self._base_thermal_target = value
+
+    def set_current_thermal_target(self, value):
+        """
+        Set the current thermal target
+        """
+        self._current_thermal_target = value
+
+    def set_heat(self, value):
+        """
+        Set the heat setting in EEPROM
+        """
+        self._heat = value
 
     def set_ramp_duration_hours(self, new_ph_ramp_duration):
         """
@@ -133,24 +138,6 @@ class ThermalControl:
             self._thermal_function_type = ThermalControl.FLAT_TYPE
             print("Set ramp time to 0")
 
-    def get_amplitude(self):
-        """
-        Get the amplitude for the pH function.
-        """
-        return self._amplitude
-
-    def set_amplitude(self, amplitude):
-        """
-        Set the amplitude for the pH function.
-        """
-        self._amplitude = amplitude
-
-    def get_period_in_seconds(self):
-        """
-        Get the period in seconds for the pH function.
-        """
-        return self._period_in_seconds
-
     def set_sine_amplitude_and_hours(self, amplitude, period_in_hours):
         """
         Set the amplitude and period (in hours) for the sine wave pH function.
@@ -161,3 +148,16 @@ class ThermalControl:
             self._thermal_function_type = ThermalControl.SINE_TYPE
         else:
             raise ValueError("Amp and period !> than 0.")
+
+    def set_thermal_function_type(self, function_type):
+        """
+        Set the current thermal function type.
+        """
+        if function_type in (
+            ThermalControl.FLAT_TYPE,
+            ThermalControl.RAMP_TYPE,
+            ThermalControl.SINE_TYPE,
+        ):
+            self._thermal_function_type = function_type
+        else:
+            raise ValueError("Invalid thermal function type")

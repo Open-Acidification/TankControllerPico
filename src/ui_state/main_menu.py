@@ -33,6 +33,7 @@ from src.ui_state.view_menu.view_log_file import ViewLogFile
 from src.ui_state.view_menu.view_ph_calibration import ViewPHCalibration
 from src.ui_state.view_menu.view_pid_constants import ViewPIDConstants
 from src.ui_state.view_menu.view_tank_id import ViewTankID
+from src.ui_state.view_menu.view_thermal import ViewThermal
 from src.ui_state.view_menu.view_thermal_correction import (
     ViewThermalCorrection,
 )
@@ -61,6 +62,7 @@ class MainMenu(UIState):
             "View pH slope",
             "View PID",
             "View tank ID",
+            "View temp",
             "View temp cal",
             "View time",
             "View version",
@@ -95,6 +97,7 @@ class MainMenu(UIState):
             ViewPHCalibration,  # View pH slope
             ViewPIDConstants,  # View PID constants
             ViewTankID,  # View Tank ID
+            ViewThermal,  # View Temperature
             ViewThermalCorrection,  # View Thermal Correction
             ViewTime,  # View Time
             ViewVersion,  # View Version
