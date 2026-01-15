@@ -8,7 +8,7 @@ from src.devices.library import Keypad
 from src.ui_state.ui_state import UIState
 
 
-class ViewPh(UIState):
+class ViewPH(UIState):
     """
     Show pH-related information, rotating every 3 seconds between two sets of displays.
 
@@ -31,11 +31,11 @@ class ViewPh(UIState):
         """
         elapsed = int(((time.monotonic() - self._start_time) / 3.0)) % 2
         if elapsed == 0:
-            self.load_header(line=0)
-            self.load_values(line=1)
+            self.load_header(line=1)
+            self.load_values(line=2)
         else:
-            self.load_ph_function_type(line=0)
-            self.load_type_variables(line=1)
+            self.load_ph_function_type(line=1)
+            self.load_type_variables(line=2)
 
     def load_header(self, line):
         """
@@ -57,15 +57,48 @@ class ViewPh(UIState):
 
     def load_ph_function_type(self, line):
         """
-        Docstring for load_ph_function_type
+        Display the current pH function type on the LCD.
         """
-        self.titrator.lcd.print("test function type", line)
+        ph_type = self.titrator.ph_control.get_ph_function_type()
+        type_mapping = {
+            self.titrator.ph_control.FLAT_TYPE: "flat",
+            self.titrator.ph_control.RAMP_TYPE: "ramp",
+            self.titrator.ph_control.SINE_TYPE: "sine",
+        }
+        type_str = type_mapping.get(ph_type, "????")
+        message = f"type: {type_str}"
+        self.titrator.lcd.print(message, line)
 
     def load_type_variables(self, line):
         """
-        Docstring for load_type_variables
+        Display the variables related to the current pH function type on the LCD.
         """
-        self.titrator.lcd.print("test type vars", line)
+        ph_type = self.titrator.ph_control.get_ph_function_type()
+
+        if ph_type == self.titrator.ph_control.FLAT_TYPE:
+            message = ""
+
+        elif ph_type == self.titrator.ph_control.RAMP_TYPE:
+            end_time = self.titrator.ph_control.get_ramp_time_end()
+            current_time = int(time.monotonic())
+            time_left = max(0, end_time - current_time)
+            time_left_hours = time_left // 3600
+            time_left_minutes = (time_left % 3600) // 60
+            time_left_seconds = time_left % 60
+            message = f"left: {time_left_hours}:{time_left_minutes}:{time_left_seconds}"
+
+        elif ph_type == self.titrator.ph_control.SINE_TYPE:
+            period_in_seconds = self.titrator.ph_control.get_period_in_seconds()
+            period_hours = period_in_seconds / 3600.0
+            amplitude = self.titrator.ph_control.get_amplitude()
+            message = f"p={period_hours:.3f} a={amplitude:.3f}"
+
+        else:
+            # Default case
+            message = "Invalid type"
+
+        # Display the message on the specified line
+        self.titrator.lcd.print(message, line)
 
     def handle_key(self, key):
         """

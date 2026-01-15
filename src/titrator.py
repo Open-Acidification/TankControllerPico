@@ -6,7 +6,7 @@ The file for the Titrator class
 
 from src.devices.date_time import DateTime
 from src.devices.eeprom import EEPROM
-from src.devices.library import (  # PHProbe,
+from src.devices.library import (
     Heater,
     Keypad,
     LiquidCrystal,

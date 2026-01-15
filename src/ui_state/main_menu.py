@@ -31,6 +31,7 @@ from src.ui_state.view_menu.view_google_sheet_interval import (
     ViewGoogleSheetInterval,
 )
 from src.ui_state.view_menu.view_log_file import ViewLogFile
+from src.ui_state.view_menu.view_ph import ViewPH
 from src.ui_state.view_menu.view_ph_calibration import ViewPHCalibration
 from src.ui_state.view_menu.view_pid_constants import ViewPIDConstants
 from src.ui_state.view_menu.view_tank_id import ViewTankID
@@ -59,6 +60,7 @@ class MainMenu(UIState):
             "View free memory",
             "View Google mins",
             "View log file",
+            "View pH",
             "View pH slope",
             "View PID",
             "View tank ID",
@@ -93,6 +95,7 @@ class MainMenu(UIState):
             ViewFreeMemory,  # View Free Memory
             ViewGoogleSheetInterval,  # View Google mins
             ViewLogFile,  # View Log File
+            ViewPH,  # View pH
             ViewPHCalibration,  # View pH slope
             ViewPIDConstants,  # View PID constants
             ViewTankID,  # View Tank ID

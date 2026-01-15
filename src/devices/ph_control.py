@@ -29,17 +29,17 @@ class PHControl:
         self._amplitude = 0.0
         self._period_in_seconds = 0
 
+    def get_amplitude(self):
+        """
+        Get the amplitude for the pH function.
+        """
+        return self._amplitude
+
     def get_base_target_ph(self):
         """
         Get the base target pH value
         """
         return self._base_target_ph
-
-    def set_base_target_ph(self, target_ph):
-        """
-        Set the base target pH value
-        """
-        self._base_target_ph = target_ph
 
     def get_current_target_ph(self):
         """
@@ -47,17 +47,55 @@ class PHControl:
         """
         return self._current_target_ph
 
-    def set_current_target_ph(self, target_ph):
+    def get_period_in_seconds(self):
         """
-        Set the current target pH value
+        Get the period in seconds for the pH function.
         """
-        self._current_target_ph = target_ph
+        return self._period_in_seconds
 
     def get_ph_function_type(self):
         """
         Get the current pH function type.
         """
         return self._ph_function_type
+
+    def get_ramp_time_end(self):
+        """
+        Get the ramp time end in seconds.
+        """
+        return (
+            self._ramp_time_end_seconds
+            if self._ph_function_type != PHControl.FLAT_TYPE
+            else 0
+        )
+
+    def get_ramp_time_start(self):
+        """
+        Get the ramp time start in seconds.
+        """
+        return (
+            self._ramp_time_start_seconds
+            if self._ph_function_type != PHControl.FLAT_TYPE
+            else 0
+        )
+
+    def set_amplitude(self, amplitude):
+        """
+        Set the amplitude for the pH function.
+        """
+        self._amplitude = amplitude
+
+    def set_base_target_ph(self, target_ph):
+        """
+        Set the base target pH value
+        """
+        self._base_target_ph = target_ph
+
+    def set_current_target_ph(self, target_ph):
+        """
+        Set the current target pH value
+        """
+        self._current_target_ph = target_ph
 
     def set_ph_function_type(self, function_type):
         """
@@ -71,26 +109,6 @@ class PHControl:
             self._ph_function_type = function_type
         else:
             raise ValueError("Invalid pH function type")
-
-    def get_ramp_time_start(self):
-        """
-        Get the ramp time start in seconds.
-        """
-        return (
-            self._ramp_time_start_seconds
-            if self._ph_function_type != PHControl.FLAT_TYPE
-            else 0
-        )
-
-    def get_ramp_time_end(self):
-        """
-        Get the ramp time end in seconds.
-        """
-        return (
-            self._ramp_time_end_seconds
-            if self._ph_function_type != PHControl.FLAT_TYPE
-            else 0
-        )
 
     def set_ramp_duration_hours(self, new_ph_ramp_duration):
         """
@@ -118,24 +136,6 @@ class PHControl:
             self._ramp_time_end_seconds = 0
             self._ph_function_type = PHControl.FLAT_TYPE
             print("Set ramp time to 0")
-
-    def get_amplitude(self):
-        """
-        Get the amplitude for the pH function.
-        """
-        return self._amplitude
-
-    def set_amplitude(self, amplitude):
-        """
-        Set the amplitude for the pH function.
-        """
-        self._amplitude = amplitude
-
-    def get_period_in_seconds(self):
-        """
-        Get the period in seconds for the pH function.
-        """
-        return self._period_in_seconds
 
     def set_sine_amplitude_and_hours(self, amplitude, period_in_hours):
         """
