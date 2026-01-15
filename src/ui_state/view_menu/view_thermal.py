@@ -25,9 +25,7 @@ class ViewThermal(UIState):
         self.titrator.lcd.print("Avg    Raw", line=1)
         average = self.titrator.thermal_probe.get_running_average()
         raw = self.titrator.thermal_probe.get_raw_temperature()
-        self.titrator.lcd.print(
-            f"{average}   {raw}", line=2
-        )
+        self.titrator.lcd.print(f"{average}   {raw}", line=2)
 
     def handle_key(self, key):
         """
