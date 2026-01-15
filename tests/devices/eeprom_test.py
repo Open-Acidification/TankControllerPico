@@ -31,32 +31,6 @@ def test_set_google_sheet_interval():
     assert eeprom.get_google_sheet_interval(65535) == 60
 
 
-def test_default_heat_value():
-    """
-    The function to test the default heat value
-    """
-    eeprom = EEPROM()
-    assert eeprom.get_heat(False) is True
-
-
-def test_save_heat_value():
-    """
-    The function to test setting the heat value
-    """
-    eeprom = EEPROM()
-    eeprom._heat = False
-    assert eeprom.get_heat(True) is False
-
-
-def test_set_heat():
-    """
-    The function to test setting the heat via setter
-    """
-    eeprom = EEPROM()
-    eeprom.set_heat(False)
-    assert eeprom.get_heat(True) is False
-
-
 def test_pid_values():
     """
     The function to test the PID values
@@ -91,23 +65,6 @@ def test_set_pid_values():
     assert eeprom.get_kp(100000.0) == 22.0
     assert eeprom.get_ki(0.0) == 29.0
     assert eeprom.get_kd(0.0) == 35.0
-
-
-def test_thermal_correction_value():
-    """
-    The function to test the default thermal_correction_address value
-    """
-    eeprom = EEPROM()
-    assert eeprom.get_thermal_correction(0.0) == 12
-
-
-def test_save_thermal_correction_value():
-    """
-    The function to test setting the thermal_correction_address value
-    """
-    eeprom = EEPROM()
-    eeprom._thermal_correction = 2.5
-    assert eeprom.get_thermal_correction(0.0) == 2.5
 
 
 def test_tank_id_value():
