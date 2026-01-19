@@ -19,6 +19,7 @@ from src.devices.ph_control import PHControl
 from src.devices.ph_probe_mock import PHProbe
 from src.devices.pid import PID
 from src.devices.sd import SD
+from src.devices.thermal_control import ThermalControl
 from src.devices.thermal_probe import ThermalProbe
 from src.ui_state.main_menu import MainMenu
 from src.version import VERSION
@@ -50,6 +51,9 @@ class Titrator:
 
         # Initialize PH Control
         self.ph_control = PHControl(self)
+
+        # Initialize Thermal Control
+        self.thermal_control = ThermalControl(self)
 
         # Initialize Thermal Probe
         self.thermal_probe = ThermalProbe(self.eeprom)

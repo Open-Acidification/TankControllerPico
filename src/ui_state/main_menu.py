@@ -35,6 +35,7 @@ from src.ui_state.view_menu.view_ph import ViewPH
 from src.ui_state.view_menu.view_ph_calibration import ViewPHCalibration
 from src.ui_state.view_menu.view_pid_constants import ViewPIDConstants
 from src.ui_state.view_menu.view_tank_id import ViewTankID
+from src.ui_state.view_menu.view_thermal import ViewThermal
 from src.ui_state.view_menu.view_thermal_correction import (
     ViewThermalCorrection,
 )
@@ -64,6 +65,7 @@ class MainMenu(UIState):
             "View pH slope",
             "View PID",
             "View tank ID",
+            "View temp",
             "View temp cal",
             "View time",
             "View version",
@@ -99,6 +101,7 @@ class MainMenu(UIState):
             ViewPHCalibration,  # View pH slope
             ViewPIDConstants,  # View PID constants
             ViewTankID,  # View Tank ID
+            ViewThermal,  # View Temperature
             ViewThermalCorrection,  # View Thermal Correction
             ViewTime,  # View Time
             ViewVersion,  # View Version
@@ -259,6 +262,29 @@ class MainMenu(UIState):
         self.titrator.lcd.print("".join(output), line=1)
 
         self.titrator.lcd.print("", line=2)
+        lcd = self.titrator.lcd
+        lcd.print("Idle Line 1", line=1)
+
+        thermal_control = self.titrator.thermal_control
+        temperature = self.titrator.thermal_probe.get_running_average()
+        status = "h" if thermal_control.get_heat(True) else "c"
+
+        output = [" "] * 20
+        output[0] = "T"
+        output[1] = "=" if int(time.monotonic()) % 2 == 0 else " "
+
+        buffer = f"{temperature:5.2f}"
+        output[2:7] = list(buffer[:5])
+
+        output[7] = " "
+        output[8] = status
+        output[9] = " "
+
+        thermal_target = thermal_control.get_current_thermal_target()
+        buffer = f"{thermal_target:5.2f}"
+        output[10:15] = list(buffer[:5])
+
+        self.titrator.lcd.print("".join(output), line=2)
 
     def loop(self):
         """

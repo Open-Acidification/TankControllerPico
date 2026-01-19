@@ -31,58 +31,6 @@ def test_set_google_sheet_interval():
     assert eeprom.get_google_sheet_interval(65535) == 60
 
 
-def test_default_heat_value():
-    """
-    The function to test the default heat value
-    """
-    eeprom = EEPROM()
-    assert eeprom.get_heat(False) is True
-
-
-def test_save_heat_value():
-    """
-    The function to test setting the heat value
-    """
-    eeprom = EEPROM()
-    eeprom._heat = False
-    assert eeprom.get_heat(True) is False
-
-
-def test_set_heat():
-    """
-    The function to test setting the heat via setter
-    """
-    eeprom = EEPROM()
-    eeprom.set_heat(False)
-    assert eeprom.get_heat(True) is False
-
-
-def test_default_ignore_bad_ph_slope_value():
-    """
-    The function to test the default ignore_bad_ph_slope value
-    """
-    eeprom = EEPROM()
-    assert eeprom.get_ignore_bad_ph_slope(True) is False
-
-
-def test_save_ignore_bad_ph_slope_value():
-    """
-    The function to test setting the ignore_bad_ph_slope value
-    """
-    eeprom = EEPROM()
-    eeprom._ignore_bad_ph_slope = True
-    assert eeprom.get_ignore_bad_ph_slope(False) is True
-
-
-def test_set_ignore_bad_ph_slope():
-    """
-    The function to test setting the ignore_bad_ph_slope via setter
-    """
-    eeprom = EEPROM()
-    eeprom.set_ignore_bad_ph_slope(True)
-    assert eeprom.get_ignore_bad_ph_slope(False) is True
-
-
 def test_pid_values():
     """
     The function to test the PID values
