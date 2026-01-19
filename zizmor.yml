@@ -1,0 +1,6 @@
+rules:
+  unpinned-uses:
+    ignore:
+      - check-spelling.yml
+      - linter.yml
+      - pytest.yml

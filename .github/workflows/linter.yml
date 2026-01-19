@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v5
+        uses: actions/checkout@v6
         with:
           # Full git history is needed to get a proper
           # list of changed files within `super-linter`
@@ -28,7 +28,7 @@ jobs:
           persist-credentials: false
 
       - name: Lint Code Base
-        uses: super-linter/super-linter/slim@96eef5c0c16e2eaa3a49f8f6f68e8b8d33db5d0d # v8.2.1
+        uses: super-linter/super-linter/slim@v8.2.1
         env:
           LINTER_RULES_PATH: /
           VALIDATE_ALL_CODEBASE: true
