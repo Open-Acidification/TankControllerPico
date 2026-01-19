@@ -19,9 +19,11 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v5
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v5
+        with:
+          persist-credentials: false
 
       - name: Check Spelling
-        uses: codespell-project/actions-codespell@master
+        uses: codespell-project/actions-codespell@42fe0b24d5b632e195b6e63de8e7d18f538f14f1 # master
         with:
           check_filenames: true

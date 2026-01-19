@@ -4,6 +4,7 @@ The file to configure mock objects
 
 # pylint: disable=unused-import, ungrouped-imports, wrong-import-position
 # mypy: ignore-errors
+# ruff: noqa: F401
 
 from src import mock_config
 

@@ -12,6 +12,8 @@ uv run black .
 uv run isort .
 uv run flake8 .
 uv run pylint main.py src/ tests/
+uv run ruff check --fix .
+uv run ruff format .
 
 # Clean up
 find . -name ".pytest_cache" -type d -exec /bin/rm -rf {} +
