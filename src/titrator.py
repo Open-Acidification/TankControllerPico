@@ -10,13 +10,13 @@ from src.devices.library import (
     Heater,
     Keypad,
     LiquidCrystal,
-    PHProbe,
     StirControl,
     SyringePump,
     TemperatureControl,
     TemperatureProbe,
 )
 from src.devices.ph_control import PHControl
+from src.devices.ph_probe_mock import PHProbe
 from src.devices.pid import PID
 from src.devices.sd import SD
 from src.devices.thermal_control import ThermalControl
@@ -50,7 +50,7 @@ class Titrator:
         self.pid = PID(self.eeprom)
 
         # Initialize PH Control
-        self.ph_control = PHControl()
+        self.ph_control = PHControl(self)
 
         # Initialize Thermal Control
         self.thermal_control = ThermalControl(self)
@@ -68,7 +68,7 @@ class Titrator:
         self.keypad = Keypad()
 
         # Initialize pH Probe
-        self.ph_probe = PHProbe()
+        self.ph_probe = PHProbe(self.eeprom)
 
         # Initialize Syringe Pump
         self.pump = SyringePump()
