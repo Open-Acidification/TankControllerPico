@@ -21,7 +21,7 @@ class SetChillOrHeat(UIState):
         """
         self.titrator.lcd.print("1:Chill; 9:Heat", line=1)
 
-        if self.titrator.eeprom.get_heat(True):
+        if self.titrator.thermal_control.get_heat(True):
             self.titrator.lcd.print("Currently: Heat", line=2)
         else:
             self.titrator.lcd.print("Currently: Chill", line=2)
@@ -31,17 +31,17 @@ class SetChillOrHeat(UIState):
         Handle key presses to return to the previous state.
         """
         if key == Keypad.KEY_1:
-            self.titrator.eeprom.set_heat(False)
+            self.titrator.thermal_control.set_heat(False)
             self.titrator.lcd.print("Use chiller", line=2)
             self.return_to_main_menu(ms_delay=3000)
 
         if key == Keypad.KEY_9:
-            self.titrator.eeprom.set_heat(True)
+            self.titrator.thermal_control.set_heat(True)
             self.titrator.lcd.print("Use heater", line=2)
             self.return_to_main_menu(ms_delay=3000)
 
         if key == Keypad.KEY_A:
-            if self.titrator.eeprom.get_heat(True):
+            if self.titrator.thermal_control.get_heat(True):
                 self.titrator.lcd.print("Use heater", line=2)
             else:
                 self.titrator.lcd.print("Use chiller", line=2)

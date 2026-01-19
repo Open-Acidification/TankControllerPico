@@ -32,7 +32,7 @@ def test_set_heat(print_mock):
     print_mock.assert_any_call("1:Chill; 9:Heat", line=1)
 
     state.handle_key("9")
-    assert titrator.ph_control.use_pid is True
+    assert titrator.thermal_control.get_heat(False) is True
     print_mock.assert_any_call("Use heater", line=2)
 
     assert isinstance(titrator.state, Wait)
@@ -51,7 +51,7 @@ def test_set_chill(print_mock):
     print_mock.assert_any_call("1:Chill; 9:Heat", line=1)
 
     state.handle_key("1")
-    assert titrator.eeprom.get_heat(True) is False
+    assert titrator.thermal_control.get_heat(True) is False
     print_mock.assert_any_call("Use chiller", line=2)
 
     assert isinstance(titrator.state, Wait)
@@ -72,7 +72,7 @@ def test_handle_key_a(print_mock):
 
     state.handle_key("A")
     print_mock.assert_any_call("Use heater", line=2)
-    assert titrator.eeprom.get_heat(True) is True
+    assert titrator.thermal_control.get_heat(True) is True
 
     assert isinstance(titrator.state, Wait)
     assert isinstance(titrator.state.next_state, MainMenu)
