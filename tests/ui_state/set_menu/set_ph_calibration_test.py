@@ -8,8 +8,12 @@ from src.devices.library import LiquidCrystal
 from src.titrator import Titrator
 from src.ui_state.main_menu import MainMenu
 from src.ui_state.set_menu.set_ph_calibration import PHCalibration
+from src.ui_state.set_menu.set_ph_calibration_mid import (
+    PHCalibrationHigher,
+    PHCalibrationMid,
+    PHCalibrationOnly,
+)
 from src.ui_state.ui_state import UIState
-from src.ui_state.wait import Wait
 
 
 class MockPreviousState(UIState):
@@ -24,7 +28,7 @@ class MockPreviousState(UIState):
 @mock.patch.object(LiquidCrystal, "print")
 def test_one_point_calibration(print_mock):
     """
-    Test that entering '1' triggers 1-point calibration and returns to main menu.
+    Test that entering '1' triggers 1-point calibration and transitions to PHCalibrationOnly.
     """
     titrator = Titrator()
     state = PHCalibration(titrator, MockPreviousState(titrator))
@@ -36,14 +40,14 @@ def test_one_point_calibration(print_mock):
     state.handle_key("1")
     print_mock.assert_any_call("1-pt pH calib...", line=2)
 
-    assert isinstance(titrator.state, Wait)
-    assert isinstance(titrator.state.next_state, MainMenu)
+    assert isinstance(titrator.state, PHCalibrationOnly)
+    assert isinstance(titrator.state.previous_state, PHCalibration)
 
 
 @mock.patch.object(LiquidCrystal, "print")
 def test_two_point_calibration(print_mock):
     """
-    Test that entering '2' triggers 2-point calibration and returns to main menu.
+    Test that entering '2' triggers 2-point calibration and transitions to PHCalibrationHigher.
     """
     titrator = Titrator()
     state = PHCalibration(titrator, MockPreviousState(titrator))
@@ -55,14 +59,14 @@ def test_two_point_calibration(print_mock):
     state.handle_key("2")
     print_mock.assert_any_call("2 Point Cali", line=2)
 
-    assert isinstance(titrator.state, Wait)
-    assert isinstance(titrator.state.next_state, MainMenu)
+    assert isinstance(titrator.state, PHCalibrationHigher)
+    assert isinstance(titrator.state.previous_state, PHCalibration)
 
 
 @mock.patch.object(LiquidCrystal, "print")
 def test_three_point_calibration(print_mock):
     """
-    Test that entering '3' triggers 3-point calibration and returns to main menu.
+    Test that entering '3' triggers 3-point calibration and transitions to PHCalibrationMid.
     """
     titrator = Titrator()
     state = PHCalibration(titrator, MockPreviousState(titrator))
@@ -74,8 +78,8 @@ def test_three_point_calibration(print_mock):
     state.handle_key("3")
     print_mock.assert_any_call("3 Point Cali", line=2)
 
-    assert isinstance(titrator.state, Wait)
-    assert isinstance(titrator.state.next_state, MainMenu)
+    assert isinstance(titrator.state, PHCalibrationMid)
+    assert isinstance(titrator.state.previous_state, PHCalibration)
 
 
 def test_handle_key_4():

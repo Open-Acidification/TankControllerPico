@@ -2,6 +2,11 @@
 The file to hold the PHCalibration class
 """
 
+from src.ui_state.set_menu.set_ph_calibration_mid import (
+    PHCalibrationHigher,
+    PHCalibrationMid,
+    PHCalibrationOnly,
+)
 from src.ui_state.ui_state import UIState
 
 
@@ -28,14 +33,15 @@ class PHCalibration(UIState):
         if key == "1":
             self.titrator.lcd.print("1-pt pH calib...", line=2)
             self.return_to_main_menu(ms_delay=3000)
+            self._set_next_state(PHCalibrationOnly(self.titrator, self), True)
 
         if key == "2":
             self.titrator.lcd.print("2 Point Cali", line=2)
-            self.return_to_main_menu(ms_delay=3000)
+            self._set_next_state(PHCalibrationHigher(self.titrator, self), True)
 
         if key == "3":
             self.titrator.lcd.print("3 Point Cali", line=2)
-            self.return_to_main_menu(ms_delay=3000)
+            self._set_next_state(PHCalibrationMid(self.titrator, self), True)
 
         if key == "4":
             self._set_next_state(self.previous_state, True)
