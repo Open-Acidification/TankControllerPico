@@ -227,6 +227,7 @@ class MainMenu(UIState):
         """
         Displays the idle screen.
         """
+        # pH line (line 1)
         if self.titrator.ph_probe.should_warn_about_calibration():
             self._set_next_state(PHCalibrationWarning(self.titrator, self), True)
 
@@ -261,10 +262,7 @@ class MainMenu(UIState):
 
         self.titrator.lcd.print("".join(output), line=1)
 
-        self.titrator.lcd.print("", line=2)
-        lcd = self.titrator.lcd
-        lcd.print("Idle Line 1", line=1)
-
+        # Temperature line (line 2)
         thermal_control = self.titrator.thermal_control
         temperature = self.titrator.thermal_probe.get_running_average()
         status = "h" if thermal_control.get_heat(True) else "c"
