@@ -117,4 +117,3 @@ def test_set_tank_id():
     eeprom = EEPROM()
     eeprom.set_tank_id(10)
     assert eeprom.get_tank_id(0) == 10
-
