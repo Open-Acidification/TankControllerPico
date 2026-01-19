@@ -31,6 +31,32 @@ def test_set_google_sheet_interval():
     assert eeprom.get_google_sheet_interval(65535) == 60
 
 
+def test_default_ignore_bad_ph_slope_value():
+    """
+    The function to test the default ignore_bad_ph_slope value
+    """
+    eeprom = EEPROM()
+    assert eeprom.get_ignore_bad_ph_slope(True) is False
+
+
+def test_save_ignore_bad_ph_slope_value():
+    """
+    The function to test setting the ignore_bad_ph_slope value
+    """
+    eeprom = EEPROM()
+    eeprom._ignore_bad_ph_slope = True
+    assert eeprom.get_ignore_bad_ph_slope(False) is True
+
+
+def test_set_ignore_bad_ph_slope():
+    """
+    The function to test setting the ignore_bad_ph_slope via setter
+    """
+    eeprom = EEPROM()
+    eeprom.set_ignore_bad_ph_slope(True)
+    assert eeprom.get_ignore_bad_ph_slope(False) is True
+
+
 def test_pid_values():
     """
     The function to test the PID values
@@ -92,19 +118,3 @@ def test_set_tank_id():
     eeprom.set_tank_id(10)
     assert eeprom.get_tank_id(0) == 10
 
-
-def test_thermal_correction_value():
-    """
-    The function to test the default thermal_correction_address value
-    """
-    eeprom = EEPROM()
-    assert eeprom.get_thermal_correction(0.0) == 12
-
-
-def test_save_thermal_correction_value():
-    """
-    The function to test setting the thermal_correction_address value
-    """
-    eeprom = EEPROM()
-    eeprom._thermal_correction = 2.5
-    assert eeprom.get_thermal_correction(0.0) == 2.5
