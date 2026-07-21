@@ -10,30 +10,117 @@
 
 Update the `TankController` code from C++ to Python and run on a Raspberry Pico.
 
+# Getting Started
+
 ## Requirements
 
-To set up and run this project, the system must meet the following requirements:
+Before running the project, install the following:
 
-- **uv**: The python project package manager must be installed. Learn more at [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/).  
-  Format contributions with `uv run black .`
-- **tkinter**: The Python GUI to test locally. Often installed separately as `python3-tk`.  
-  Verify with `python -m tkinter`. A small GUI window should appear if Tkinter is installed correctly.
+- **Python 3.14+**
+- **uv** (Python package manager)
+  - Installation: https://docs.astral.sh/uv/
+- **Tkinter** (required for the local GUI)
+  - Verify the installation:
 
-### Mac Requirements
+    ```bash
+    python -m tkinter
+    ```
 
-The GUI had trouble running on older version of python.
+    A small GUI window should appear if Tkinter is installed correctly.
 
-```sh
+### macOS
+
+Older Python versions may have issues running the GUI. Install Tkinter for Python 3.14:
+
+```bash
 brew install python-tk@3.14
 ```
 
-## Run in Local Environment
+### Windows
 
-To run in a local environment with mocked devices (with the UI State Machine integrated)
+Windows development requires **Windows Subsystem for Linux (WSL)**.
 
-```sh
+#### 1. Install WSL
+
+Open **PowerShell as Administrator** and run:
+
+```powershell
+wsl --install
+```
+
+Restart your computer, open **Ubuntu**, and create your Linux username and password.
+
+Update Ubuntu:
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+#### 2. Install Development Tools
+
+```bash
+sudo apt install git python3 python3-pip python3-venv build-essential
+```
+
+Install **uv**:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Reload your shell:
+
+```bash
+source ~/.bashrc
+```
+
+## Clone the Repository
+
+From your Ubuntu terminal:
+
+```bash
+cd ~
+git clone https://github.com/username/TankControllerPico.git
+cd TankControllerPico
+```
+
+## Open in VS Code (Windows)
+
+1. Install the **Remote - WSL** extension.
+2. Open the project from the Ubuntu terminal:
+
+```bash
+code .
+```
+
+Install the **Python** and **Pylance** extensions in **WSL: Ubuntu**.
+
+## Set Up the Python Environment
+
+Create a virtual environment and install the project dependencies:
+
+```bash
+uv venv
+uv pip install -e ".[dev]"
+```
+
+## Run the Project
+
+Launch the local GUI with mocked devices:
+
+```bash
 ./run_gui.sh
 ```
+
+## picture
+
+Running the project should launch the TankController GUI.
+
+<p align="center">
+  <img src="images/gui_screenshot.png" alt="TankController GUI" width="800">
+</p>
+
 
 ## Features
 
