@@ -6,41 +6,63 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-## Project Motivations
+# TankControllerPico
 
-Update the `TankController` code from C++ to Python and run on a Raspberry Pico.
+## Project Motivation
+
+The goal of this project is to migrate the original **TankController** software from **C++** to **Python** and run it on a **Raspberry Pi Pico**.
+
+---
 
 # Getting Started
 
-## Requirements
+Follow the steps below to set up your development environment.
 
-Before running the project, install the following:
+> [!NOTE]
+> Windows development requires **Windows Subsystem for Linux (WSL)**. All project commands should be run inside your Linux terminal.
+
+---
+
+## Step 1 — Install Prerequisites
+
+Before cloning the project, install the following:
 
 - **Python 3.14+**
 - **uv** (Python package manager)
-  - Installation: https://docs.astral.sh/uv/
+  - https://docs.astral.sh/uv/
 - **Tkinter** (required for the local GUI)
-  - Verify the installation:
 
-    ```bash
-    python -m tkinter
-    ```
+### Verify Tkinter
 
-    A small GUI window should appear if Tkinter is installed correctly.
+Run:
+
+```bash
+python -m tkinter
+```
+
+If Tkinter is installed correctly, a small GUI window will appear.
+
+---
+
+## Step 2 — Complete Platform Setup
+
+Choose the instructions for your operating system.
 
 ### macOS
 
-Older Python versions may have issues running the GUI. Install Tkinter for Python 3.14:
+Older Python versions may have issues running the GUI.
+
+Install the Tkinter package for Python 3.14:
 
 ```bash
 brew install python-tk@3.14
 ```
 
+---
+
 ### Windows
 
-Windows development requires **Windows Subsystem for Linux (WSL)**.
-
-#### 1. Install WSL
+#### Install WSL
 
 Open **PowerShell as Administrator** and run:
 
@@ -48,22 +70,26 @@ Open **PowerShell as Administrator** and run:
 wsl --install
 ```
 
-Restart your computer, open **Ubuntu**, and create your Linux username and password.
+Restart your computer.
 
-Update Ubuntu:
+After restarting:
+
+1. Open **Ubuntu** from the Start menu.
+2. Create your Linux username and password.
+3. Update Ubuntu:
 
 ```bash
 sudo apt update
 sudo apt upgrade -y
 ```
 
-#### 2. Install Development Tools
+#### Install Development Tools
 
 ```bash
 sudo apt install git python3 python3-pip python3-venv build-essential
 ```
 
-Install **uv**:
+#### Install uv
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -75,37 +101,49 @@ Reload your shell:
 source ~/.bashrc
 ```
 
-## Clone the Repository
+#### Configure VS Code
 
-From your Ubuntu terminal:
+Install the following VS Code extensions:
 
-```bash
-cd ~
-git clone https://github.com/username/TankControllerPico.git
-cd TankControllerPico
-```
+- Remote - WSL
+- Python
+- Pylance
 
-## Open in VS Code (Windows)
-
-1. Install the **Remote - WSL** extension.
-2. Open the project from the Ubuntu terminal:
+Once the repository has been cloned, open it from your Ubuntu terminal:
 
 ```bash
 code .
 ```
 
-Install the **Python** and **Pylance** extensions in **WSL: Ubuntu**.
+---
 
-## Set Up the Python Environment
+## Step 3 — Clone the Repository
 
-Create a virtual environment and install the project dependencies:
+Clone the repository into your Linux environment.
+
+```bash
+git clone https://github.com/username/TankControllerPico.git
+cd TankControllerPico
+```
+
+---
+
+## Step 4 — Set Up the Development Environment
+
+Create a virtual environment:
 
 ```bash
 uv venv
+```
+
+Install the project dependencies:
+
+```bash
 uv pip install -e ".[dev]"
 ```
 
-## Run the Project
+---
+## Step 5 — Run the Project
 
 Launch the local GUI with mocked devices:
 
@@ -113,12 +151,14 @@ Launch the local GUI with mocked devices:
 ./run_gui.sh
 ```
 
-## picture
-
-Running the project should launch the TankController GUI.
+If the setup was successful, the TankController GUI should open and look similar to the example below.
 
 <p align="center">
-  <img src="images/gui_screenshot.png" alt="TankController GUI" width="800">
+  <img
+    src="images/gui_screenshot.png"
+    alt="TankController GUI"
+    width="850"
+  />
 </p>
 
 
