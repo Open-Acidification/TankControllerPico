@@ -6,15 +6,13 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-# TankControllerPico
-
 ## Project Motivation
 
 The goal of this project is to migrate the original **TankController** software from **C++** to **Python** and run it on a **Raspberry Pi Pico**.
 
 ---
 
-# Getting Started
+## Getting Started
 
 Follow the steps below to set up your development environment.
 
@@ -29,12 +27,10 @@ Before cloning the project, install the following:
 
 - **Python 3.14+**
 - **uv** (Python package manager)
-  - https://docs.astral.sh/uv/
+  - <https://docs.astral.sh/uv/>
 - **Tkinter** (required for the local GUI)
 
-### Verify Tkinter
-
-Run:
+ Verify Tkinter by running :
 
 ```bash
 python -m tkinter
@@ -57,12 +53,11 @@ Install the Tkinter package for Python 3.14:
 ```bash
 brew install python-tk@3.14
 ```
-
 ---
 
 ### Windows
 
-#### Install WSL
+**Install WSL**
 
 Open **PowerShell as Administrator** and run:
 
@@ -83,13 +78,13 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
-#### Install Development Tools
+**Install Development Tools**
 
 ```bash
 sudo apt install git python3 python3-pip python3-venv build-essential
 ```
 
-#### Install uv
+**Install uv**
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -101,9 +96,9 @@ Reload your shell:
 source ~/.bashrc
 ```
 
-#### Configure VS Code
+**Configure Visual Studio Code**
 
-Install the following VS Code extensions:
+Install the following Visual Studio Code extensions:
 
 - Remote - WSL
 - Python
