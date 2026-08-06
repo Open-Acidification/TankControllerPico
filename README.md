@@ -30,7 +30,7 @@ Before cloning the project, install the following:
   - <https://docs.astral.sh/uv/>
 - **Tkinter** (required for the local GUI)
 
- Verify Tkinter by running :
+Verify Tkinter by running :
 
 ```bash
 python -m tkinter
@@ -53,6 +53,7 @@ Install the Tkinter package for Python 3.14:
 ```bash
 brew install python-tk@3.14
 ```
+
 ---
 
 ### Windows
@@ -138,6 +139,7 @@ uv pip install -e ".[dev]"
 ```
 
 ---
+
 ## Step 5 — Run the Project
 
 Launch the local GUI with mocked devices:
@@ -155,7 +157,6 @@ If the setup was successful, the TankController GUI should open and look similar
     width="850"
   />
 </p>
-
 
 ## Features
 
