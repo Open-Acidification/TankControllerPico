@@ -19,6 +19,7 @@ class DateTime:
         Returns the current date and time.
         """
         return datetime.now() - self._offset
+
     def now(self):
         """
         Equivalent to the C++ DateTime_TC::now() method.
@@ -34,6 +35,7 @@ class DateTime:
         if new_time is not None:
             self._offset = datetime.now() - new_time
         return self._offset
+
     def set_as_current(self, new_time):
         """
         Equivalent to the C++ setAsCurrent() method.
@@ -76,7 +78,6 @@ class DateTime:
         Used by the Tank Controller when organizing log files.
         """
         return self.current().strftime("/%Y/%m")
-
 
     def uptime(self):
         """
