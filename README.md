@@ -105,7 +105,7 @@ If the setup was successful, the TankController GUI should open and look similar
 
 To perform Pytest tests for the devices and UI states.
 
- macOS / Linux
+macOS / Linux
 
 ```bash
 ./test.sh
