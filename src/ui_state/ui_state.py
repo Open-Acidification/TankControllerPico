@@ -61,7 +61,6 @@ class UIState:
         """
         Optional function that is called upon entering a new state
         """
-        pass
 
     def _set_next_state(self, state, update):
         """
