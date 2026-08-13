@@ -12,25 +12,19 @@ The goal of this project is to migrate the original **TankController** software 
 
 ---
 
-## Getting Started
+### Getting Started
 
-Follow the steps below to set up your development environment.
+#### Step 1 — Install Dependencies
 
-> [!NOTE]
-> Windows development requires **Windows Subsystem for Linux (WSL)**. All project commands should be run inside your Linux terminal.
-
----
-
-## Step 1 — Install Prerequisites
-
-Before cloning the project, install the following:
+Before getting started, install the following:
 
 - **Python 3.14+**
-- **uv** (Python package manager)
-  - <https://docs.astral.sh/uv/>
-- **Tkinter** (required for the local GUI)
-
-Verify Tkinter by running :
+- **uv** — Python package manager
+  <https://docs.astral.sh/uv/>
+- **Visual Studio Code**
+  <https://code.visualstudio.com/>
+- **Tkinter** — required for the local GUI
+  Verify that Tkinter is installed by running:
 
 ```bash
 python -m tkinter
@@ -38,17 +32,9 @@ python -m tkinter
 
 If Tkinter is installed correctly, a small GUI window will appear.
 
----
+##### macOS
 
-## Step 2 — Complete Platform Setup
-
-Choose the instructions for your operating system.
-
-### macOS
-
-Older Python versions may have issues running the GUI.
-
-Install the Tkinter package for Python 3.14:
+If Tkinter is not already installed, install it with:
 
 ```bash
 brew install python-tk@3.14
@@ -56,93 +42,35 @@ brew install python-tk@3.14
 
 ---
 
-### Windows
+#### Step 2 — Fork or Clone the Repository
 
-**Install WSL**
+You can either fork the repository to your own GitHub account or clone it directly.
 
-Open **PowerShell as Administrator** and run:
-
-```powershell
-wsl --install
-```
-
-Restart your computer.
-
-After restarting:
-
-1. Open **Ubuntu** from the Start menu.
-2. Create your Linux username and password.
-3. Update Ubuntu:
+To clone the repository, open a Visual Studio Code Terminal and run:
 
 ```bash
-sudo apt update
-sudo apt upgrade -y
-```
-
-**Install Development Tools**
-
-```bash
-sudo apt install git python3 python3-pip python3-venv build-essential
-```
-
-**Install uv**
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-Reload your shell:
-
-```bash
-source ~/.bashrc
-```
-
-**Configure Visual Studio Code**
-
-Install the following Visual Studio Code extensions:
-
-- Remote - WSL
-- Python
-- Pylance
-
-Once the repository has been cloned, open it from your Ubuntu terminal:
-
-```bash
-code .
-```
-
----
-
-## Step 3 — Clone the Repository
-
-Clone the repository into your Linux environment.
-
-```bash
-git clone https://github.com/username/TankControllerPico.git
+git clone https://github.com/Open-Acidification/TankControllerPico.git
 cd TankControllerPico
 ```
 
----
-
-## Step 4 — Set Up the Development Environment
-
-Create a virtual environment:
-
-```bash
-uv venv
-```
-
-Install the project dependencies:
-
-```bash
-uv pip install -e ".[dev]"
-```
+Make sure the project is saved on your local computer.
 
 ---
 
-## Step 5 — Run the Project
+#### Step 3 — Open the Visual Studio Code Terminal and Run the Project
 
-Launch the local GUI with mocked devices:
+In Visual Studio Code, open the integrated terminal by navigating to:
+
+**Terminal → New Terminal**
+Then, use the script for your operating system:
+
+##### Windows (Run project)
+
+```powershell
+.\run_gui.bat
+```
+
+##### macOS / Linux (Run project)
 
 ```bash
 ./run_gui.sh
@@ -150,15 +78,9 @@ Launch the local GUI with mocked devices:
 
 If the setup was successful, the TankController GUI should open and look similar to the example below.
 
-<p align="center">
-  <img
-    src="images/gui_screenshot.png"
-    alt="TankController GUI"
-    width="850"
-  />
-</p>
+![TankController GUI](images/gui_screenshot.png)
 
-## Features
+### Features
 
 | View Commands    | Set Commands     |
 | ---------------- | ---------------- |
@@ -179,12 +101,20 @@ If the setup was successful, the TankController GUI should open and look similar
 |                  | Set temperature  |
 |                  | Set date/time    |
 
-## Testing
+### Testing
 
 To perform Pytest tests for the devices and UI states.
 
-```sh
+#### macOS / Linux (Testing)
+
+```bash
 ./test.sh
+```
+
+#### Windows (Testing)
+
+```powershell
+.\test.bat
 ```
 
 ## Contributors ✨
