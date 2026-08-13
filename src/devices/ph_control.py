@@ -19,7 +19,7 @@ class PHControl:
         The constructor function for the PH Control class
         """
         self.titrator = titrator
-        self.use_pid = bool(True)
+        self.use_pid = True
         self._base_target_ph = 8.125
         self._current_target_ph = 8.5
         self._ph_function_type = PHControl.FLAT_TYPE  # Default to FLAT_TYPE

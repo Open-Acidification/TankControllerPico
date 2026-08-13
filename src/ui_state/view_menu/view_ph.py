@@ -29,7 +29,7 @@ class ViewPH(UIState):
         """
         Rotate display between header/values and pH function/type variables every 3 seconds.
         """
-        elapsed = int(((time.monotonic() - self._start_time) / 3.0)) % 2
+        elapsed = int((time.monotonic() - self._start_time) / 3.0) % 2
         if elapsed == 0:
             self.load_header(line=1)
             self.load_values(line=2)

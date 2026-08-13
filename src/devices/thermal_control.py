@@ -19,7 +19,7 @@ class ThermalControl:
         The constructor function for the ThermalControl class
         """
         self.titrator = titrator
-        self._heat = bool(True)
+        self._heat = True
         self._base_thermal_target = 78
         self._current_thermal_target = 67
         self._thermal_function_type = ThermalControl.FLAT_TYPE
