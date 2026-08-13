@@ -14,6 +14,8 @@ The goal of this project is to migrate the original **TankController** software 
 
 ### Getting Started
 
+#### Step 1 — Install Dependencies
+
 Before getting started, install the following:
 
 - **Python 3.14+**
@@ -30,7 +32,7 @@ python -m tkinter
 
 If Tkinter is installed correctly, a small GUI window will appear.
 
-#### macOS
+##### macOS
 
 If Tkinter is not already installed, install it with:
 
