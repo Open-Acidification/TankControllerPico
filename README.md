@@ -64,13 +64,13 @@ In Visual Studio Code, open the integrated terminal by navigating to:
 **Terminal → New Terminal**
 Then, use the script for your operating system:
 
-##### Windows
+##### Windows (Run project)
 
 ```powershell
 .\run_gui.bat
 ```
 
-##### macOS / Linux
+##### macOS / Linux (Run project)
 
 ```bash
 ./run_gui.sh
@@ -105,13 +105,13 @@ If the setup was successful, the TankController GUI should open and look similar
 
 To perform Pytest tests for the devices and UI states.
 
-macOS / Linux
+#### macOS / Linux (Testing)
 
 ```bash
 ./test.sh
 ```
 
-Window
+#### Windows (Testing)
 
 ```powershell
 .\test.bat
