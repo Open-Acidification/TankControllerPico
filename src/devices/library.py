@@ -21,6 +21,7 @@ if mock_config.MOCK_ENABLED:
     from src.devices.max31865_mock import MAX31865
     from src.devices.serial_mock import Serial
     from src.devices.spi_mock import SPI
+    from src.devices.led_mock import LED
 else:
     import adafruit_ads1x15.ads1115 as ADS
     import board

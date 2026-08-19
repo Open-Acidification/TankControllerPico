@@ -14,6 +14,7 @@ from src.devices.library import (
     SyringePump,
     TemperatureControl,
     TemperatureProbe,
+    LED,
 )
 from src.devices.ph_control import PHControl
 from src.devices.ph_probe_mock import PHProbe
@@ -63,6 +64,9 @@ class Titrator:
 
         # Initialize LCD
         self.lcd = LiquidCrystal()
+
+        # Initialize LED
+        self.led = LED()
 
         # Initialize Keypad
         self.keypad = Keypad()
