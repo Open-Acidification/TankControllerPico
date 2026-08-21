@@ -34,7 +34,7 @@ class GUI:
 
         # Initialize the GUI Frame
         self.root = tk.Tk()
-        self.root.state("zoomed")
+        self.root.geometry("560x200")
         self.root.title("Tank Controller")
         self.root.configure(background="black")
 
