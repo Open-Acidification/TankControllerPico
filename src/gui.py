@@ -34,15 +34,31 @@ class GUI:
 
         # Initialize the GUI Frame
         self.root = tk.Tk()
-        self.root.geometry("280x200")
+        self.root.geometry("560x200")
         self.root.title("Tank Controller")
         self.root.configure(background="black")
+
+        # Split window into left and right sections
         self.root.columnconfigure(0, weight=1)
+        self.root.columnconfigure(1, weight=1)
         self.root.rowconfigure(0, weight=1)
 
+        # ---------------------------------------------------------
+        # LEFT SIDE - LCD AND KEYPAD
+        # ---------------------------------------------------------
+
+        left_frame = tk.Frame(self.root, bg="lightgray")
+        left_frame.grid(row=0, column=0, sticky=STICKY)
+
+        left_frame.columnconfigure(0, weight=1)
+        left_frame.rowconfigure(0, weight=1)
+        left_frame.rowconfigure(1, weight=1)
+
         # Initialize the Labels
-        label_frame = tk.Frame(self.root)
+        label_frame = tk.Frame(left_frame)
         label_frame.config(bg=BG)
+
+        label_frame.columnconfigure(0, weight=1)
         label_frame.rowconfigure(0, weight=1)
         label_frame.rowconfigure(1, weight=1)
         label_frame.rowconfigure(2, weight=1)
@@ -95,7 +111,7 @@ class GUI:
         label_frame.grid(row=0, column=0, sticky=STICKY)
 
         # Initialize the Buttons
-        buttonframe = tk.Frame(self.root)
+        buttonframe = tk.Frame(left_frame)
         buttonframe.columnconfigure(0, weight=1)
         buttonframe.columnconfigure(1, weight=1)
         buttonframe.columnconfigure(2, weight=1)
@@ -215,7 +231,50 @@ class GUI:
 
         buttonframe.grid(row=1, column=0, sticky=STICKY)
 
-        self.thread = threading.Thread(target=self.update_lcd, daemon=True)
+        # ---------------------------------------------------------
+        # RIGHT SIDE - BOARD LED
+        # ---------------------------------------------------------
+
+        right_frame = tk.Frame(self.root, bg="darkgray")
+        right_frame.grid(row=0, column=1, sticky=STICKY)
+
+        right_frame.columnconfigure(0, weight=1)
+        right_frame.columnconfigure(1, weight=1)
+        right_frame.rowconfigure(0, weight=1)
+
+        self.led_canvas = tk.Canvas(
+            right_frame,
+            width=80,
+            height=80,
+            bg="darkgray",
+            highlightthickness=0,
+        )
+        self.led_canvas.grid(row=0, column=0, padx=30, sticky=tk.E)
+
+        self.led_circle = self.led_canvas.create_oval(
+            5,
+            5,
+            50,
+            50,
+            fill="red",
+            outline="black",
+            width=3,
+        )
+
+        self.led_label = tk.Label(
+            right_frame,
+            text="Board LED",
+            font=("Arial",12),
+            bg="darkgray",
+            fg="black",
+        )
+        self.led_label.grid(row=0, column=1, padx=20, sticky=tk.W)
+
+        # Start GUI update thread
+        self.thread = threading.Thread(
+            target=self.update_gui,
+            daemon=True,
+        )
         self.thread.start()
 
         self.root.mainloop()
@@ -226,12 +285,13 @@ class GUI:
         """
         self.titrator.keypad.set_key(key)
 
-    def update_lcd(self):
+    def update_gui(self):
         """
-        The function to update the GUI LCD
+        The function to update the GUI LCD and LED
         """
         while True:
             time.sleep(0.001)
+
             self.line_1.config(
                 text=self.titrator.lcd.get_line(1),
                 anchor=self.titrator.lcd.get_style(1),
@@ -248,3 +308,14 @@ class GUI:
                 text=self.titrator.lcd.get_line(4),
                 anchor=self.titrator.lcd.get_style(4),
             )
+
+            if self.titrator.led.is_on:
+                self.led_canvas.itemconfig(
+                    self.led_circle,
+                    fill="yellow",
+                )
+            else:
+                self.led_canvas.itemconfig(
+                    self.led_circle,
+                    fill="black",
+                )
