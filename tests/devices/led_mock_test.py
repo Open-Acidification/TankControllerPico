@@ -1,14 +1,50 @@
-from src.devices.library import LED
+"""
+The file to test the Mock LED class.
+"""
 
-led = LED()
+from src.devices.led_mock import LED
 
-print(led.is_on)  # False
 
-led.on()
-print(led.is_on)  # True
+def test_led_starts_off():
+    """
+    LED should be off when initialized.
+    """
+    led = LED()
 
-led.off()
-print(led.is_on)  # False
+    assert led.is_on is False
 
-led.toggle()
-print(led.is_on)  # True
+
+def test_led_turns_on():
+    """
+    LED should turn on when on() is called.
+    """
+    led = LED()
+
+    led.on()
+
+    assert led.is_on is True
+
+
+def test_led_turns_off():
+    """
+    LED should turn off when off() is called.
+    """
+    led = LED()
+    led.on()
+
+    led.off()
+
+    assert led.is_on is False
+
+
+def test_led_toggle():
+    """
+    LED should switch between on and off when toggle() is called.
+    """
+    led = LED()
+
+    led.toggle()
+    assert led.is_on is True
+
+    led.toggle()
+    assert led.is_on is False
